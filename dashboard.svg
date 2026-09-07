@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560">
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#7c3cff"/><stop offset="1" stop-color="#20c7ff"/></linearGradient></defs>
+<rect width="900" height="560" rx="28" fill="#0c101b" stroke="#30384f" stroke-width="2"/>
+<rect x="24" y="24" width="170" height="512" rx="18" fill="#111727"/>
+<text x="50" y="70" fill="#f4f6ff" font-family="Arial" font-size="20" font-weight="700">VertexCore</text>
+<g font-family="Arial" font-size="15" fill="#8f99b5">
+<text x="50" y="125" fill="#fff">Overview</text><text x="50" y="165">Servers</text><text x="50" y="205">Networks</text><text x="50" y="245">Backups</text><text x="50" y="285">Security</text><text x="50" y="325">Activity</text>
+</g>
+<rect x="218" y="24" width="658" height="82" rx="18" fill="#111727"/>
+<text x="248" y="59" fill="#8993ad" font-family="Arial" font-size="13">SYSTEM STATUS</text>
+<text x="248" y="86" fill="#2bd8a3" font-family="Arial" font-size="18" font-weight="700">● All systems operational</text>
+<rect x="218" y="126" width="317" height="180" rx="18" fill="#111727"/>
+<text x="244" y="158" fill="#8993ad" font-family="Arial" font-size="13">CPU UTILIZATION</text>
+<text x="244" y="201" fill="#fff" font-family="Arial" font-size="40" font-weight="700">42%</text>
+<path d="M245 260 C290 225 320 278 350 242 S410 210 440 240 S485 225 505 205" fill="none" stroke="url(#g)" stroke-width="5"/>
+<rect x="557" y="126" width="319" height="180" rx="18" fill="#111727"/>
+<text x="583" y="158" fill="#8993ad" font-family="Arial" font-size="13">NETWORK TRAFFIC</text>
+<text x="583" y="201" fill="#fff" font-family="Arial" font-size="40" font-weight="700">8.7 GB/s</text>
+<g fill="#7c3cff"><rect x="585" y="244" width="22" height="35" rx="4"/><rect x="618" y="228" width="22" height="51" rx="4"/><rect x="651" y="214" width="22" height="65" rx="4"/><rect x="684" y="239" width="22" height="40" rx="4"/><rect x="717" y="205" width="22" height="74" rx="4"/><rect x="750" y="220" width="22" height="59" rx="4"/><rect x="783" y="195" width="22" height="84" rx="4"/></g>
+<rect x="218" y="326" width="658" height="184" rx="18" fill="#111727"/>
+<text x="244" y="360" fill="#8993ad" font-family="Arial" font-size="13">ACTIVE NODES</text>
+<g font-family="Arial"><text x="244" y="402" fill="#fff" font-size="17">core-us-east-01</text><text x="244" y="430" fill="#7f89a5" font-size="13">8 vCPU · 32 GB RAM · NVMe</text><circle cx="820" cy="402" r="6" fill="#2bd8a3"/>
+<text x="520" y="402" fill="#fff" font-size="17">core-eu-west-02</text><text x="520" y="430" fill="#7f89a5" font-size="13">16 vCPU · 64 GB RAM · NVMe</text><circle cx="820" cy="446" r="6" fill="#2bd8a3"/>
+<text x="244" y="474" fill="#fff" font-size="17">core-ap-south-01</text><text x="244" y="500" fill="#7f89a5" font-size="13">4 vCPU · 16 GB RAM · NVMe</text></g>
+</svg>

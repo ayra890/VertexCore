@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420">
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#7c3cff"/><stop offset="1" stop-color="#20c7ff"/></linearGradient></defs>
+<rect width="700" height="420" rx="28" fill="#101522" stroke="#30384f"/>
+<circle cx="570" cy="90" r="95" fill="#7c3cff" opacity=".10"/><circle cx="590" cy="105" r="55" fill="#20c7ff" opacity=".08"/>
+<text x="58" y="100" font-family="Arial" font-size="54" fill="url(#g)">⌁</text>
+<text x="58" y="165" font-family="Arial" font-size="28" font-weight="700" fill="#fff">Private networking</text>
+<text x="58" y="208" font-family="Arial" font-size="17" fill="#98a2bd">Isolated VPC-style networks for secure service-to-service traffic.</text>
+<g stroke="url(#g)" stroke-width="4" fill="#141b2b"><circle cx="105" cy="310" r="24"/><circle cx="250" cy="275" r="24"/><circle cx="405" cy="325" r="24"/><path d="M129 303 226 282M274 282 381 316"/></g>
+</svg>
