@@ -318,6 +318,13 @@ nav a:hover{
     resize:vertical;
 }
 
+/* SERVER LOCATION ERROR */
+
+.location-error{
+    border-color:#ff4d5f !important;
+    box-shadow:0 0 0 3px rgba(255,77,95,.12) !important;
+}
+
 .payment-row{
     display:flex;
     gap:10px;
@@ -650,7 +657,7 @@ footer{
                             required
                         >
 
-                            <option value="" disabled>
+                            <option value="" selected disabled>
                                 Select your VPS plan
                             </option>
 
@@ -736,37 +743,27 @@ footer{
                             Server Location
                         </label>
 
-                        <select
-                            class="form-select"
+                        <input
+                            class="form-control"
+                            list="serverLocations"
                             id="serverLocation"
+                            placeholder="Select or type server location"
+                            autocomplete="off"
                             required
                         >
 
-                            <option value="" disabled selected>
-                                Select server location
-                            </option>
+                        <datalist id="serverLocations">
 
                             <option value="United States">
-                                United States
-                            </option>
-
                             <option value="United Kingdom">
-                                United Kingdom
-                            </option>
-
                             <option value="Germany">
-                                Germany
-                            </option>
-
                             <option value="Netherlands">
-                                Netherlands
-                            </option>
-
                             <option value="Canada">
-                                Canada
-                            </option>
+                            <option value="France">
+                            <option value="Singapore">
+                            <option value="Australia">
 
-                        </select>
+                        </datalist>
 
                     </div>
 
@@ -1031,11 +1028,46 @@ document
     });
 
 
+/* SERVER LOCATION */
+
+const serverLocation =
+    document.getElementById("serverLocation");
+
+
+serverLocation.addEventListener("input", function(){
+
+    if(this.value.trim() !== ""){
+
+        this.classList.remove("location-error");
+
+    }
+
+});
+
+
 /* ORDER FORM */
 
 function submitOrder(event){
 
     event.preventDefault();
+
+
+    /* CHECK SERVER LOCATION */
+
+    if(serverLocation.value.trim() === ""){
+
+        serverLocation.classList.add("location-error");
+
+        alert("Please select or enter a Server Location.");
+
+        serverLocation.focus();
+
+        return;
+
+    }
+
+
+    /* ORDER DETAILS */
 
     const plan =
         document.getElementById("vpsPlan").value;
@@ -1050,7 +1082,7 @@ function submitOrder(event){
         document.getElementById("phone").value;
 
     const location =
-        document.getElementById("serverLocation").value;
+        serverLocation.value;
 
     const message =
         document.getElementById("message").value;
