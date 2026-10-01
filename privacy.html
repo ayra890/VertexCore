@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Privacy Policy | Vertex Core</title>
+
+<meta name="description" content="Vertex Core Privacy Policy.">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Segoe UI,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:#060a14;color:#fff;overflow-x:hidden}
+a{color:inherit}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+background:rgba(10,15,30,.94);
+border-bottom:1px solid #1a233a;
+position:sticky;
+top:0;
+z-index:50;
+backdrop-filter:blur(12px)
+}
+
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{width:185px;height:auto;display:block;object-fit:contain}
+
+nav a{
+color:#8b9bb4;
+text-decoration:none;
+margin:0 12px;
+font-size:14px
+}
+
+nav a:hover{color:#fff}
+
+.btn-blue{
+background:#1e90ff;
+color:#fff;
+padding:10px 20px;
+border-radius:8px;
+text-decoration:none;
+font-weight:700;
+box-shadow:0 0 20px rgba(30,144,255,.4);
+border:none;
+display:inline-block
+}
+
+.btn-outline{
+border:1px solid #1a233a;
+padding:10px 20px;
+border-radius:8px;
+text-decoration:none;
+color:#8b9bb4;
+margin-left:10px;
+display:inline-block
+}
+
+.menu-btn{
+display:block;
+background:transparent;
+border:1px solid #1e90ff;
+color:#1e90ff;
+width:44px;
+height:44px;
+border-radius:10px;
+font-size:25px;
+cursor:pointer
+}
+
+.sidebar{
+position:fixed;
+top:0;
+left:-330px;
+width:310px;
+height:100vh;
+background:#080d18;
+border-right:1px solid #1e90ff;
+z-index:100;
+padding:25px;
+transition:.3s;
+box-shadow:10px 0 40px rgba(0,0,0,.5)
+}
+
+.sidebar.open{left:0}
+
+.side-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:45px
+}
+
+.side-close{
+width:38px;
+height:38px;
+border-radius:50%;
+background:#0c1525;
+border:1px solid #27405f;
+color:#1e90ff;
+font-size:23px;
+cursor:pointer
+}
+
+.side-links{
+display:grid;
+gap:7px
+}
+
+.side-links a{
+padding:14px;
+color:#aab8cb;
+text-decoration:none;
+border-radius:9px
+}
+
+.side-links a:hover{
+background:#0d1a2d;
+color:#fff
+}
+
+.side-actions{
+display:grid;
+gap:12px;
+margin-top:25px
+}
+
+.side-actions a{
+margin:0;
+text-align:center
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+z-index:90;
+display:none
+}
+
+.overlay.show{display:block}
+
+.legal-hero{
+padding:65px 5% 45px;
+text-align:center;
+position:relative;
+overflow:hidden;
+border-bottom:1px solid #121d32;
+background:#060a14
+}
+
+.legal-hero:before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(180deg,rgba(6,10,20,.55),#060a14 95%),url('images/Privacy Policy page.jpg') center/cover no-repeat;
+opacity:.22;
+z-index:0
+}
+
+.legal-hero>*{
+position:relative;
+z-index:1
+}
+
+.legal-hero h1{
+font-size:clamp(38px,5vw,62px);
+margin-bottom:12px
+}
+
+.legal-hero h1 span{color:#1e90ff}
+
+.legal-hero p{
+max-width:760px;
+margin:0 auto;
+color:#8b9bb4;
+line-height:1.7
+}
+
+.legal-image{
+max-width:1100px;
+margin:35px auto 0;
+padding:0 5%
+}
+
+.legal-image img{
+width:100%;
+height:300px;
+object-fit:cover;
+border-radius:18px;
+border:1px solid #1e90ff;
+display:block;
+box-shadow:0 0 40px rgba(30,144,255,.12)
+}
+
+.legal-content{
+max-width:1000px;
+margin:45px auto 70px;
+padding:0 5%
+}
+
+.legal-intro{
+color:#8b9bb4;
+line-height:1.8;
+font-size:14px;
+margin-bottom:25px
+}
+
+.legal-section{
+background:#0b1221;
+border:1px solid #18243a;
+border-radius:14px;
+padding:25px;
+margin-bottom:15px
+}
+
+.legal-section h2{
+font-size:20px;
+color:#fff;
+margin-bottom:10px
+}
+
+.legal-section h2 span{color:#1e90ff}
+
+.legal-section p{
+color:#8b9bb4;
+font-size:14px;
+line-height:1.8
+}
+
+footer{
+padding:40px 5% 15px;
+background:#080e1b;
+border-top:1px solid #121a2e;
+color:#8b9bb4
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:1.2fr 1fr 1fr 1fr;
+gap:35px;
+max-width:1100px;
+margin:0 auto 18px;
+align-items:start
+}
+
+.footer-brand{max-width:280px}
+
+.footer-brand .logo img{
+width:185px;
+height:auto;
+display:block;
+margin-bottom:15px
+}
+
+.footer-brand p{
+color:#70829e;
+font-size:13px;
+line-height:1.7
+}
+
+.footer-column h3{
+font-size:16px;
+color:#fff;
+margin-bottom:14px;
+white-space:nowrap
+}
+
+.footer-column a{
+display:block;
+color:#8b9bb4;
+text-decoration:none;
+font-size:13px;
+margin:0 0 9px;
+white-space:nowrap
+}
+
+.footer-column a:hover{color:#1e90ff}
+
+.footer-bottom{
+text-align:center;
+padding-top:15px;
+border-top:1px solid #121a2e;
+color:#5a6d8a;
+font-size:12px;
+line-height:1.8
+}
+
+.whatsapp{
+position:fixed;
+right:22px;
+bottom:22px;
+z-index:70;
+background:#18c968;
+color:#fff;
+text-decoration:none;
+padding:13px 18px;
+border-radius:30px;
+font-weight:700
+}
+
+@media(max-width:900px){
+nav{display:none}
+.header-actions{display:none}
+}
+
+@media(max-width:600px){
+
+header{padding:12px 5%}
+.logo img{width:165px}
+
+.sidebar{
+width:85vw;
+max-width:310px
+}
+
+.legal-hero{
+padding:55px 5% 35px
+}
+
+.legal-hero h1{
+font-size:40px
+}
+
+.legal-image{
+padding:0 5%;
+margin-top:25px
+}
+
+.legal-image img{
+height:220px
+}
+
+.legal-content{
+padding:0 5%;
+margin-top:30px
+}
+
+.legal-section{
+padding:20px
+}
+
+.footer-grid{
+grid-template-columns:1fr 1fr;
+gap:30px
+}
+
+.footer-brand{
+grid-column:1/-1;
+max-width:none
+}
+
+.footer-brand .logo img{
+width:165px
+}
+
+.footer-column a{
+white-space:normal
+}
+
+.whatsapp{
+right:15px;
+bottom:15px
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+
+<div class="side-head">
+<a class="logo" href="index.html">
+<img src="images/logo.jpg" alt="Vertex Core">
+</a>
+<button class="side-close" id="closeMenu">×</button>
+</div>
+
+<div class="side-links">
+<a href="index.html">HOME</a>
+<a href="pricing.html">PRICING</a>
+<a href="locations.html">LOCATIONS</a>
+<a href="vps.html">VPS</a>
+<a href="support.html">SUPPORT</a>
+<a href="about.html">ABOUT US</a>
+<a href="contact.html">CONTACT US</a>
+</div>
+
+<div class="side-actions">
+<a href="order.html" class="btn-blue">Order Now</a>
+<a href="contact.html" class="btn-outline">Contact Us</a>
+</div>
+
+</aside>
+
+<header>
+
+<button class="menu-btn" id="openMenu">☰</button>
+
+<a class="logo" href="index.html">
+<img src="images/logo.jpg" alt="Vertex Core">
+</a>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="pricing.html">Pricing</a>
+<a href="vps.html">VPS</a>
+<a href="support.html">Support</a>
+<a href="blog.html">Blog</a>
+</nav>
+
+<div class="header-actions">
+<a href="login.html" class="login-link">Login</a>
+<a href="order.html" class="btn-blue">Get Started</a>
+</div>
+
+</header>
+
+<main>
+
+<section class="legal-hero">
+
+<h1>Privacy <span>Policy</span></h1>
+
+<p>
+This Privacy Policy explains how Vertex Core may collect,
+use and protect information when you use our website and services.
+</p>
+
+</section>
+
+<div class="legal-image">
+<img src="images/Privacy Policy page.jpg" alt="Privacy Policy">
+</div>
+
+<section class="legal-content">
+
+<p class="legal-intro">
+Vertex Core respects the privacy of customers and website visitors.
+This policy describes the types of information that may be collected
+and how that information may be used in connection with our services.
+</p>
+
+<div class="legal-section">
+<h2><span>01.</span> Information We Collect</h2>
+<p>
+We may collect information that you provide when creating an account,
+placing an order, contacting support or using our services. This may
+include your name, email address, contact details, billing information
+and service-related information.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>02.</span> Account Information</h2>
+<p>
+Account information is used to create and manage your Vertex Core
+account, provide requested services and communicate with you about
+your account.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>03.</span> Payment Information</h2>
+<p>
+Payment transactions may be processed through third-party payment
+providers. Vertex Core may receive transaction-related information
+necessary to confirm payments, maintain billing records and provide
+services. Sensitive payment credentials may be handled directly by
+the applicable payment provider.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>04.</span> Communications</h2>
+<p>
+We may use your contact information to respond to support requests,
+service notices, account communications, billing notifications and
+other necessary operational messages.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>05.</span> Technical and Log Information</h2>
+<p>
+Our website and infrastructure may collect technical information such
+as IP address, browser information, device information, access times,
+diagnostic information and other data needed for security and
+operation of the service.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>06.</span> How We Use Information</h2>
+<p>
+Information may be used to provide and maintain services, process
+orders, manage accounts, provide customer support, improve website
+functionality, prevent abuse, protect infrastructure and comply with
+applicable legal requirements.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>07.</span> Cookies</h2>
+<p>
+Vertex Core may use cookies or similar technologies to support
+website functionality, remember preferences and understand website
+usage. Browser settings may allow you to manage or disable certain
+cookies.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>08.</span> Service Providers</h2>
+<p>
+We may use trusted third-party providers for services such as payment
+processing, hosting infrastructure, communications, analytics,
+security or other operational requirements. Such providers may process
+information as necessary to provide their services.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>09.</span> Data Security</h2>
+<p>
+Vertex Core uses reasonable technical and organizational measures
+designed to protect information. However, no internet transmission
+or electronic storage system can be guaranteed to be completely
+secure.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>10.</span> Data Retention</h2>
+<p>
+Information may be retained for as long as reasonably necessary to
+provide services, maintain business and billing records, resolve
+disputes, enforce agreements or satisfy applicable legal obligations.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>11.</span> Information Sharing</h2>
+<p>
+Vertex Core does not intend to sell customer information. Information
+may be shared with service providers or other parties where necessary
+to provide services, protect the infrastructure, process transactions,
+comply with legal requirements or address security concerns.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>12.</span> User Choices</h2>
+<p>
+Depending on applicable law, you may have rights concerning your
+personal information, including requesting access, correction or
+other available privacy choices. Requests can be directed to the
+appropriate Vertex Core contact channel.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>13.</span> Children's Privacy</h2>
+<p>
+Our services are not intentionally directed toward children where
+such services are not appropriate for them. We do not knowingly
+request unnecessary personal information from children.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>14.</span> Policy Changes</h2>
+<p>
+Vertex Core may update this Privacy Policy when necessary. Changes
+will be published on this page, together with an updated effective
+date where appropriate.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>15.</span> Contact</h2>
+<p>
+For privacy-related questions or requests, please contact Vertex Core
+through the contact information provided on our website.
+</p>
+<p style="margin-top:10px">
+<a href="contact.html" style="color:#1e90ff;text-decoration:none;font-weight:700">
+Contact Vertex Core →
+</a>
+</p>
+</div>
+
+<p style="color:#5f718b;font-size:12px;text-align:center;margin-top:30px">
+Last Updated: October 1, 2026
+</p>
+
+</section>
+
+</main>
+
+<a class="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">
+💬 WhatsApp Channel
+</a>
+
+<footer>
+
+<div class="footer-grid">
+
+<div class="footer-brand">
+<a class="logo" href="index.html">
+<img src="images/logo.jpg" alt="Vertex Core">
+</a>
+
+<p>
+Enterprise-grade Windows VPS infrastructure built for performance,
+secure access and reliable connectivity.
+</p>
+
+<p style="margin-top:12px">
+<a href="mailto:vertexcore95@gmail.com" style="color:#8b9bb4;text-decoration:none">
+vertexcore95@gmail.com
+</a>
+</p>
+</div>
+
+<div class="footer-column">
+<h3>Company</h3>
+<a href="about.html">About Us</a>
+<a href="features.html">Services</a>
+<a href="locations.html">Locations</a>
+<a href="vps.html">VPS</a>
+<a href="blog.html">Blog</a>
+</div>
+
+<div class="footer-column">
+<h3>Support</h3>
+<a href="support.html">Help &amp; Supports</a>
+<a href="docs.html">Documentation</a>
+<a href="dashboard.html">Customer Dashboard</a>
+</div>
+
+<div class="footer-column">
+<h3>Legal</h3>
+<a href="terms.html">Terms of Services</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="refund.html">Refund Policy</a>
+<a href="faqs.html">FAQs</a>
+<a href="contact.html">Contact Us</a>
+<a href="login.html">Login</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 Vertex Core - All plans include free backups - 99.95% uptime SLA - Cancel anytime - 24/7 Support
+</div>
+
+</footer>
+
+<script>
+
+const sidebar=document.getElementById('sidebar'),
+overlay=document.getElementById('overlay');
+
+function openSide(){
+sidebar.classList.add('open');
+overlay.classList.add('show')
+}
+
+function closeSide(){
+sidebar.classList.remove('open');
+overlay.classList.remove('show')
+}
+
+document.getElementById('openMenu').addEventListener('click',openSide);
+document.getElementById('closeMenu').addEventListener('click',closeSide);
+overlay.addEventListener('click',closeSide);
+
+document.querySelectorAll('.side-links a,.side-actions a').forEach(a=>{
+a.addEventListener('click',closeSide)
+});
+
+</script>
+
+</body>
+</html>
