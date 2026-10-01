@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Terms of Services | Vertex Core</title>
+
+<meta name="description" content="Vertex Core Terms of Services for Windows VPS hosting services.">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Segoe UI,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:#060a14;color:#fff;overflow-x:hidden}
+a{color:inherit}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+background:rgba(10,15,30,.94);
+border-bottom:1px solid #1a233a;
+position:sticky;
+top:0;
+z-index:50;
+backdrop-filter:blur(12px)
+}
+
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{width:185px;height:auto;display:block;object-fit:contain}
+
+nav a{
+color:#8b9bb4;
+text-decoration:none;
+margin:0 12px;
+font-size:14px
+}
+
+nav a:hover{color:#fff}
+
+.btn-blue{
+background:#1e90ff;
+color:#fff;
+padding:10px 20px;
+border-radius:8px;
+text-decoration:none;
+font-weight:700;
+box-shadow:0 0 20px rgba(30,144,255,.4);
+border:none;
+display:inline-block
+}
+
+.btn-outline{
+border:1px solid #1a233a;
+padding:10px 20px;
+border-radius:8px;
+text-decoration:none;
+color:#8b9bb4;
+margin-left:10px;
+display:inline-block
+}
+
+.btn-outline:hover{
+border-color:#1e90ff;
+color:#fff
+}
+
+.menu-btn{
+display:block;
+background:transparent;
+border:1px solid #1e90ff;
+color:#1e90ff;
+width:44px;
+height:44px;
+border-radius:10px;
+font-size:25px;
+cursor:pointer
+}
+
+.sidebar{
+position:fixed;
+top:0;
+left:-330px;
+width:310px;
+height:100vh;
+background:#080d18;
+border-right:1px solid #1e90ff;
+z-index:100;
+padding:25px;
+transition:.3s;
+box-shadow:10px 0 40px rgba(0,0,0,.5)
+}
+
+.sidebar.open{left:0}
+
+.side-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:45px
+}
+
+.side-close{
+width:38px;
+height:38px;
+border-radius:50%;
+background:#0c1525;
+border:1px solid #27405f;
+color:#1e90ff;
+font-size:23px;
+cursor:pointer
+}
+
+.side-links{
+display:grid;
+gap:7px
+}
+
+.side-links a{
+padding:14px;
+color:#aab8cb;
+text-decoration:none;
+border-radius:9px
+}
+
+.side-links a:hover{
+background:#0d1a2d;
+color:#fff
+}
+
+.side-actions{
+display:grid;
+gap:12px;
+margin-top:25px
+}
+
+.side-actions a{
+margin:0;
+text-align:center
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+z-index:90;
+display:none
+}
+
+.overlay.show{display:block}
+
+/* LEGAL HERO */
+
+.legal-hero{
+padding:65px 5% 45px;
+text-align:center;
+position:relative;
+overflow:hidden;
+border-bottom:1px solid #121d32;
+background:#060a14
+}
+
+.legal-hero:before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(180deg,rgba(6,10,20,.55),#060a14 95%),url('images/Terms of Services page.jpg') center/cover no-repeat;
+opacity:.22;
+z-index:0
+}
+
+.legal-hero>*{
+position:relative;
+z-index:1
+}
+
+.legal-hero h1{
+font-size:clamp(38px,5vw,62px);
+margin-bottom:12px
+}
+
+.legal-hero h1 span{color:#1e90ff}
+
+.legal-hero p{
+max-width:760px;
+margin:0 auto;
+color:#8b9bb4;
+line-height:1.7
+}
+
+.legal-image{
+max-width:1100px;
+margin:35px auto 0;
+padding:0 5%
+}
+
+.legal-image img{
+width:100%;
+height:300px;
+object-fit:cover;
+border-radius:18px;
+border:1px solid #1e90ff;
+display:block;
+box-shadow:0 0 40px rgba(30,144,255,.12)
+}
+
+.legal-content{
+max-width:1000px;
+margin:45px auto 70px;
+padding:0 5%
+}
+
+.legal-intro{
+color:#8b9bb4;
+line-height:1.8;
+font-size:14px;
+margin-bottom:25px
+}
+
+.legal-section{
+background:#0b1221;
+border:1px solid #18243a;
+border-radius:14px;
+padding:25px;
+margin-bottom:15px
+}
+
+.legal-section h2{
+font-size:20px;
+color:#fff;
+margin-bottom:10px
+}
+
+.legal-section h2 span{
+color:#1e90ff
+}
+
+.legal-section p{
+color:#8b9bb4;
+font-size:14px;
+line-height:1.8
+}
+
+.legal-section ul{
+margin:12px 0 0;
+padding-left:20px;
+color:#8b9bb4;
+line-height:1.8;
+font-size:14px;
+list-style:disc
+}
+
+.legal-section li{
+margin-bottom:5px
+}
+
+.last-updated{
+color:#5f718b;
+font-size:12px;
+text-align:center;
+margin-top:30px
+}
+
+/* FOOTER */
+
+footer{
+padding:40px 5% 15px;
+background:#080e1b;
+border-top:1px solid #121a2e;
+color:#8b9bb4
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:1.2fr 1fr 1fr 1fr;
+gap:35px;
+max-width:1100px;
+margin:0 auto 18px;
+align-items:start
+}
+
+.footer-brand{max-width:280px}
+
+.footer-brand .logo img{
+width:185px;
+height:auto;
+display:block;
+margin-bottom:15px
+}
+
+.footer-brand p{
+color:#70829e;
+font-size:13px;
+line-height:1.7
+}
+
+.footer-column h3{
+font-size:16px;
+color:#fff;
+margin-bottom:14px;
+white-space:nowrap
+}
+
+.footer-column a{
+display:block;
+color:#8b9bb4;
+text-decoration:none;
+font-size:13px;
+margin:0 0 9px;
+white-space:nowrap
+}
+
+.footer-column a:hover{color:#1e90ff}
+
+.footer-bottom{
+text-align:center;
+padding-top:15px;
+border-top:1px solid #121a2e;
+color:#5a6d8a;
+font-size:12px;
+line-height:1.8
+}
+
+.whatsapp{
+position:fixed;
+right:22px;
+bottom:22px;
+z-index:70;
+background:#18c968;
+color:#fff;
+text-decoration:none;
+padding:13px 18px;
+border-radius:30px;
+font-weight:700;
+box-shadow:0 8px 30px rgba(24,201,104,.3)
+}
+
+@media(max-width:900px){
+nav{display:none}
+.header-actions{display:none}
+
+.legal-image img{
+height:260px
+}
+}
+
+@media(max-width:600px){
+
+header{padding:12px 5%}
+
+.logo img{width:165px}
+
+.sidebar{
+width:85vw;
+max-width:310px
+}
+
+.legal-hero{
+padding:55px 5% 35px
+}
+
+.legal-hero h1{
+font-size:40px
+}
+
+.legal-image{
+padding:0 5%;
+margin-top:25px
+}
+
+.legal-image img{
+height:220px
+}
+
+.legal-content{
+padding:0 5%;
+margin-top:30px
+}
+
+.legal-section{
+padding:20px
+}
+
+.footer-grid{
+grid-template-columns:1fr 1fr;
+gap:30px
+}
+
+.footer-brand{
+grid-column:1/-1;
+max-width:none
+}
+
+.footer-brand .logo img{
+width:165px
+}
+
+.footer-column a{
+white-space:normal
+}
+
+.whatsapp{
+right:15px;
+bottom:15px
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+
+<div class="side-head">
+<a class="logo" href="index.html">
+<img src="images/logo.jpg" alt="Vertex Core">
+</a>
+<button class="side-close" id="closeMenu">×</button>
+</div>
+
+<div class="side-links">
+<a href="index.html">HOME</a>
+<a href="pricing.html">PRICING</a>
+<a href="locations.html">LOCATIONS</a>
+<a href="vps.html">VPS</a>
+<a href="support.html">SUPPORT</a>
+<a href="about.html">ABOUT US</a>
+<a href="contact.html">CONTACT US</a>
+</div>
+
+<div class="side-actions">
+<a href="order.html" class="btn-blue">Order Now</a>
+<a href="contact.html" class="btn-outline">Contact Us</a>
+</div>
+
+</aside>
+
+<header>
+
+<button class="menu-btn" id="openMenu" aria-label="Open menu">☰</button>
+
+<a class="logo" href="index.html">
+<img src="images/logo.jpg" alt="Vertex Core">
+</a>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="pricing.html">Pricing</a>
+<a href="vps.html">VPS</a>
+<a href="support.html">Support</a>
+<a href="blog.html">Blog</a>
+</nav>
+
+<div class="header-actions">
+<a href="login.html" class="login-link">Login</a>
+<a href="order.html" class="btn-blue">Get Started</a>
+</div>
+
+</header>
+
+<main>
+
+<section class="legal-hero">
+
+<h1>Terms of <span>Services</span></h1>
+
+<p>
+Please review these Terms of Services carefully before using
+Vertex Core services, website and VPS infrastructure.
+</p>
+
+</section>
+
+<div class="legal-image">
+<img src="images/Terms of Services page.jpg" alt="Terms of Services">
+</div>
+
+<section class="legal-content">
+
+<p class="legal-intro">
+These Terms of Services establish the rules and conditions for using
+Vertex Core services. By creating an account, purchasing a service,
+or using our infrastructure, you acknowledge that you have read and
+agree to these terms.
+</p>
+
+<div class="legal-section">
+<h2><span>01.</span> Important Legal Agreements</h2>
+<p>
+By accessing or using Vertex Core services, you agree to comply with
+these Terms of Services and any applicable policies referenced by
+Vertex Core. If you do not agree with these terms, you should not
+purchase or use our services.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>02.</span> The Service</h2>
+<p>
+Vertex Core provides Windows VPS and related hosting infrastructure.
+Services may include virtual server resources, network connectivity,
+remote access, management tools, backups and technical support.
+Available resources and features depend on the plan selected by the
+customer.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>03.</span> Customer Information</h2>
+<p>
+Customers are responsible for providing accurate and current account
+information. This may include name, contact information, billing
+information and other details required to provision or maintain a
+service. Customers should update inaccurate or outdated information.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>04.</span> Advertisements</h2>
+<p>
+Vertex Core may display information about its own services,
+promotions, upgrades or related products on its website or through
+customer communications. Third-party advertising, where applicable,
+may be governed by the respective third party's terms and policies.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>05.</span> Limitations</h2>
+<p>
+Services must be used within the resources, technical limitations
+and acceptable-use requirements associated with the purchased plan.
+Customers may not use the service in a way that disrupts the
+network, infrastructure, other customers or the normal operation
+of Vertex Core systems.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>06.</span> Online Activity</h2>
+<p>
+Customers are responsible for activity performed through their VPS
+or account. The service must not be used for unlawful activities,
+unauthorized access, abuse, malicious activity, distribution of
+harmful software, or activity that violates applicable laws.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>07.</span> Policy Violations</h2>
+<p>
+A violation may result in investigation, limitation, suspension or
+termination of the affected service. Depending on the situation,
+Vertex Core may take action to protect its infrastructure, network,
+customers and third parties.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>08.</span> Suspension/Deactivation</h2>
+<p>
+Vertex Core may suspend or deactivate a service where necessary,
+including situations involving unpaid invoices, security concerns,
+resource abuse, prohibited activity, policy violations or other
+circumstances that require protective action.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>09.</span> Reactivation/Suspension</h2>
+<p>
+A suspended service may be reviewed for possible reactivation after
+the reason for suspension has been addressed. Reactivation may
+require payment of outstanding balances, correction of a violation,
+or additional information from the customer.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>10.</span> Customer Account Security</h2>
+<p>
+Customers are responsible for protecting their account credentials,
+passwords and access information. Customers should use strong
+passwords and should not share account credentials unnecessarily.
+Any suspected unauthorized access should be reported promptly.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>11.</span> Payments</h2>
+<p>
+Services must be paid according to the pricing and billing terms
+presented at the time of purchase. Customers are responsible for
+maintaining valid payment information and ensuring invoices are paid
+on time.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>12.</span> Cancellation</h2>
+<p>
+Customers may request cancellation of a service according to the
+available cancellation process. Cancellation does not automatically
+remove amounts that became due before the cancellation took effect.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>13.</span> Payment Disputes &amp; Chargebacks</h2>
+<p>
+Customers should contact Vertex Core first if they believe a payment
+or invoice is incorrect. Unauthorized chargebacks or payment disputes
+may result in service review, suspension or termination while the
+matter is investigated.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>14.</span> Refund Policy</h2>
+<p>
+Refund requests are handled according to the Vertex Core Refund
+Policy. Eligibility may depend on the service purchased, timing of
+the request, account status and applicable exclusions.
+</p>
+<p style="margin-top:10px">
+<a href="refund.html" style="color:#1e90ff;text-decoration:none;font-weight:700">
+View Refund Policy →
+</a>
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>15.</span> Dedicated/VPS Resource Policy</h2>
+<p>
+Customers are expected to use allocated VPS resources responsibly.
+Excessive or abnormal resource consumption that negatively affects
+the infrastructure or other customers may be reviewed. Vertex Core
+may contact the customer or take appropriate technical action when
+resource use creates an operational issue.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>16.</span> Limitations of Liability</h2>
+<p>
+To the extent permitted by applicable law, Vertex Core will not be
+responsible for indirect, incidental, special or consequential losses
+arising from the use or inability to use a service. Customers are
+responsible for maintaining appropriate backups of important data.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>17.</span> Indemnity</h2>
+<p>
+Customers agree to be responsible for claims, losses, damages or
+expenses arising from their unlawful use of the service, violation
+of these terms, or infringement of third-party rights, to the extent
+permitted by applicable law.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>18.</span> Termination</h2>
+<p>
+A service or account may be terminated when required by the customer
+or Vertex Core under these terms. Termination may occur for unpaid
+balances, serious policy violations, abuse, security concerns or
+other circumstances permitted under the applicable agreement.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>19.</span> Abusive Clientele</h2>
+<p>
+Harassment, threats, abusive communication, fraudulent activity or
+repeated attempts to misuse support or infrastructure are not
+permitted. Vertex Core may limit communication or take account
+action where necessary to protect staff, systems and customers.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>20.</span> Price Changes</h2>
+<p>
+Vertex Core may change service pricing, plans or available features
+from time to time. Where applicable, updated pricing will apply to
+future purchases or renewal periods.
+</p>
+</div>
+
+<div class="legal-section">
+<h2><span>21.</span> Changes to the TOS</h2>
+<p>
+Vertex Core may update these Terms of Services when necessary.
+Updated terms may be published on this page with an updated date.
+Continued use of the services after applicable changes may be
+subject to the updated terms.
+</p>
+</div>
+
+<p class="last-updated">
+Last Updated: October 1, 2026
+</p>
+
+</section>
+
+</main>
+
+<a class="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">
+💬 WhatsApp Channel
+</a>
+
+<footer>
+
+<div class="footer-grid">
+
+<div class="footer-brand">
+<a class="logo" href="index.html">
+<img src="images/logo.jpg" alt="Vertex Core">
+</a>
+
+<p>
+Enterprise-grade Windows VPS infrastructure built for performance,
+secure access and reliable connectivity.
+</p>
+
+<p style="margin-top:12px">
+<a href="mailto:vertexcore95@gmail.com" style="color:#8b9bb4;text-decoration:none">
+vertexcore95@gmail.com
+</a>
+</p>
+</div>
+
+<div class="footer-column">
+<h3>Company</h3>
+<a href="about.html">About Us</a>
+<a href="features.html">Services</a>
+<a href="locations.html">Locations</a>
+<a href="vps.html">VPS</a>
+<a href="blog.html">Blog</a>
+</div>
+
+<div class="footer-column">
+<h3>Support</h3>
+<a href="support.html">Help &amp; Supports</a>
+<a href="docs.html">Documentation</a>
+<a href="dashboard.html">Customer Dashboard</a>
+</div>
+
+<div class="footer-column">
+<h3>Legal</h3>
+<a href="terms.html">Terms of Services</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="refund.html">Refund Policy</a>
+<a href="faqs.html">FAQs</a>
+<a href="contact.html">Contact Us</a>
+<a href="login.html">Login</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 Vertex Core - All plans include free backups - 99.95% uptime SLA - Cancel anytime - 24/7 Support
+</div>
+
+</footer>
+
+<script>
+
+const sidebar=document.getElementById('sidebar'),
+overlay=document.getElementById('overlay');
+
+function openSide(){
+sidebar.classList.add('open');
+overlay.classList.add('show')
+}
+
+function closeSide(){
+sidebar.classList.remove('open');
+overlay.classList.remove('show')
+}
+
+document.getElementById('openMenu').addEventListener('click',openSide);
+document.getElementById('closeMenu').addEventListener('click',closeSide);
+overlay.addEventListener('click',closeSide);
+
+document.querySelectorAll('.side-links a,.side-actions a').forEach(a=>{
+a.addEventListener('click',closeSide)
+});
+
+</script>
+
+</body>
+</html>
