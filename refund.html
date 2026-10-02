@@ -16,9 +16,7 @@
     font-family: Inter, "Segoe UI", Arial, sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
     background: #060a14;
@@ -27,9 +25,7 @@ body {
     line-height: 1.7;
 }
 
-a {
-    color: inherit;
-}
+a { color: inherit; }
 
 /* HEADER */
 
@@ -72,9 +68,7 @@ nav a {
     font-size: 14px;
 }
 
-nav a:hover {
-    color: #fff;
-}
+nav a:hover { color: #fff; }
 
 .menu-btn {
     display: block;
@@ -97,11 +91,10 @@ nav a:hover {
     font-weight: 700;
     box-shadow: 0 0 20px rgba(30,144,255,.25);
     display: inline-block;
+    border: 1px solid #1e90ff;
 }
 
-.btn-blue:hover {
-    filter: brightness(1.1);
-}
+.btn-blue:hover { filter: brightness(1.1); }
 
 .btn-outline {
     border: 1px solid #24324a;
@@ -129,9 +122,7 @@ nav a:hover {
     font-size: 14px;
 }
 
-.login-link:hover {
-    color: #fff;
-}
+.login-link:hover { color: #fff; }
 
 /* SIDEBAR */
 
@@ -150,9 +141,7 @@ nav a:hover {
     box-shadow: 10px 0 40px rgba(0,0,0,.5);
 }
 
-.sidebar.open {
-    left: 0;
-}
+.sidebar.open { left: 0; }
 
 .side-head {
     display: flex;
@@ -162,9 +151,7 @@ nav a:hover {
     margin-bottom: 35px;
 }
 
-.side-head .logo img {
-    width: 165px;
-}
+.side-head .logo img { width: 165px; }
 
 .side-close {
     width: 38px;
@@ -202,9 +189,7 @@ nav a:hover {
     margin-top: 25px;
 }
 
-.side-actions a {
-    text-align: center;
-}
+.side-actions a { text-align: center; }
 
 .overlay {
     position: fixed;
@@ -214,16 +199,13 @@ nav a:hover {
     display: none;
 }
 
-.overlay.show {
-    display: block;
-}
+.overlay.show { display: block; }
 
-/* PAGE HERO */
+/* HERO: TEXT + 16:9 IMAGE */
 
 .page-hero {
     position: relative;
     padding: 55px 5% 45px;
-    text-align: center;
     overflow: hidden;
     border-bottom: 1px solid #121d32;
     background: linear-gradient(180deg,#0a1020,#060a14);
@@ -240,63 +222,30 @@ nav a:hover {
     z-index: 0;
 }
 
-.page-hero-content {
+.page-hero-inner {
     position: relative;
     z-index: 1;
-}
-
-.page-hero h1 {
-    font-size: clamp(35px,5vw,58px);
-    line-height: 1.15;
-    margin-bottom: 12px;
-}
-
-.page-hero h1 span {
-    color: #1e90ff;
-}
-
-.page-hero p {
-    max-width: 760px;
+    max-width: 1200px;
     margin: 0 auto;
-    color: #8b9bb4;
-    font-size: 15px;
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 40px;
+    align-items: start;
 }
 
-/* REFUND IMAGE */
-
-.policy-image {
-    width: 100%;
-    max-width: 1000px;
-    margin: 35px auto 0;
-    border: 1px solid #1e90ff;
-    border-radius: 18px;
-    overflow: hidden;
-    background: #0b1221;
-    box-shadow: 0 0 35px rgba(30,144,255,.15);
+.page-hero-copy h1 {
+    font-size: clamp(36px,4.5vw,58px);
+    line-height: 1.12;
+    margin-bottom: 15px;
 }
 
-.policy-image img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
+.page-hero-copy h1 span { color: #1e90ff; }
 
-/* POLICY CONTENT */
-
-.policy-section {
-    padding: 55px 5% 80px;
-}
-
-.policy-container {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.policy-intro {
+.page-hero-copy > p {
     color: #aab8cb;
     font-size: 15px;
-    line-height: 1.9;
-    margin-bottom: 28px;
+    line-height: 1.8;
+    margin-bottom: 24px;
 }
 
 .policy-updated {
@@ -304,91 +253,134 @@ nav a:hover {
     color: #56d3ff;
     background: #0b1728;
     border: 1px solid #1a2941;
-    padding: 8px 13px;
+    padding: 7px 12px;
     border-radius: 8px;
     font-size: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+}
+
+.hero-intro {
+    color: #8b9bb4;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* IMAGE BOX - FIXED 16:9 RATIO */
+
+.policy-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1px solid #1e90ff;
+    border-radius: 13px;
+    overflow: hidden;
+    background: #030916;
+    box-shadow: 0 0 30px rgba(30,144,255,.14);
+}
+
+.policy-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* POLICY CONTENT */
+
+.policy-section {
+    padding: 25px 5% 70px;
+}
+
+.policy-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.policy-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 14px 18px;
 }
 
 .policy-card {
-    background: linear-gradient(180deg,#0d1628,#080e1a);
-    border: 1px solid #1a2941;
-    border-radius: 13px;
-    padding: 24px;
-    margin-bottom: 17px;
+    background: linear-gradient(180deg,#0a1426,#070e1d);
+    border: 1px solid #173253;
+    border-radius: 10px;
+    padding: 20px;
     transition: border-color .2s;
 }
 
-.policy-card:hover {
-    border-color: #24517e;
-}
+.policy-card:hover { border-color: #1e90ff; }
 
 .policy-card h2 {
     color: #fff;
-    font-size: 20px;
-    line-height: 1.4;
-    margin-bottom: 11px;
+    font-size: 17px;
+    line-height: 1.5;
+    margin-bottom: 9px;
 }
 
 .policy-card p {
     color: #8b9bb4;
-    font-size: 14px;
-    line-height: 1.9;
-    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.85;
+    margin-bottom: 9px;
 }
 
-.policy-card p:last-child {
-    margin-bottom: 0;
-}
+.policy-card p:last-child { margin-bottom: 0; }
 
 .policy-card ul {
-    padding-left: 22px;
-    margin: 10px 0;
+    padding-left: 20px;
+    margin: 8px 0;
     color: #8b9bb4;
-    font-size: 14px;
-    line-height: 1.9;
+    font-size: 13px;
+    line-height: 1.85;
 }
 
-.policy-card li {
-    padding-left: 4px;
-    margin-bottom: 5px;
-}
+.policy-card li { padding-left: 3px; }
 
 .policy-card a {
     color: #56b5ff;
     text-decoration: none;
 }
 
-.policy-card a:hover {
-    text-decoration: underline;
-}
+.policy-card a:hover { text-decoration: underline; }
 
-/* CONTACT CTA */
+/* BILLING CONTACT */
 
 .policy-contact {
-    margin-top: 30px;
-    padding: 28px;
+    margin-top: 22px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
     background: radial-gradient(circle at center,rgba(30,144,255,.13),#09101e 75%);
     border: 1px solid #1e90ff;
-    border-radius: 15px;
-    text-align: center;
+    border-radius: 14px;
 }
 
-.policy-contact h2 {
-    font-size: 24px;
-    margin-bottom: 8px;
+.policy-contact-copy h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
 }
 
-.policy-contact p {
+.policy-contact-copy p {
     color: #8b9bb4;
-    font-size: 14px;
-    margin-bottom: 18px;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.policy-contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 /* FOOTER */
 
 footer {
-    padding: 45px 5% 20px;
+    padding: 40px 5% 20px;
     background: #080e1b;
     border-top: 1px solid #121a2e;
     color: #8b9bb4;
@@ -399,13 +391,11 @@ footer {
     grid-template-columns: 1.3fr 1fr 1fr 1fr;
     gap: 35px;
     max-width: 1200px;
-    margin: 0 auto 25px;
+    margin: 0 auto 22px;
     align-items: start;
 }
 
-.footer-brand {
-    max-width: 280px;
-}
+.footer-brand { max-width: 280px; }
 
 .footer-brand .logo img {
     width: 175px;
@@ -418,10 +408,15 @@ footer {
     line-height: 1.8;
 }
 
+.footer-brand p a {
+    color: #8b9bb4;
+    text-decoration: none;
+}
+
 .footer-column h3 {
     font-size: 16px;
     color: #fff;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 .footer-column a {
@@ -429,17 +424,15 @@ footer {
     color: #8b9bb4;
     text-decoration: none;
     font-size: 13px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     transition: .2s;
 }
 
-.footer-column a:hover {
-    color: #1e90ff;
-}
+.footer-column a:hover { color: #1e90ff; }
 
 .footer-bottom {
     text-align: center;
-    padding-top: 18px;
+    padding-top: 17px;
     border-top: 1px solid #121a2e;
     color: #5a6d8a;
     font-size: 12px;
@@ -465,13 +458,10 @@ footer {
 
 /* RESPONSIVE */
 
-@media(max-width: 900px) {
-    nav {
-        display: none;
-    }
-
-    .header-actions {
-        display: none;
+@media(max-width: 1000px) {
+    .page-hero-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
     }
 
     .footer-grid {
@@ -485,38 +475,33 @@ footer {
     }
 }
 
-@media(max-width: 600px) {
-    header {
-        padding: 12px 5%;
+@media(max-width: 700px) {
+    nav { display: none; }
+    .header-actions { display: none; }
+
+    .page-hero { padding: 40px 5% 32px; }
+
+    .page-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 24px;
     }
 
-    .logo img {
-        width: 150px;
+    .page-hero-copy h1 { font-size: 39px; }
+
+    .policy-image {
+        max-width: 100%;
+        aspect-ratio: 16 / 9;
     }
 
-    .page-hero {
-        padding: 45px 5% 30px;
-    }
+    .policy-section { padding: 25px 5% 50px; }
 
-    .page-hero h1 {
-        font-size: 36px;
-    }
+    .policy-grid { grid-template-columns: 1fr; }
 
-    .policy-section {
-        padding: 35px 5% 55px;
-    }
+    .policy-card { padding: 18px; }
 
-    .policy-card {
-        padding: 19px;
-    }
-
-    .policy-card h2 {
-        font-size: 18px;
-    }
-
-    .policy-card p,
-    .policy-card ul {
-        font-size: 13px;
+    .policy-contact {
+        align-items: flex-start;
+        flex-direction: column;
     }
 
     .footer-grid {
@@ -524,13 +509,9 @@ footer {
         gap: 25px 18px;
     }
 
-    .footer-brand {
-        grid-column: 1/-1;
-    }
+    .footer-brand { grid-column: 1/-1; }
 
-    .footer-brand .logo img {
-        width: 160px;
-    }
+    .footer-brand .logo img { width: 160px; }
 
     .whatsapp {
         right: 12px;
@@ -596,211 +577,223 @@ footer {
 <main>
 
     <section class="page-hero">
-        <div class="page-hero-content">
-            <h1>Refund &amp; Payment <span>Policy</span></h1>
-            <p>
-                Transparent information about payments, cancellations,
-                refund requests and billing support for Vertex Core services.
-            </p>
+        <div class="page-hero-inner">
+
+            <div class="page-hero-copy">
+                <h1>Refund &amp; Payment <span>Policy</span></h1>
+
+                <p>
+                    Transparent information about payments, cancellations,
+                    refund requests and billing support for Vertex Core services.
+                </p>
+
+                <span class="policy-updated">
+                    ▣ Last Updated: October 2, 2026
+                </span>
+
+                <div class="hero-intro">
+                    This Refund &amp; Payment Policy explains the general
+                    billing, cancellation and refund terms for services
+                    provided by Vertex Core. Please read this page carefully
+                    before placing an order. Refund eligibility depends on
+                    the service purchased, the applicable terms and the
+                    circumstances of the request.
+                </div>
+            </div>
 
             <div class="policy-image">
                 <img
-                    src="images/Refund%20Policy%20%20page.jpg"
+                    src="images/Privacy%20Policy%20page.jpg"
                     alt="Vertex Core Refund and Payment Policy">
             </div>
+
         </div>
     </section>
 
     <section class="policy-section">
         <div class="policy-container">
 
-            <span class="policy-updated">Last Updated: October 2, 2026</span>
+            <div class="policy-grid">
 
-            <p class="policy-intro">
-                This Refund &amp; Payment Policy explains the general billing,
-                cancellation and refund terms for services provided by Vertex Core.
-                Please read this page carefully before placing an order. The
-                availability of a refund depends on the service purchased, the
-                applicable terms and the circumstances of the request.
-            </p>
+                <article class="policy-card">
+                    <h2>1. Payments</h2>
+                    <p>
+                        Customers must pay the fees displayed during checkout
+                        or otherwise agreed in writing before the applicable
+                        service is activated. Customers are responsible for
+                        providing accurate billing information and ensuring
+                        their selected payment method is authorized.
+                    </p>
+                    <p>
+                        Service activation may be delayed while a payment is
+                        pending verification or has not been successfully received.
+                    </p>
+                </article>
 
-            <div class="policy-card">
-                <h2>1. Payments</h2>
-                <p>
-                    Customers must pay the fees displayed during checkout or
-                    otherwise agreed in writing before the applicable service
-                    is activated. Customers are responsible for providing
-                    accurate billing information and ensuring that their
-                    selected payment method is authorized.
-                </p>
-                <p>
-                    Service activation may be delayed while a payment is
-                    pending verification or has not been successfully received.
-                </p>
-            </div>
+                <article class="policy-card">
+                    <h2>2. Refund Eligibility</h2>
+                    <p>
+                        Refund eligibility depends on the purchased service,
+                        the applicable offer and any refund terms presented
+                        at the time of purchase. Not every service or payment
+                        is eligible for a refund.
+                    </p>
+                    <p>
+                        Customers should review plan specifications, billing
+                        periods, included resources and restrictions before buying.
+                    </p>
+                </article>
 
-            <div class="policy-card">
-                <h2>2. Refund Eligibility</h2>
-                <p>
-                    Refund eligibility depends on the purchased service,
-                    the applicable offer and any refund terms presented at
-                    the time of purchase. Not every service or payment is
-                    eligible for a refund.
-                </p>
-                <p>
-                    Before purchasing, customers should review the plan
-                    specifications, billing period, included resources and
-                    any stated restrictions.
-                </p>
-            </div>
+                <article class="policy-card">
+                    <h2>3. Non-Refundable Items</h2>
+                    <p>
+                        Unless required by applicable law or expressly stated
+                        otherwise, the following items may be non-refundable:
+                    </p>
+                    <ul>
+                        <li>Services already delivered or consumed.</li>
+                        <li>Completed setup or configuration work.</li>
+                        <li>Third-party fees that cannot be recovered.</li>
+                        <li>Additional resources or usage already consumed.</li>
+                        <li>Services excluded from a promotional refund offer.</li>
+                    </ul>
+                </article>
 
-            <div class="policy-card">
-                <h2>3. Non-Refundable Items</h2>
-                <p>
-                    Unless required by applicable law or expressly stated
-                    otherwise in the offer, the following may be non-refundable:
-                </p>
-                <ul>
-                    <li>Services already delivered or consumed.</li>
-                    <li>Setup, configuration or other completed one-time work.</li>
-                    <li>Third-party fees that cannot be recovered.</li>
-                    <li>Additional resources or usage already consumed.</li>
-                    <li>Services excluded from a promotional refund offer.</li>
-                </ul>
-            </div>
+                <article class="policy-card">
+                    <h2>4. How to Request a Refund</h2>
+                    <p>
+                        To request a refund review, contact our support team
+                        through the official contact details on this website.
+                        Include your account email, order reference, service
+                        name and a clear explanation of your request.
+                    </p>
+                    <p>
+                        Do not include passwords, full payment-card details
+                        or other unnecessary sensitive information.
+                    </p>
+                </article>
 
-            <div class="policy-card">
-                <h2>4. How to Request a Refund</h2>
-                <p>
-                    To request a refund review, contact our support team using
-                    the official contact details on the website. Include your
-                    account email, order reference, service name and a clear
-                    explanation of the reason for your request.
-                </p>
-                <p>
-                    Please do not include passwords, full payment-card details
-                    or other unnecessary sensitive information in your request.
-                </p>
-            </div>
+                <article class="policy-card">
+                    <h2>5. Refund Review and Processing</h2>
+                    <p>
+                        Each request is reviewed according to the applicable
+                        service terms, payment records and relevant circumstances.
+                        We may contact you for additional information before
+                        making a decision.
+                    </p>
+                    <p>
+                        If approved, processing time may depend on the original
+                        payment provider or financial institution.
+                    </p>
+                </article>
 
-            <div class="policy-card">
-                <h2>5. Refund Review and Processing</h2>
-                <p>
-                    Each request is reviewed according to the applicable
-                    service terms, payment records and relevant circumstances.
-                    We may contact you for additional information before
-                    making a decision.
-                </p>
-                <p>
-                    If a refund is approved, the processing time may depend
-                    on the original payment provider or financial institution.
-                    The time for the funds to appear in your account is
-                    outside our direct control.
-                </p>
-            </div>
+                <article class="policy-card">
+                    <h2>6. Cancellation</h2>
+                    <p>
+                        Customers who wish to stop a recurring service should
+                        submit a cancellation request through the available
+                        account or support channels before the next renewal date.
+                    </p>
+                    <p>
+                        Cancellation stops future renewals according to the
+                        applicable billing terms. It does not automatically
+                        guarantee a refund for a previous payment or unused
+                        portion of a billing period.
+                    </p>
+                    <p>
+                        Back up your files and retrieve required data before
+                        the service is terminated.
+                    </p>
+                </article>
 
-            <div class="policy-card">
-                <h2>6. Cancellation</h2>
-                <p>
-                    Customers who wish to stop a recurring service should
-                    submit a cancellation request through the available
-                    account or support channels before the next renewal date.
-                </p>
-                <p>
-                    Cancellation stops future renewals according to the
-                    applicable billing terms. It does not automatically
-                    guarantee a refund for a previous payment or unused
-                    portion of a billing period.
-                </p>
-                <p>
-                    Customers should back up their files and retrieve any
-                    required data before the service is terminated.
-                </p>
-            </div>
+                <article class="policy-card">
+                    <h2>7. Recurring Billing and Renewals</h2>
+                    <p>
+                        Where recurring billing applies, a service may renew
+                        for the billing period selected at checkout. Customers
+                        should review the renewal date and cancel before renewal
+                        if they do not wish to continue.
+                    </p>
+                    <p>
+                        Renewal charges and cancellation requirements are
+                        subject to the terms presented for the relevant service.
+                    </p>
+                </article>
 
-            <div class="policy-card">
-                <h2>7. Recurring Billing and Renewals</h2>
-                <p>
-                    Where recurring billing applies, the service may renew
-                    for the billing period selected at checkout. Customers
-                    should review the renewal date and cancel before renewal
-                    if they do not wish to continue.
-                </p>
-                <p>
-                    Any renewal charges, billing frequency and cancellation
-                    requirements will be subject to the terms presented
-                    for the relevant service.
-                </p>
-            </div>
+                <article class="policy-card">
+                    <h2>8. Payment Disputes &amp; Chargebacks</h2>
+                    <p>
+                        If you believe a charge is incorrect, contact support
+                        first so we can review the transaction and attempt
+                        to resolve the issue.
+                    </p>
+                    <p>
+                        We may provide relevant order, payment and service
+                        records to a payment processor or financial institution
+                        when responding to a payment dispute. This policy does
+                        not limit rights provided by applicable law.
+                    </p>
+                </article>
 
-            <div class="policy-card">
-                <h2>8. Payment Disputes &amp; Chargebacks</h2>
-                <p>
-                    If you believe a charge is incorrect, please contact
-                    support first so we can review the transaction and
-                    attempt to resolve the issue.
-                </p>
-                <p>
-                    We may provide relevant order, payment and service
-                    records to a payment processor or financial institution
-                    when responding to a legitimate payment dispute.
-                    Nothing in this policy limits any rights you have
-                    under applicable law.
-                </p>
-            </div>
+                <article class="policy-card">
+                    <h2>9. Failed or Pending Payments</h2>
+                    <p>
+                        An unsuccessful, reversed or pending payment may
+                        prevent a service from being activated or renewed.
+                        If a payment appears to have been deducted but the
+                        order is not confirmed, contact support with the
+                        transaction reference so it can be investigated.
+                    </p>
+                </article>
 
-            <div class="policy-card">
-                <h2>9. Failed or Pending Payments</h2>
-                <p>
-                    An unsuccessful, reversed or pending payment may prevent
-                    a service from being activated or renewed. If a payment
-                    appears to have been deducted but the order is not
-                    confirmed, contact support with the transaction
-                    reference so it can be investigated.
-                </p>
-            </div>
+                <article class="policy-card">
+                    <h2>10. Promotional Offers</h2>
+                    <p>
+                        Promotional pricing, discounts, credits and special
+                        offers may have additional conditions. Any special
+                        refund or cancellation terms stated with an offer
+                        apply to that offer, subject to applicable law.
+                    </p>
+                </article>
 
-            <div class="policy-card">
-                <h2>10. Promotional Offers</h2>
-                <p>
-                    Promotional pricing, discounts, credits and special
-                    offers may have additional conditions. Any special
-                    refund or cancellation terms stated with an offer
-                    will apply to that offer, subject to applicable law.
-                </p>
-            </div>
+                <article class="policy-card">
+                    <h2>11. Service Suspension and Refunds</h2>
+                    <p>
+                        A suspension resulting from non-payment, suspected
+                        unauthorized activity or a violation of service terms
+                        does not automatically create a right to a refund.
+                        Any request will be reviewed under the applicable
+                        terms and circumstances.
+                    </p>
+                </article>
 
-            <div class="policy-card">
-                <h2>11. Service Suspension and Refunds</h2>
-                <p>
-                    A suspension resulting from non-payment, suspected
-                    unauthorized activity or a violation of service terms
-                    does not automatically create a right to a refund.
-                    Any refund request will be reviewed under the applicable
-                    terms and circumstances.
-                </p>
-            </div>
+                <article class="policy-card">
+                    <h2>12. Changes to This Policy</h2>
+                    <p>
+                        Vertex Core may update this policy from time to time.
+                        Updates will be published on this page with a revised
+                        date. Changes will apply as permitted by applicable
+                        law and the terms governing your service.
+                    </p>
+                </article>
 
-            <div class="policy-card">
-                <h2>12. Changes to This Policy</h2>
-                <p>
-                    Vertex Core may update this policy from time to time.
-                    Updates will be published on this page with a revised
-                    date. Changes will apply as permitted by applicable law
-                    and the terms governing your service.
-                </p>
             </div>
 
             <div class="policy-contact">
-                <h2>Need Help With Billing?</h2>
-                <p>
-                    Contact our support team if you have a question about
-                    a payment, cancellation or refund request.
-                </p>
-                <a href="contact.html" class="btn-blue">Contact Support</a>
-                <a href="mailto:vertexcore95@gmail.com" class="btn-outline">
-                    Email Us
-                </a>
+                <div class="policy-contact-copy">
+                    <h2>Need Help With Billing?</h2>
+                    <p>
+                        Contact our support team if you have a question about
+                        a payment, cancellation or refund request.
+                    </p>
+                </div>
+
+                <div class="policy-contact-actions">
+                    <a href="contact.html" class="btn-blue">Contact Support</a>
+                    <a href="mailto:vertexcore95@gmail.com" class="btn-outline">
+                        Email Us
+                    </a>
+                </div>
             </div>
 
         </div>
@@ -822,10 +815,12 @@ footer {
             <a class="logo" href="index.html">
                 <img src="images/logo.jpg" alt="Vertex Core">
             </a>
+
             <p>
                 Enterprise-grade Windows VPS infrastructure built for
                 performance, secure access and reliable connectivity.
             </p>
+
             <p style="margin-top:12px">
                 <a href="mailto:vertexcore95@gmail.com">
                     vertexcore95@gmail.com
