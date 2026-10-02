@@ -1,390 +1,542 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Refund Policy | Vertex Core</title>
-
-<meta name="description" content="Vertex Core Refund Policy for Windows VPS services.">
+<title>Refund & Payment Policy | Vertex Core</title>
+<meta name="description" content="Read the Vertex Core refund, payment, cancellation and billing policy for Windows VPS services.">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Segoe UI,Arial,sans-serif}
-html{scroll-behavior:smooth}
-body{background:#060a14;color:#fff;overflow-x:hidden}
-a{color:inherit}
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 5%;
-background:rgba(10,15,30,.94);
-border-bottom:1px solid #1a233a;
-position:sticky;
-top:0;
-z-index:50;
-backdrop-filter:blur(12px)
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
 }
 
-.logo{display:flex;align-items:center;text-decoration:none}
-.logo img{width:185px;height:auto;display:block;object-fit:contain}
-
-nav a{
-color:#8b9bb4;
-text-decoration:none;
-margin:0 12px;
-font-size:14px
+html {
+    scroll-behavior: smooth;
 }
 
-nav a:hover{color:#fff}
-
-.btn-blue{
-background:#1e90ff;
-color:#fff;
-padding:10px 20px;
-border-radius:8px;
-text-decoration:none;
-font-weight:700;
-box-shadow:0 0 20px rgba(30,144,255,.4);
-border:none;
-display:inline-block
+body {
+    background: #060a14;
+    color: #fff;
+    overflow-x: hidden;
+    line-height: 1.7;
 }
 
-.btn-outline{
-border:1px solid #1a233a;
-padding:10px 20px;
-border-radius:8px;
-text-decoration:none;
-color:#8b9bb4;
-margin-left:10px;
-display:inline-block
+a {
+    color: inherit;
 }
 
-.btn-outline:hover{
-border-color:#1e90ff;
-color:#fff
+/* HEADER */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 5%;
+    background: rgba(10,15,30,.96);
+    border-bottom: 1px solid #1a233a;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
 }
 
-.menu-btn{
-display:block;
-background:transparent;
-border:1px solid #1e90ff;
-color:#1e90ff;
-width:44px;
-height:44px;
-border-radius:10px;
-font-size:25px;
-cursor:pointer
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
 
-.sidebar{
-position:fixed;
-top:0;
-left:-330px;
-width:310px;
-height:100vh;
-background:#080d18;
-border-right:1px solid #1e90ff;
-z-index:100;
-padding:25px;
-transition:.3s;
-box-shadow:10px 0 40px rgba(0,0,0,.5)
+.logo img {
+    width: 185px;
+    height: auto;
+    display: block;
+    object-fit: contain;
 }
 
-.sidebar.open{left:0}
-
-.side-head{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:45px
+nav {
+    display: flex;
+    align-items: center;
 }
 
-.side-close{
-width:38px;
-height:38px;
-border-radius:50%;
-background:#0c1525;
-border:1px solid #27405f;
-color:#1e90ff;
-font-size:23px;
-cursor:pointer
+nav a {
+    color: #8b9bb4;
+    text-decoration: none;
+    margin: 0 12px;
+    font-size: 14px;
 }
 
-.side-links{
-display:grid;
-gap:7px
+nav a:hover {
+    color: #fff;
 }
 
-.side-links a{
-padding:14px;
-color:#aab8cb;
-text-decoration:none;
-border-radius:9px
+.menu-btn {
+    display: block;
+    background: transparent;
+    border: 1px solid #1e90ff;
+    color: #1e90ff;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    font-size: 25px;
+    cursor: pointer;
 }
 
-.side-links a:hover{
-background:#0d1a2d;
-color:#fff
+.btn-blue {
+    background: #1e90ff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 0 20px rgba(30,144,255,.25);
+    display: inline-block;
 }
 
-.side-actions{
-display:grid;
-gap:12px;
-margin-top:25px
+.btn-blue:hover {
+    filter: brightness(1.1);
 }
 
-.side-actions a{
-margin:0;
-text-align:center
+.btn-outline {
+    border: 1px solid #24324a;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #8b9bb4;
+    display: inline-block;
 }
 
-.overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.65);
-z-index:90;
-display:none
+.btn-outline:hover {
+    border-color: #1e90ff;
+    color: #fff;
 }
 
-.overlay.show{display:block}
-
-.legal-hero{
-padding:65px 5% 45px;
-text-align:center;
-position:relative;
-overflow:hidden;
-border-bottom:1px solid #121d32;
-background:#060a14
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.legal-hero:before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(180deg,rgba(6,10,20,.55),#060a14 95%),url('Refund Policy page.jpg') center/cover no-repeat;
-opacity:.22;
-z-index:0
+.login-link {
+    color: #8b9bb4;
+    text-decoration: none;
+    font-size: 14px;
 }
 
-.legal-hero>*{
-position:relative;
-z-index:1
+.login-link:hover {
+    color: #fff;
 }
 
-.legal-hero h1{
-font-size:clamp(38px,5vw,62px);
-margin-bottom:12px
+/* SIDEBAR */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -330px;
+    width: 310px;
+    height: 100vh;
+    overflow-y: auto;
+    background: #080d18;
+    border-right: 1px solid #1e90ff;
+    z-index: 100;
+    padding: 25px;
+    transition: .3s;
+    box-shadow: 10px 0 40px rgba(0,0,0,.5);
 }
 
-.legal-hero h1 span{color:#1e90ff}
-
-.legal-hero p{
-max-width:760px;
-margin:0 auto;
-color:#8b9bb4;
-line-height:1.7
+.sidebar.open {
+    left: 0;
 }
 
-.legal-image{
-max-width:1100px;
-margin:35px auto 0;
-padding:0 5%
+.side-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 35px;
 }
 
-.legal-image img{
-width:100%;
-height:300px;
-object-fit:cover;
-border-radius:18px;
-border:1px solid #1e90ff;
-display:block;
-box-shadow:0 0 40px rgba(30,144,255,.12)
+.side-head .logo img {
+    width: 165px;
 }
 
-.legal-content{
-max-width:1000px;
-margin:45px auto 70px;
-padding:0 5%
+.side-close {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #0c1525;
+    border: 1px solid #27405f;
+    color: #1e90ff;
+    font-size: 23px;
+    cursor: pointer;
 }
 
-.legal-intro{
-color:#8b9bb4;
-line-height:1.8;
-font-size:14px;
-margin-bottom:25px
+.side-links {
+    display: grid;
+    gap: 7px;
 }
 
-.legal-section{
-background:#0b1221;
-border:1px solid #18243a;
-border-radius:14px;
-padding:25px;
-margin-bottom:15px
+.side-links a {
+    padding: 13px;
+    color: #aab8cb;
+    text-decoration: none;
+    border-radius: 9px;
+    font-size: 14px;
 }
 
-.legal-section h2{
-font-size:20px;
-color:#fff;
-margin-bottom:10px
+.side-links a:hover {
+    background: #0d1a2d;
+    color: #fff;
 }
 
-.legal-section h2 span{color:#1e90ff}
-
-.legal-section p{
-color:#8b9bb4;
-font-size:14px;
-line-height:1.8
+.side-actions {
+    display: grid;
+    gap: 12px;
+    margin-top: 25px;
 }
 
-.legal-section ul{
-margin:12px 0 0;
-padding-left:20px;
-color:#8b9bb4;
-line-height:1.8;
-font-size:14px;
-list-style:disc
+.side-actions a {
+    text-align: center;
 }
 
-.legal-section li{
-margin-bottom:5px
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.65);
+    z-index: 90;
+    display: none;
 }
 
-footer{
-padding:40px 5% 15px;
-background:#080e1b;
-border-top:1px solid #121a2e;
-color:#8b9bb4
+.overlay.show {
+    display: block;
 }
 
-.footer-grid{
-display:grid;
-grid-template-columns:1.2fr 1fr 1fr 1fr;
-gap:35px;
-max-width:1100px;
-margin:0 auto 18px;
-align-items:start
+/* PAGE HERO */
+
+.page-hero {
+    position: relative;
+    padding: 55px 5% 45px;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid #121d32;
+    background: linear-gradient(180deg,#0a1020,#060a14);
 }
 
-.footer-brand{max-width:280px}
-
-.footer-brand .logo img{
-width:185px;
-height:auto;
-display:block;
-margin-bottom:15px
+.page-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg,rgba(6,10,20,.4),#060a14 100%),
+        url('images/hero-servers.jpg') center/cover no-repeat;
+    opacity: .18;
+    z-index: 0;
 }
 
-.footer-brand p{
-color:#70829e;
-font-size:13px;
-line-height:1.7
+.page-hero-content {
+    position: relative;
+    z-index: 1;
 }
 
-.footer-column h3{
-font-size:16px;
-color:#fff;
-margin-bottom:14px;
-white-space:nowrap
+.page-hero h1 {
+    font-size: clamp(35px,5vw,58px);
+    line-height: 1.15;
+    margin-bottom: 12px;
 }
 
-.footer-column a{
-display:block;
-color:#8b9bb4;
-text-decoration:none;
-font-size:13px;
-margin:0 0 9px;
-white-space:nowrap
+.page-hero h1 span {
+    color: #1e90ff;
 }
 
-.footer-column a:hover{color:#1e90ff}
-
-.footer-bottom{
-text-align:center;
-padding-top:15px;
-border-top:1px solid #121a2e;
-color:#5a6d8a;
-font-size:12px;
-line-height:1.8
+.page-hero p {
+    max-width: 760px;
+    margin: 0 auto;
+    color: #8b9bb4;
+    font-size: 15px;
 }
 
-.whatsapp{
-position:fixed;
-right:22px;
-bottom:22px;
-z-index:70;
-background:#18c968;
-color:#fff;
-text-decoration:none;
-padding:13px 18px;
-border-radius:30px;
-font-weight:700
+/* REFUND IMAGE */
+
+.policy-image {
+    width: 100%;
+    max-width: 1000px;
+    margin: 35px auto 0;
+    border: 1px solid #1e90ff;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #0b1221;
+    box-shadow: 0 0 35px rgba(30,144,255,.15);
 }
 
-@media(max-width:900px){
-nav{display:none}
-.header-actions{display:none}
+.policy-image img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
-@media(max-width:600px){
+/* POLICY CONTENT */
 
-header{padding:12px 5%}
-.logo img{width:165px}
-
-.sidebar{
-width:85vw;
-max-width:310px
+.policy-section {
+    padding: 55px 5% 80px;
 }
 
-.legal-hero{
-padding:55px 5% 35px
+.policy-container {
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.legal-hero h1{
-font-size:40px
+.policy-intro {
+    color: #aab8cb;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 28px;
 }
 
-.legal-image{
-padding:0 5%;
-margin-top:25px
+.policy-updated {
+    display: inline-block;
+    color: #56d3ff;
+    background: #0b1728;
+    border: 1px solid #1a2941;
+    padding: 8px 13px;
+    border-radius: 8px;
+    font-size: 12px;
+    margin-bottom: 25px;
 }
 
-.legal-image img{
-height:220px
+.policy-card {
+    background: linear-gradient(180deg,#0d1628,#080e1a);
+    border: 1px solid #1a2941;
+    border-radius: 13px;
+    padding: 24px;
+    margin-bottom: 17px;
+    transition: border-color .2s;
 }
 
-.legal-content{
-padding:0 5%;
-margin-top:30px
+.policy-card:hover {
+    border-color: #24517e;
 }
 
-.legal-section{
-padding:20px
+.policy-card h2 {
+    color: #fff;
+    font-size: 20px;
+    line-height: 1.4;
+    margin-bottom: 11px;
 }
 
-.footer-grid{
-grid-template-columns:1fr 1fr;
-gap:30px
+.policy-card p {
+    color: #8b9bb4;
+    font-size: 14px;
+    line-height: 1.9;
+    margin-bottom: 10px;
 }
 
-.footer-brand{
-grid-column:1/-1;
-max-width:none
+.policy-card p:last-child {
+    margin-bottom: 0;
 }
 
-.footer-brand .logo img{
-width:165px
+.policy-card ul {
+    padding-left: 22px;
+    margin: 10px 0;
+    color: #8b9bb4;
+    font-size: 14px;
+    line-height: 1.9;
 }
 
-.footer-column a{
-white-space:normal
+.policy-card li {
+    padding-left: 4px;
+    margin-bottom: 5px;
 }
 
-.whatsapp{
-right:15px;
-bottom:15px
+.policy-card a {
+    color: #56b5ff;
+    text-decoration: none;
 }
+
+.policy-card a:hover {
+    text-decoration: underline;
+}
+
+/* CONTACT CTA */
+
+.policy-contact {
+    margin-top: 30px;
+    padding: 28px;
+    background: radial-gradient(circle at center,rgba(30,144,255,.13),#09101e 75%);
+    border: 1px solid #1e90ff;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.policy-contact h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.policy-contact p {
+    color: #8b9bb4;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 45px 5% 20px;
+    background: #080e1b;
+    border-top: 1px solid #121a2e;
+    color: #8b9bb4;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 35px;
+    max-width: 1200px;
+    margin: 0 auto 25px;
+    align-items: start;
+}
+
+.footer-brand {
+    max-width: 280px;
+}
+
+.footer-brand .logo img {
+    width: 175px;
+    margin-bottom: 16px;
+}
+
+.footer-brand p {
+    color: #70829e;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 14px;
+}
+
+.footer-column a {
+    display: block;
+    color: #8b9bb4;
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 10px;
+    transition: .2s;
+}
+
+.footer-column a:hover {
+    color: #1e90ff;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 18px;
+    border-top: 1px solid #121a2e;
+    color: #5a6d8a;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* WHATSAPP */
+
+.whatsapp {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 70;
+    background: #18c968;
+    color: #fff;
+    text-decoration: none;
+    padding: 13px 18px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 13px;
+    box-shadow: 0 8px 30px rgba(24,201,104,.3);
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 900px) {
+    nav {
+        display: none;
+    }
+
+    .header-actions {
+        display: none;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(3,minmax(0,1fr));
+        gap: 25px;
+    }
+
+    .footer-brand {
+        grid-column: 1/-1;
+        max-width: 450px;
+    }
+}
+
+@media(max-width: 600px) {
+    header {
+        padding: 12px 5%;
+    }
+
+    .logo img {
+        width: 150px;
+    }
+
+    .page-hero {
+        padding: 45px 5% 30px;
+    }
+
+    .page-hero h1 {
+        font-size: 36px;
+    }
+
+    .policy-section {
+        padding: 35px 5% 55px;
+    }
+
+    .policy-card {
+        padding: 19px;
+    }
+
+    .policy-card h2 {
+        font-size: 18px;
+    }
+
+    .policy-card p,
+    .policy-card ul {
+        font-size: 13px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px 18px;
+    }
+
+    .footer-brand {
+        grid-column: 1/-1;
+    }
+
+    .footer-brand .logo img {
+        width: 160px;
+    }
+
+    .whatsapp {
+        right: 12px;
+        bottom: 12px;
+        padding: 11px 14px;
+    }
 }
 </style>
 </head>
@@ -394,283 +546,348 @@ bottom:15px
 <div class="overlay" id="overlay"></div>
 
 <aside class="sidebar" id="sidebar">
+    <div class="side-head">
+        <a class="logo" href="index.html">
+            <img src="images/logo.jpg" alt="Vertex Core">
+        </a>
+        <button class="side-close" id="closeMenu" aria-label="Close menu">×</button>
+    </div>
 
-<div class="side-head">
-<a class="logo" href="index.html">
-<img src="images/logo.jpg" alt="Vertex Core">
-</a>
-<button class="side-close" id="closeMenu">×</button>
-</div>
+    <div class="side-links">
+        <a href="index.html">HOME</a>
+        <a href="pricing.html">PRICING</a>
+        <a href="locations.html">LOCATIONS</a>
+        <a href="vps.html">VPS</a>
+        <a href="support.html">SUPPORT</a>
+        <a href="docs.html">DOCUMENTATION</a>
+        <a href="blog.html">BLOG</a>
+        <a href="about.html">ABOUT US</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="contact.html">CONTACT US</a>
+    </div>
 
-<div class="side-links">
-<a href="index.html">HOME</a>
-<a href="pricing.html">PRICING</a>
-<a href="locations.html">LOCATIONS</a>
-<a href="vps.html">VPS</a>
-<a href="support.html">SUPPORT</a>
-<a href="about.html">ABOUT US</a>
-<a href="contact.html">CONTACT US</a>
-</div>
-
-<div class="side-actions">
-<a href="order.html" class="btn-blue">Order Now</a>
-<a href="contact.html" class="btn-outline">Contact Us</a>
-</div>
-
+    <div class="side-actions">
+        <a href="order.html" class="btn-blue">Order Now</a>
+        <a href="contact.html" class="btn-outline">Contact Us</a>
+    </div>
 </aside>
 
 <header>
+    <button class="menu-btn" id="openMenu" aria-label="Open menu">☰</button>
 
-<button class="menu-btn" id="openMenu">☰</button>
+    <a class="logo" href="index.html">
+        <img src="images/logo.jpg" alt="Vertex Core">
+    </a>
 
-<a class="logo" href="index.html">
-<img src="images/logo.jpg" alt="Vertex Core">
-</a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="vps.html">VPS</a>
+        <a href="support.html">Support</a>
+        <a href="blog.html">Blog</a>
+    </nav>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="pricing.html">Pricing</a>
-<a href="vps.html">VPS</a>
-<a href="support.html">Support</a>
-<a href="blog.html">Blog</a>
-</nav>
-
-<div class="header-actions">
-<a href="login.html" class="login-link">Login</a>
-<a href="order.html" class="btn-blue">Get Started</a>
-</div>
-
+    <div class="header-actions">
+        <a href="login.html" class="login-link">Login</a>
+        <a href="order.html" class="btn-blue">Get Started</a>
+    </div>
 </header>
 
 <main>
 
-<section class="legal-hero">
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Refund &amp; Payment <span>Policy</span></h1>
+            <p>
+                Transparent information about payments, cancellations,
+                refund requests and billing support for Vertex Core services.
+            </p>
 
-<h1>Refund <span>Policy</span></h1>
+            <div class="policy-image">
+                <img
+                    src="images/Refund%20Policy%20%20page.jpg"
+                    alt="Vertex Core Refund and Payment Policy">
+            </div>
+        </div>
+    </section>
 
-<p>
-Please review the following refund and cancellation terms before
-purchasing Vertex Core services.
-</p>
+    <section class="policy-section">
+        <div class="policy-container">
 
-</section>
+            <span class="policy-updated">Last Updated: October 2, 2026</span>
 
-<div class="legal-image">
-<img src="Refund Policy page.jpg" alt="Refund Policy">
-</div>
+            <p class="policy-intro">
+                This Refund &amp; Payment Policy explains the general billing,
+                cancellation and refund terms for services provided by Vertex Core.
+                Please read this page carefully before placing an order. The
+                availability of a refund depends on the service purchased, the
+                applicable terms and the circumstances of the request.
+            </p>
 
-<section class="legal-content">
+            <div class="policy-card">
+                <h2>1. Payments</h2>
+                <p>
+                    Customers must pay the fees displayed during checkout or
+                    otherwise agreed in writing before the applicable service
+                    is activated. Customers are responsible for providing
+                    accurate billing information and ensuring that their
+                    selected payment method is authorized.
+                </p>
+                <p>
+                    Service activation may be delayed while a payment is
+                    pending verification or has not been successfully received.
+                </p>
+            </div>
 
-<p class="legal-intro">
-This Refund Policy explains the general process used by Vertex Core
-for cancellation and refund requests related to VPS and associated
-services.
-</p>
+            <div class="policy-card">
+                <h2>2. Refund Eligibility</h2>
+                <p>
+                    Refund eligibility depends on the purchased service,
+                    the applicable offer and any refund terms presented at
+                    the time of purchase. Not every service or payment is
+                    eligible for a refund.
+                </p>
+                <p>
+                    Before purchasing, customers should review the plan
+                    specifications, billing period, included resources and
+                    any stated restrictions.
+                </p>
+            </div>
 
-<div class="legal-section">
-<h2><span></span> Refund Eligibility</h2>
-<p>
-Refund eligibility depends on the service purchased, the reason for
-the request, the time since purchase and any applicable exclusions.
-A refund is not automatically guaranteed for every cancellation.
-</p>
-</div>
+            <div class="policy-card">
+                <h2>3. Non-Refundable Items</h2>
+                <p>
+                    Unless required by applicable law or expressly stated
+                    otherwise in the offer, the following may be non-refundable:
+                </p>
+                <ul>
+                    <li>Services already delivered or consumed.</li>
+                    <li>Setup, configuration or other completed one-time work.</li>
+                    <li>Third-party fees that cannot be recovered.</li>
+                    <li>Additional resources or usage already consumed.</li>
+                    <li>Services excluded from a promotional refund offer.</li>
+                </ul>
+            </div>
 
-<div class="legal-section">
-<h2><span></span> Refund Requests</h2>
-<p>
-Customers requesting a refund should contact Vertex Core through the
-available support or contact channel and provide the account and
-service information necessary to identify the transaction.
-</p>
-</div>
+            <div class="policy-card">
+                <h2>4. How to Request a Refund</h2>
+                <p>
+                    To request a refund review, contact our support team using
+                    the official contact details on the website. Include your
+                    account email, order reference, service name and a clear
+                    explanation of the reason for your request.
+                </p>
+                <p>
+                    Please do not include passwords, full payment-card details
+                    or other unnecessary sensitive information in your request.
+                </p>
+            </div>
 
-<div class="legal-section">
-<h2><span></span> Cancellation</h2>
-<p>
-Customers may request cancellation of a service. Cancellation stops
-future service obligations according to the applicable billing cycle,
-but does not automatically create a refund for previously consumed
-service time.
-</p>
-</div>
+            <div class="policy-card">
+                <h2>5. Refund Review and Processing</h2>
+                <p>
+                    Each request is reviewed according to the applicable
+                    service terms, payment records and relevant circumstances.
+                    We may contact you for additional information before
+                    making a decision.
+                </p>
+                <p>
+                    If a refund is approved, the processing time may depend
+                    on the original payment provider or financial institution.
+                    The time for the funds to appear in your account is
+                    outside our direct control.
+                </p>
+            </div>
 
-<div class="legal-section">
-<h2><span></span> Non-Refundable Situations</h2>
-<p>
-Refunds may not be available in situations such as policy violations,
-abuse of services, chargeback-related disputes, services already
-substantially consumed, or other circumstances where a refund is
-excluded by the applicable service terms.
-</p>
-</div>
+            <div class="policy-card">
+                <h2>6. Cancellation</h2>
+                <p>
+                    Customers who wish to stop a recurring service should
+                    submit a cancellation request through the available
+                    account or support channels before the next renewal date.
+                </p>
+                <p>
+                    Cancellation stops future renewals according to the
+                    applicable billing terms. It does not automatically
+                    guarantee a refund for a previous payment or unused
+                    portion of a billing period.
+                </p>
+                <p>
+                    Customers should back up their files and retrieve any
+                    required data before the service is terminated.
+                </p>
+            </div>
 
-<div class="legal-section">
-<h2><span></span> Service Usage</h2>
-<p>
-Customers should review their VPS configuration, plan requirements
-and service details before completing an order. Usage of a service
-may affect eligibility for cancellation or refund.
-</p>
-</div>
+            <div class="policy-card">
+                <h2>7. Recurring Billing and Renewals</h2>
+                <p>
+                    Where recurring billing applies, the service may renew
+                    for the billing period selected at checkout. Customers
+                    should review the renewal date and cancel before renewal
+                    if they do not wish to continue.
+                </p>
+                <p>
+                    Any renewal charges, billing frequency and cancellation
+                    requirements will be subject to the terms presented
+                    for the relevant service.
+                </p>
+            </div>
 
-<div class="legal-section">
-<h2><span></span> Payment Processing</h2>
-<p>
-Approved refunds may be processed through the original payment
-method where supported. Processing time can vary depending on the
-payment provider or financial institution.
-</p>
-</div>
+            <div class="policy-card">
+                <h2>8. Payment Disputes &amp; Chargebacks</h2>
+                <p>
+                    If you believe a charge is incorrect, please contact
+                    support first so we can review the transaction and
+                    attempt to resolve the issue.
+                </p>
+                <p>
+                    We may provide relevant order, payment and service
+                    records to a payment processor or financial institution
+                    when responding to a legitimate payment dispute.
+                    Nothing in this policy limits any rights you have
+                    under applicable law.
+                </p>
+            </div>
 
-<div class="legal-section">
-<h2><span></span> Payment Disputes &amp; Chargebacks</h2>
-<p>
-If you believe a payment was made incorrectly, please contact Vertex
-Core before initiating a payment dispute or chargeback. This allows
-the billing issue to be reviewed and resolved where appropriate.
-</p>
-</div>
+            <div class="policy-card">
+                <h2>9. Failed or Pending Payments</h2>
+                <p>
+                    An unsuccessful, reversed or pending payment may prevent
+                    a service from being activated or renewed. If a payment
+                    appears to have been deducted but the order is not
+                    confirmed, contact support with the transaction
+                    reference so it can be investigated.
+                </p>
+            </div>
 
-<div class="legal-section">
-<h2><span></span> Promotional Offers</h2>
-<p>
-Promotional pricing, credits, discounts or special offers may have
-specific conditions. Such conditions may affect refund eligibility
-and will apply according to the terms presented with the promotion.
-</p>
-</div>
+            <div class="policy-card">
+                <h2>10. Promotional Offers</h2>
+                <p>
+                    Promotional pricing, discounts, credits and special
+                    offers may have additional conditions. Any special
+                    refund or cancellation terms stated with an offer
+                    will apply to that offer, subject to applicable law.
+                </p>
+            </div>
 
-<div class="legal-section">
-<h2><span></span> Abuse or Policy Violations</h2>
-<p>
-Refund requests associated with prohibited activities, abuse,
-fraudulent behavior or serious violations of the Terms of Services
-may be declined.
-</p>
-</div>
+            <div class="policy-card">
+                <h2>11. Service Suspension and Refunds</h2>
+                <p>
+                    A suspension resulting from non-payment, suspected
+                    unauthorized activity or a violation of service terms
+                    does not automatically create a right to a refund.
+                    Any refund request will be reviewed under the applicable
+                    terms and circumstances.
+                </p>
+            </div>
 
-<div class="legal-section">
-<h2><span></span> Refund Review</h2>
-<p>
-Vertex Core may review the account, payment and service history before
-making a refund decision. Additional information may be requested
-when necessary to verify the request.
-</p>
-</div>
+            <div class="policy-card">
+                <h2>12. Changes to This Policy</h2>
+                <p>
+                    Vertex Core may update this policy from time to time.
+                    Updates will be published on this page with a revised
+                    date. Changes will apply as permitted by applicable law
+                    and the terms governing your service.
+                </p>
+            </div>
 
-<div class="legal-section">
-<h2><span></span> Exceptions</h2>
-<p>
-In exceptional circumstances, Vertex Core may review an individual
-case separately. Any exception provided for one transaction does not
-automatically create a general entitlement to the same exception for
-future transactions.
-</p>
-</div>
+            <div class="policy-contact">
+                <h2>Need Help With Billing?</h2>
+                <p>
+                    Contact our support team if you have a question about
+                    a payment, cancellation or refund request.
+                </p>
+                <a href="contact.html" class="btn-blue">Contact Support</a>
+                <a href="mailto:vertexcore95@gmail.com" class="btn-outline">
+                    Email Us
+                </a>
+            </div>
 
-<div class="legal-section">
-<h2><span></span> Contact</h2>
-<p>
-For refund or cancellation questions, please contact Vertex Core
-through the website contact page.
-</p>
-
-<p style="margin-top:10px">
-<a href="contact.html" style="color:#1e90ff;text-decoration:none;font-weight:700">
-Contact Vertex Core →
-</a>
-</p>
-
-</div>
-
-
-</section>
+        </div>
+    </section>
 
 </main>
 
-<a class="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">
-💬 WhatsApp Channel
+<a class="whatsapp"
+   href="https://wa.me/"
+   target="_blank"
+   rel="noopener">
+    💬 WhatsApp Channel
 </a>
 
 <footer>
+    <div class="footer-grid">
 
-<div class="footer-grid">
+        <div class="footer-brand">
+            <a class="logo" href="index.html">
+                <img src="images/logo.jpg" alt="Vertex Core">
+            </a>
+            <p>
+                Enterprise-grade Windows VPS infrastructure built for
+                performance, secure access and reliable connectivity.
+            </p>
+            <p style="margin-top:12px">
+                <a href="mailto:vertexcore95@gmail.com">
+                    vertexcore95@gmail.com
+                </a>
+            </p>
+        </div>
 
-<div class="footer-brand">
-<a class="logo" href="index.html">
-<img src="images/logo.jpg" alt="Vertex Core">
-</a>
+        <div class="footer-column">
+            <h3>Company</h3>
+            <a href="about.html">About Us</a>
+            <a href="features.html">Services</a>
+            <a href="locations.html">Locations</a>
+            <a href="vps.html">VPS</a>
+            <a href="blog.html">Blog</a>
+        </div>
 
-<p>
-Enterprise-grade Windows VPS infrastructure built for performance,
-secure access and reliable connectivity.
-</p>
+        <div class="footer-column">
+            <h3>Support</h3>
+            <a href="support.html">Help &amp; Support</a>
+            <a href="docs.html">Documentation</a>
+            <a href="dashboard.html">Customer Dashboard</a>
+            <a href="faqs.html">FAQs</a>
+        </div>
 
-<p style="margin-top:12px">
-<a href="mailto:vertexcore95@gmail.com" style="color:#8b9bb4;text-decoration:none">
-vertexcore95@gmail.com
-</a>
-</p>
-</div>
+        <div class="footer-column">
+            <h3>Legal</h3>
+            <a href="terms.html">Terms of Services</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="refund.html">Refund Policy</a>
+            <a href="faqs.html">FAQs</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="login.html">Login</a>
+        </div>
 
-<div class="footer-column">
-<h3>Company</h3>
-<a href="about.html">About Us</a>
-<a href="features.html">Services</a>
-<a href="locations.html">Locations</a>
-<a href="vps.html">VPS</a>
-<a href="blog.html">Blog</a>
-</div>
+    </div>
 
-<div class="footer-column">
-<h3>Support</h3>
-<a href="support.html">Help &amp; Supports</a>
-<a href="docs.html">Documentation</a>
-<a href="dashboard.html">Customer Dashboard</a>
-</div>
-
-<div class="footer-column">
-<h3>Legal</h3>
-<a href="terms.html">Terms of Services</a>
-<a href="privacy.html">Privacy Policy</a>
-<a href="refund.html">Refund Policy</a>
-<a href="faqs.html">FAQs</a>
-<a href="contact.html">Contact Us</a>
-<a href="login.html">Login</a>
-</div>
-
-</div>
-
-<div class="footer-bottom">
-© 2026 Vertex Core - All plans include free backups - 99.95% uptime SLA - Cancel anytime - 24/7 Support
-</div>
-
+    <div class="footer-bottom">
+        © 2026 Vertex Core - All plans include free backups -
+        99.95% uptime SLA - Cancel anytime - 24/7 Support
+    </div>
 </footer>
 
 <script>
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
 
-const sidebar=document.getElementById('sidebar'),
-overlay=document.getElementById('overlay');
-
-function openSide(){
-sidebar.classList.add('open');
-overlay.classList.add('show')
+function openSide() {
+    sidebar.classList.add('open');
+    overlay.classList.add('show');
 }
 
-function closeSide(){
-sidebar.classList.remove('open');
-overlay.classList.remove('show')
+function closeSide() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
 }
 
-document.getElementById('openMenu').addEventListener('click',openSide);
-document.getElementById('closeMenu').addEventListener('click',closeSide);
-overlay.addEventListener('click',closeSide);
+document.getElementById('openMenu').addEventListener('click', openSide);
+document.getElementById('closeMenu').addEventListener('click', closeSide);
+overlay.addEventListener('click', closeSide);
 
-document.querySelectorAll('.side-links a,.side-actions a').forEach(a=>{
-a.addEventListener('click',closeSide)
-});
-
+document.querySelectorAll('.side-links a, .side-actions a')
+    .forEach(link => link.addEventListener('click', closeSide));
 </script>
 
 </body>
