@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VPS Plan | Vertex Core</title>
+<meta name="description" content="Explore your selected Vertex Core Windows VPS plan.">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,Segoe UI,Arial,sans-serif
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:#060a14;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+a{color:inherit}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 5%;
+  background:rgba(10,15,30,.94);
+  border-bottom:1px solid #1a233a;
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(12px);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  text-decoration:none;
+}
+
+.logo img{
+  width:185px;
+  height:auto;
+  display:block;
+  object-fit:contain;
+}
+
+nav a{
+  color:#8b9bb4;
+  text-decoration:none;
+  margin:0 12px;
+  font-size:14px;
+  transition:.2s;
+}
+
+nav a:hover{color:#fff}
+
+.btn-blue{
+  background:#1e90ff;
+  color:#fff;
+  padding:11px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow:0 0 20px rgba(30,144,255,.35);
+  border:none;
+  display:inline-block;
+  transition:.25s;
+}
+
+.btn-blue:hover{
+  filter:brightness(1.1);
+  transform:translateY(-2px);
+}
+
+.btn-outline{
+  border:1px solid #263753;
+  padding:11px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  color:#8b9bb4;
+  margin-left:10px;
+  display:inline-block;
+  transition:.25s;
+}
+
+.btn-outline:hover{
+  border-color:#1e90ff;
+  color:#fff;
+}
+
+.menu-btn{
+  display:block;
+  background:transparent;
+  border:1px solid #1e90ff;
+  color:#1e90ff;
+  width:44px;
+  height:44px;
+  border-radius:10px;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.hero{
+  min-height:330px;
+  padding:75px 5% 55px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(30,144,255,.16),transparent 45%),
+    linear-gradient(180deg,#0a1020,#060a14);
+  border-bottom:1px solid #121d32;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  width:560px;
+  height:560px;
+  left:50%;
+  top:-380px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(30,144,255,.15),transparent 68%);
+  animation:pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow{
+  0%,100%{transform:translateX(-50%) scale(.9);opacity:.55}
+  50%{transform:translateX(-50%) scale(1.12);opacity:1}
+}
+
+.hero > *{
+  position:relative;
+  z-index:2;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#5eb1ff;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:15px;
+}
+
+.eyebrow::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#1e90ff;
+  box-shadow:0 0 14px #1e90ff;
+}
+
+.hero h1{
+  font-size:clamp(40px,6vw,70px);
+  line-height:1;
+  margin-bottom:17px;
+}
+
+.hero h1 span{
+  color:#1e90ff;
+  text-shadow:0 0 30px rgba(30,144,255,.25);
+}
+
+.hero p{
+  max-width:720px;
+  margin:auto;
+  color:#8b9bb4;
+  line-height:1.7;
+  font-size:16px;
+}
+
+.detail-wrap{
+  padding:70px 5% 90px;
+}
+
+.detail-grid{
+  max-width:1050px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:25px;
+  align-items:stretch;
+}
+
+.plan-detail,
+.features-box{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg,#121a2e,#0a1020);
+  border:1px solid #1e293b;
+  border-radius:20px;
+  padding:32px;
+  box-shadow:0 20px 55px rgba(0,0,0,.25);
+}
+
+.plan-detail::before,
+.features-box::before{
+  content:"";
+  position:absolute;
+  width:250px;
+  height:250px;
+  right:-110px;
+  top:-110px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(30,144,255,.18),transparent 68%);
+  pointer-events:none;
+}
+
+.plan-tag{
+  display:inline-block;
+  color:#62b5ff;
+  border:1px solid rgba(30,144,255,.35);
+  background:rgba(30,144,255,.08);
+  border-radius:30px;
+  padding:6px 12px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+
+.plan-detail h2{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.plan-description{
+  color:#8b9bb4;
+  line-height:1.7;
+  font-size:14px;
+  margin-bottom:22px;
+}
+
+.big-price{
+  font-size:48px;
+  font-weight:900;
+  margin-bottom:23px;
+}
+
+.big-price small{
+  font-size:14px;
+  color:#8b9bb4;
+  font-weight:500;
+}
+
+.order-btn{
+  width:100%;
+  text-align:center;
+  padding:14px 18px;
+  font-size:15px;
+}
+
+.back-link{
+  display:block;
+  text-align:center;
+  margin-top:15px;
+  color:#70829e;
+  text-decoration:none;
+  font-size:13px;
+  transition:.2s;
+}
+
+.back-link:hover{color:#1e90ff}
+
+.features-box h3{
+  font-size:20px;
+  margin-bottom:20px;
+}
+
+.spec-list{
+  display:grid;
+  gap:12px;
+}
+
+.spec{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  padding:13px 14px;
+  border:1px solid #1b2940;
+  background:#0a1220;
+  border-radius:10px;
+  transition:.25s;
+}
+
+.spec:hover{
+  border-color:#1e90ff;
+  transform:translateX(4px);
+}
+
+.spec span:first-child{
+  color:#70829e;
+  font-size:13px;
+}
+
+.spec strong{
+  color:#fff;
+  font-size:13px;
+  text-align:right;
+}
+
+.included{
+  max-width:1050px;
+  margin:25px auto 0;
+  padding:28px 32px;
+  border:1px solid #1b2940;
+  background:#080e1b;
+  border-radius:18px;
+}
+
+.included h3{
+  margin-bottom:18px;
+  font-size:18px;
+}
+
+.included-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.included-item{
+  padding:13px 14px;
+  border-radius:10px;
+  background:#0b1423;
+  border:1px solid #17263c;
+  color:#8b9bb4;
+  font-size:13px;
+}
+
+.included-item::before{
+  content:"✓";
+  color:#1e90ff;
+  font-weight:900;
+  margin-right:8px;
+}
+
+/* Naya Added Section (Image 2 ke mutabiq) */
+.additional-section {
+  max-width: 1050px;
+  margin: 40px auto 0;
+  color: #fff;
+}
+
+.additional-section h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.additional-section .subtext {
+  color: #8b9bb4;
+  font-style: italic;
+  font-size: 13px;
+  margin-bottom: 25px;
+}
+
+.additional-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 25px;
+  align-items: start;
+}
+
+.location-box {
+  background: #ffffff;
+  color: #333;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.location-box label {
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.location-box label span {
+  color: #1e90ff;
+}
+
+.location-box select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #ff4d4d;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  background: #fff;
+  cursor: pointer;
+}
+
+.checkout-box {
+  background: linear-gradient(135deg, #4c00b0, #6a00f4);
+  border-radius: 16px;
+  padding: 30px 20px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(106, 0, 244, 0.3);
+}
+
+.checkout-box .total-title {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.checkout-box .total-price {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.checkout-box .total-currency {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+.checkout-box .continue-btn {
+  background: #7b00ff;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.checkout-box .continue-btn:hover {
+  background: #8e1aff;
+  transform: translateY(-2px);
+}
+
+footer{
+  padding:40px 5% 15px;
+  background:#080e1b;
+  border-top:1px solid #121a2e;
+  color:#8b9bb4;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.2fr 1fr 1fr 1fr;
+  gap:35px;
+  max-width:1100px;
+  margin:0 auto 25px;
+}
+
+.footer-brand{max-width:280px}
+
+.footer-brand .logo img{
+  width:185px;
+  height:auto;
+  display:block;
+  margin-bottom:18px;
+}
+
+.footer-brand p{
+  color:#70829e;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.footer-column h3{
+  font-size:16px;
+  color:#fff;
+  margin-bottom:18px;
+}
+
+.footer-column a{
+  display:block;
+  color:#8b9bb4;
+  text-decoration:none;
+  font-size:13px;
+  margin:0 0 13px;
+  transition:.2s;
+}
+
+.footer-column a:hover{color:#1e90ff}
+
+.footer-bottom{
+  text-align:center;
+  padding-top:18px;
+  border-top:1px solid #121a2e;
+  color:#5a6d8a;
+  font-size:12px;
+  line-height:1.8;
+}
+
+.whatsapp{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:70;
+  background:#18c968;
+  color:#fff;
+  text-decoration:none;
+  padding:13px 18px;
+  border-radius:30px;
+  font-weight:700;
+  box-shadow:0 8px 30px rgba(24,201,104,.3);
+}
+
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-330px;
+  width:310px;
+  height:100vh;
+  background:#080d18;
+  border-right:1px solid #1e90ff;
+  z-index:100;
+  padding:25px;
+  transition:.3s;
+  box-shadow:10px 0 40px rgba(0,0,0,.5);
+}
+
+.sidebar.open{left:0}
+
+.side-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:45px;
+}
+
+.side-close{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#0c1525;
+  border:1px solid #27405f;
+  color:#1e90ff;
+  font-size:23px;
+  cursor:pointer;
+}
+
+.side-links{
+  display:grid;
+  gap:7px;
+}
+
+.side-links a{
+  padding:14px;
+  color:#aab8cb;
+  text-decoration:none;
+  border-radius:9px;
+}
+
+.side-links a:hover{
+  background:#0d1a2d;
+  color:#fff;
+}
+
+.side-actions{
+  display:grid;
+  gap:12px;
+  margin-top:25px;
+}
+
+.side-actions a{
+  margin:0;
+  text-align:center;
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:90;
+  display:none;
+}
+
+.overlay.show{display:block}
+
+@media(max-width:900px){
+  nav{display:none}
+  .menu-btn{display:block}
+  .header-actions{display:none}
+  .detail-grid{grid-template-columns:1fr}
+  .included-grid{grid-template-columns:1fr 1fr}
+  .additional-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-brand{grid-column:1/-1;max-width:none}
+}
+
+@media(max-width:600px){
+  header{padding:12px 5%}
+  .logo img{width:165px}
+  .hero{padding:60px 5% 45px}
+  .hero h1{font-size:43px}
+  .detail-wrap{padding:50px 5% 65px}
+  .plan-detail,.features-box{padding:24px 20px}
+  .big-price{font-size:40px}
+  .included{padding:24px 20px}
+  .included-grid{grid-template-columns:1fr}
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    margin-bottom:28px
+  }
+  .footer-brand{grid-column:1/-1}
+  .footer-brand .logo img{width:165px}
+  .whatsapp{right:15px;bottom:15px}
+  .sidebar{width:85vw;max-width:310px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="side-head">
+    <a class="logo" href="index.html">
+      <img src="images/logo.jpg" alt="Vertex Core">
+    </a>
+    <button class="side-close" id="closeMenu">×</button>
+  </div>
+
+  <div class="side-links">
+    <a href="index.html">HOME</a>
+    <a href="pricing.html">PRICING</a>
+    <a href="features.html">FEATURES</a>
+    <a href="locations.html">LOCATIONS</a>
+    <a href="vps.html">VPS</a>
+    <a href="support.html">SUPPORT</a>
+    <a href="docs.html">DOCS</a>
+    <a href="blog.html">BLOG</a>
+    <a href="about.html">ABOUT US</a>
+    <a href="faqs.html">FAQs</a>
+    <a href="contact.html">CONTACT US</a>
+  </div>
+
+  <div class="side-actions">
+    <a href="order.html" class="btn-blue">Order Now</a>
+    <a href="contact.html" class="btn-outline">Contact Us</a>
+  </div>
+</aside>
+
+<header>
+  <button class="menu-btn" id="openMenu" aria-label="Open menu">☰</button>
+
+  <a class="logo" href="index.html">
+    <img src="images/logo.jpg" alt="Vertex Core">
+  </a>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="features.html">Features</a>
+    <a href="locations.html">Locations</a>
+    <a href="vps.html">VPS</a>
+    <a href="support.html">Support</a>
+    <a href="docs.html">Docs</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+
+  <div class="header-actions">
+    <a href="login.html" class="btn-outline">Login</a>
+    <a href="order.html" class="btn-blue">Get Started</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="eyebrow">Vertex Core VPS</div>
+    <h1>Power your <span id="heroPlan">VPS</span>.</h1>
+    <p id="heroText">High-performance Windows VPS built for reliable remote access, fast storage and scalable workloads.</p>
+  </section>
+
+  <section class="detail-wrap">
+    <div class="detail-grid">
+
+      <div class="plan-detail">
+        <div class="plan-tag" id="planTag">Selected Plan</div>
+        <h2 id="planName">2GB VPS</h2>
+        <p class="plan-description" id="planDescription">
+          A compact Windows VPS for lightweight applications, browsing and remote desktop workloads.
+        </p>
+
+        <div class="big-price">
+          $<span id="planPrice">10.00</span>
+          <small>USD / month</small>
+        </div>
+
+        <a href="order.html" class="btn-blue order-btn" id="orderButton">
+          Order This Plan →
+        </a>
+
+        <a href="pricing.html" class="back-link">← Back to VPS Pricing</a>
+      </div>
+
+      <div class="features-box">
+        <h3>Plan Specifications</h3>
+
+        <div class="spec-list">
+          <div class="spec">
+            <span>Memory</span>
+            <strong id="ram">2 GB DDR4 RAM</strong>
+          </div>
+          <div class="spec">
+            <span>Storage</span>
+            <strong id="storage">40GB NVMe SSD</strong>
+          </div>
+          <div class="spec">
+            <span>Bandwidth</span>
+            <strong id="bandwidth">2 TB Bandwidth</strong>
+          </div>
+          <div class="spec">
+            <span>Operating System</span>
+            <strong>Windows Server</strong>
+          </div>
+          <div class="spec">
+            <span>Remote Access</span>
+            <strong>Full RDP Access</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="included">
+      <h3>Included With Every VPS</h3>
+      <div class="included-grid">
+        <div class="included-item">NVMe SSD Storage</div>
+        <div class="included-item">Full RDP Access</div>
+        <div class="included-item">Windows Server</div>
+        <div class="included-item">99.95% Uptime SLA</div>
+        <div class="included-item">24/7 Support</div>
+        <div class="included-item">Secure Network</div>
+      </div>
+    </div>
+
+    <!-- Image 2 wala Naya Section Yahan Add Kiya Hai -->
+    <div class="additional-section">
+      <h2>Additional Information</h2>
+      <p class="subtext">(required fields are marked with *)</p>
+
+      <div class="additional-grid">
+        <div class="location-box">
+          <label for="vpsLocation">Choose a VPS Location <span>*</span></label>
+          <select id="vpsLocation">
+            <option value="">Select</option>
+            <option value="us">United States</option>
+            <option value="uk">United Kingdom</option>
+          </select>
+        </div>
+
+        <div class="checkout-box">
+          <div class="total-title">Configuration Total Due Today</div>
+          <div class="total-price">$<span id="checkoutPrice">10.00</span></div>
+          <div class="total-currency">USD</div>
+          <button class="continue-btn" onclick="window.location.href='order.html'">
+            ➜ Continue
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<a class="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">
+  💬 WhatsApp Channel
+</a>
+
+<footer>
+  <div class="footer-grid">
+
+    <div class="footer-brand">
+      <a class="logo" href="index.html">
+        <img src="images/logo.jpg" alt="Vertex Core">
+      </a>
+      <p>Enterprise-grade Windows VPS infrastructure built for performance, secure access and reliable connectivity.</p>
+      <p style="margin-top:12px">
+        <a href="mailto:vertexcore95@gmail.com" style="color:#8b9bb4;text-decoration:none">vertexcore95@gmail.com</a>
+      </p>
+    </div>
+
+    <div class="footer-column">
+      <h3>Company</h3>
+      <a href="about.html">About Us</a>
+      <a href="features.html">Services</a>
+      <a href="locations.html">Locations</a>
+      <a href="vps.html">VPS</a>
+      <a href="blog.html">Blog</a>
+    </div>
+
+    <div class="footer-column">
+      <h3>Support</h3>
+      <a href="support.html">Help &amp; Supports</a>
+      <a href="docs.html">Documentation</a>
+      <a href="dashboard.html">Customer Dashboard</a>
+    </div>
+
+    <div class="footer-column">
+      <h3>Legal</h3>
+      <a href="terms.html">Terms of Services</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="faqs.html">FAQs</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="login.html">Login</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Vertex Core - All plans include free backups - 99.95% uptime SLA - Cancel anytime - 24/7 Support
+  </div>
+</footer>
+
+<script>
+const plans = {
+  "2gb": {
+    name: "2GB VPS",
+    short: "2GB",
+    price: "10.00",
+    ram: "2 GB DDR4 RAM",
+    storage: "40GB NVMe SSD",
+    bandwidth: "2 TB Bandwidth",
+    tag: "Starter Plan",
+    description: "A compact Windows VPS for lightweight applications, browsing and remote desktop workloads."
+  },
+  "4gb": {
+    name: "4GB VPS",
+    short: "4GB",
+    price: "18.00",
+    ram: "4 GB DDR4 RAM",
+    storage: "80GB NVMe SSD",
+    bandwidth: "4 TB Bandwidth",
+    tag: "Balanced Plan",
+    description: "A balanced Windows VPS for everyday business apps, multitasking and reliable remote desktop use."
+  },
+  "8gb": {
+    name: "8GB VPS",
+    short: "8GB",
+    price: "32.00",
+    ram: "8 GB DDR4 RAM",
+    storage: "160GB NVMe SSD",
+    bandwidth: "6 TB Bandwidth",
+    tag: "Most Popular",
+    description: "A powerful Windows VPS for heavier workloads, multiple applications and demanding remote sessions."
+  }
+};
+
+const params = new URLSearchParams(window.location.search);
+const key = params.get("plan") || "2gb";
+const plan = plans[key] || plans["2gb"];
+
+document.title = plan.name + " | Vertex Core";
+
+document.getElementById("heroPlan").textContent = plan.short + " VPS";
+document.getElementById("heroText").textContent =
+  plan.description + " Built with NVMe storage, Windows Server and full RDP access.";
+
+document.getElementById("planTag").textContent = plan.tag;
+document.getElementById("planName").textContent = plan.name;
+document.getElementById("planDescription").textContent = plan.description;
+document.getElementById("planPrice").textContent = plan.price;
+document.getElementById("checkoutPrice").textContent = plan.price;
+document.getElementById("ram").textContent = plan.ram;
+document.getElementById("storage").textContent = plan.storage;
+document.getElementById("bandwidth").textContent = plan.bandwidth;
+
+document.getElementById("orderButton").href =
+  "order.html?plan=" + encodeURIComponent(key);
+
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+
+function openSide(){
+  sidebar.classList.add("open");
+  overlay.classList.add("show");
+}
+
+function closeSide(){
+  sidebar.classList.remove("open");
+  overlay.classList.remove("show");
+}
+
+document.getElementById("openMenu").addEventListener("click",openSide);
+document.getElementById("closeMenu").addEventListener("click",closeSide);
+overlay.addEventListener("click",closeSide);
+
+document.querySelectorAll(".side-links a,.side-actions a").forEach(a=>{
+  a.addEventListener("click",closeSide);
+});
+</script>
+
+</body>
+</html>
