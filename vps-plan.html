@@ -350,7 +350,7 @@ nav a:hover{color:#fff}
   margin-right:8px;
 }
 
-/* Naya Added Section (Image 2 ke mutabiq) */
+/* Dark Theme Additional Section */
 .additional-section {
   max-width: 1050px;
   margin: 40px auto 0;
@@ -378,18 +378,19 @@ nav a:hover{color:#fff}
 }
 
 .location-box {
-  background: #ffffff;
-  color: #333;
+  background: linear-gradient(180deg, #121a2e, #0a1020);
+  border: 1px solid #1e293b;
+  border-radius: 18px;
   padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 55px rgba(0,0,0,0.25);
 }
 
 .location-box label {
   display: block;
   font-size: 14px;
-  color: #555;
-  margin-bottom: 10px;
+  color: #8b9bb4;
+  margin-bottom: 12px;
+  font-weight: 600;
 }
 
 .location-box label span {
@@ -398,47 +399,60 @@ nav a:hover{color:#fff}
 
 .location-box select {
   width: 100%;
-  padding: 12px 15px;
-  border: 2px solid #ff4d4d;
-  border-radius: 6px;
+  padding: 14px 16px;
+  background: #0a1220;
+  border: 1px solid #1e90ff;
+  border-radius: 10px;
   font-size: 14px;
-  color: #333;
+  color: #fff;
   outline: none;
-  background: #fff;
   cursor: pointer;
+  transition: .25s;
+}
+
+.location-box select:focus {
+  box-shadow: 0 0 15px rgba(30,144,255,0.4);
+}
+
+.location-box select option {
+  background: #0a1220;
+  color: #fff;
 }
 
 .checkout-box {
-  background: linear-gradient(135deg, #4c00b0, #6a00f4);
-  border-radius: 16px;
+  background: linear-gradient(180deg, #1b1035, #0d071a);
+  border: 1px solid #2d1854;
+  border-radius: 18px;
   padding: 30px 20px;
   text-align: center;
   color: #fff;
-  box-shadow: 0 10px 30px rgba(106, 0, 244, 0.3);
+  box-shadow: 0 20px 55px rgba(0,0,0,0.3);
 }
 
 .checkout-box .total-title {
   font-size: 13px;
+  color: #aab8cb;
   font-weight: 500;
-  opacity: 0.9;
   margin-bottom: 8px;
 }
 
 .checkout-box .total-price {
   font-size: 42px;
-  font-weight: 800;
+  font-weight: 900;
+  color: #fff;
   line-height: 1;
 }
 
 .checkout-box .total-currency {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
-  margin-bottom: 25px;
+  color: #1e90ff;
+  margin-bottom: 22px;
   letter-spacing: 1px;
 }
 
 .checkout-box .continue-btn {
-  background: #7b00ff;
+  background: #1e90ff;
   color: #fff;
   border: none;
   padding: 12px 30px;
@@ -449,12 +463,14 @@ nav a:hover{color:#fff}
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: 0.2s;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: 0.25s;
+  box-shadow: 0 0 20px rgba(30,144,255,0.35);
+  width: 100%;
+  justify-content: center;
 }
 
 .checkout-box .continue-btn:hover {
-  background: #8e1aff;
+  filter: brightness(1.1);
   transform: translateY(-2px);
 }
 
@@ -760,7 +776,7 @@ footer{
       </div>
     </div>
 
-    <!-- Image 2 wala Naya Section Yahan Add Kiya Hai -->
+    <!-- Dark Styled Additional Section -->
     <div class="additional-section">
       <h2>Additional Information</h2>
       <p class="subtext">(required fields are marked with *)</p>
