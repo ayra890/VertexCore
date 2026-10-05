@@ -9,6 +9,7 @@
 <meta name="description" content="Scalable Windows VPS plans built for performance.">
 
 <style>
+
 *{
   margin:0;
   padding:0;
@@ -30,7 +31,10 @@ a{
   color:inherit
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
+
 header{
   display:flex;
   justify-content:space-between;
@@ -61,7 +65,8 @@ nav a{
   color:#8b9bb4;
   text-decoration:none;
   margin:0 12px;
-  font-size:14px
+  font-size:14px;
+  transition:.2s
 }
 
 nav a:hover{
@@ -111,7 +116,10 @@ nav a:hover{
   cursor:pointer
 }
 
-/* PAGE HERO */
+/* =========================
+   PAGE HERO
+========================= */
+
 .page-hero{
   padding:80px 5% 55px;
   text-align:center;
@@ -149,16 +157,133 @@ nav a:hover{
   line-height:1.7
 }
 
-/* PRICING */
+/* =========================
+   PRICING SECTION
+========================= */
+
 .plans{
-  padding:80px 5%
+  padding:75px 5% 90px
 }
+
+/* =========================
+   LOCATION SELECTOR
+========================= */
+
+.location-selector{
+  width:min(720px,100%);
+  margin:0 auto 45px;
+  padding:28px 30px;
+  background:linear-gradient(180deg,#101a2d,#0a1120);
+  border:1px solid #243653;
+  border-radius:18px;
+  box-shadow:0 0 35px rgba(30,144,255,.08);
+  text-align:left
+}
+
+.location-label{
+  display:block;
+  color:#fff;
+  font-size:17px;
+  font-weight:700;
+  margin-bottom:9px
+}
+
+.location-description{
+  color:#70829e;
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:17px
+}
+
+.select-wrap{
+  position:relative
+}
+
+.location-select{
+  width:100%;
+  height:56px;
+  padding:0 50px 0 17px;
+  border-radius:11px;
+  border:1px solid #29405f;
+  background:#070d18;
+  color:#8b9bb4;
+  outline:none;
+  font-size:14px;
+  cursor:pointer;
+  appearance:none;
+  -webkit-appearance:none;
+  transition:.25s
+}
+
+.location-select:hover{
+  border-color:#1e90ff
+}
+
+.location-select:focus{
+  border-color:#1e90ff;
+  color:#fff;
+  box-shadow:0 0 0 3px rgba(30,144,255,.12)
+}
+
+.location-select.has-selection{
+  color:#fff
+}
+
+.select-arrow{
+  position:absolute;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#1e90ff;
+  font-size:17px;
+  pointer-events:none
+}
+
+.location-error{
+  display:none;
+  margin-top:10px;
+  color:#ff7180;
+  font-size:12px
+}
+
+.location-error.show{
+  display:block
+}
+
+/* =========================
+   LOCATION STATUS
+========================= */
+
+.location-status{
+  display:none;
+  max-width:1100px;
+  margin:0 auto 25px;
+  padding:13px 18px;
+  border:1px solid rgba(30,144,255,.35);
+  border-radius:10px;
+  background:rgba(30,144,255,.07);
+  color:#8b9bb4;
+  font-size:13px;
+  text-align:center
+}
+
+.location-status.show{
+  display:block
+}
+
+.location-status strong{
+  color:#1e90ff
+}
+
+/* =========================
+   VPS CARDS
+========================= */
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-  max-width:1100px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:25px;
+  max-width:850px;
   margin:0 auto
 }
 
@@ -166,7 +291,7 @@ nav a:hover{
   background:linear-gradient(180deg,#121a2e,#0a1020);
   border:1px solid #1e293b;
   border-radius:16px;
-  padding:25px;
+  padding:28px;
   text-align:center;
   position:relative;
   transition:.3s
@@ -178,26 +303,147 @@ nav a:hover{
   transform:translateY(-5px)
 }
 
-.card.popular{
-  border:1px solid #1e90ff;
-  box-shadow:0 0 30px rgba(30,144,255,.15)
+/* =========================
+   INTERACTIVE VPS PLAN CARDS
+========================= */
+
+.plan-card{
+  display:block;
+  color:inherit;
+  text-decoration:none;
+  overflow:hidden;
+  cursor:pointer;
+  isolation:isolate;
+  min-height:370px
 }
 
-.badge-top{
+.plan-card::before{
+  content:"";
   position:absolute;
-  top:-12px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#1e90ff;
-  color:#fff;
-  font-size:11px;
-  padding:4px 12px;
-  border-radius:20px;
-  font-weight:700
+  inset:-1px;
+  border-radius:16px;
+  background:linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(30,144,255,.22),
+    transparent 72%
+  );
+  opacity:0;
+  transform:translateX(-55%);
+  transition:opacity .35s ease,transform .65s ease;
+  pointer-events:none;
+  z-index:-1
 }
 
-.card h3{
-  font-size:18px
+.plan-card::after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  right:-90px;
+  top:-90px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(30,144,255,.22),
+    transparent 68%
+  );
+  opacity:.25;
+  transition:transform .45s ease,opacity .45s ease;
+  pointer-events:none
+}
+
+.card-glow{
+  position:absolute;
+  inset:0;
+  border-radius:16px;
+  background:radial-gradient(
+    circle at 50% 0%,
+    rgba(30,144,255,.18),
+    transparent 48%
+  );
+  opacity:0;
+  transition:opacity .35s ease;
+  pointer-events:none;
+  z-index:-1
+}
+
+.plan-arrow{
+  position:absolute;
+  top:17px;
+  right:18px;
+  width:34px;
+  height:34px;
+  border:1px solid #263753;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:#8b9bb4;
+  font-size:17px;
+  transition:.35s ease
+}
+
+.plan-card h3,
+.plan-card .price,
+.plan-card ul,
+.plan-card .card-button,
+.plan-card .badge-top{
+  position:relative;
+  z-index:2
+}
+
+.plan-card:hover{
+  transform:translateY(-12px) scale(1.018);
+  border-color:#1e90ff;
+  box-shadow:
+    0 18px 55px rgba(30,144,255,.18),
+    0 0 28px rgba(30,144,255,.13)
+}
+
+.plan-card:hover::before{
+  opacity:1;
+  transform:translateX(55%)
+}
+
+.plan-card:hover::after{
+  opacity:.7;
+  transform:scale(1.45)
+}
+
+.plan-card:hover .card-glow{
+  opacity:1
+}
+
+.plan-card:hover .plan-arrow{
+  color:#fff;
+  border-color:#1e90ff;
+  background:rgba(30,144,255,.13);
+  transform:rotate(45deg);
+  box-shadow:0 0 18px rgba(30,144,255,.25)
+}
+
+.plan-card:active{
+  transform:translateY(-7px) scale(.995)
+}
+
+.card-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  transition:.3s ease
+}
+
+.card-button span{
+  transition:transform .3s ease
+}
+
+.plan-card:hover .card-button{
+  box-shadow:0 0 30px rgba(30,144,255,.32)
+}
+
+.plan-card:hover .card-button span{
+  transform:translateX(5px)
 }
 
 .price{
@@ -226,146 +472,41 @@ nav a:hover{
   margin-top:15px
 }
 
-/* INTERACTIVE VPS PLAN CARDS */
-.plan-card{
-  display:block;
-  color:inherit;
-  text-decoration:none;
-  overflow:hidden;
-  cursor:pointer;
-  isolation:isolate;
-  min-height:365px;
-}
+/* =========================
+   DISABLED PLAN STATE
+========================= */
 
-.plan-card::before{
-  content:"";
-  position:absolute;
-  inset:-1px;
-  border-radius:16px;
-  background:linear-gradient(120deg,transparent 20%,rgba(30,144,255,.22),transparent 72%);
-  opacity:0;
-  transform:translateX(-55%);
-  transition:opacity .35s ease,transform .65s ease;
+.plans-locked{
+  opacity:.45;
   pointer-events:none;
-  z-index:-1;
+  filter:saturate(.55)
 }
 
-.plan-card::after{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  right:-90px;
-  top:-90px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(30,144,255,.22),transparent 68%);
-  opacity:.25;
-  transition:transform .45s ease,opacity .45s ease;
-  pointer-events:none;
+.lock-message{
+  max-width:850px;
+  margin:25px auto 0;
+  padding:18px;
+  border:1px dashed #263753;
+  border-radius:12px;
+  color:#70829e;
+  text-align:center;
+  font-size:13px;
+  background:#080e1b
 }
 
-.card-glow{
-  position:absolute;
-  inset:0;
-  border-radius:16px;
-  background:radial-gradient(circle at 50% 0%,rgba(30,144,255,.18),transparent 48%);
-  opacity:0;
-  transition:opacity .35s ease;
-  pointer-events:none;
-  z-index:-1;
+.lock-message strong{
+  color:#8b9bb4
 }
 
-.plan-arrow{
-  position:absolute;
-  top:17px;
-  right:18px;
-  width:34px;
-  height:34px;
-  border:1px solid #263753;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  color:#8b9bb4;
-  font-size:17px;
-  transition:.35s ease;
+.lock-icon{
+  font-size:20px;
+  margin-bottom:6px
 }
 
-.plan-card h3,
-.plan-card .price,
-.plan-card ul,
-.plan-card .card-button,
-.plan-card .badge-top{
-  position:relative;
-  z-index:2;
-}
+/* =========================
+   FOOTER
+========================= */
 
-.plan-card:hover{
-  transform:translateY(-12px) scale(1.018);
-  border-color:#1e90ff;
-  box-shadow:0 18px 55px rgba(30,144,255,.18),0 0 28px rgba(30,144,255,.13);
-}
-
-.plan-card:hover::before{
-  opacity:1;
-  transform:translateX(55%);
-}
-
-.plan-card:hover::after{
-  opacity:.7;
-  transform:scale(1.45);
-}
-
-.plan-card:hover .card-glow{
-  opacity:1;
-}
-
-.plan-card:hover .plan-arrow{
-  color:#fff;
-  border-color:#1e90ff;
-  background:rgba(30,144,255,.13);
-  transform:rotate(45deg);
-  box-shadow:0 0 18px rgba(30,144,255,.25);
-}
-
-.plan-card:active{
-  transform:translateY(-7px) scale(.995);
-}
-
-.card-button{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  transition:.3s ease;
-}
-
-.card-button span{
-  transition:transform .3s ease;
-}
-
-.plan-card:hover .card-button{
-  box-shadow:0 0 30px rgba(30,144,255,.32);
-}
-
-.plan-card:hover .card-button span{
-  transform:translateX(5px);
-}
-
-.popular.plan-card{
-  box-shadow:0 0 30px rgba(30,144,255,.15);
-}
-
-.popular.plan-card:hover{
-  box-shadow:0 18px 60px rgba(30,144,255,.24),0 0 35px rgba(30,144,255,.16);
-}
-
-@media(max-width:900px){
-  .plan-card:hover{
-    transform:translateY(-7px);
-  }
-}
-
-/* FOOTER */
 footer{
   padding:40px 5% 15px;
   background:#080e1b;
@@ -426,7 +567,10 @@ footer{
   line-height:1.8
 }
 
-/* WHATSAPP */
+/* =========================
+   WHATSAPP
+========================= */
+
 .whatsapp{
   position:fixed;
   right:22px;
@@ -441,7 +585,10 @@ footer{
   box-shadow:0 8px 30px rgba(24,201,104,.3)
 }
 
-/* SIDEBAR */
+/* =========================
+   SIDEBAR
+========================= */
+
 .sidebar{
   position:fixed;
   top:0;
@@ -518,225 +665,10 @@ footer{
   display:block
 }
 
-/* LOGIN */
-.login-link{
-  background:none;
-  border:0;
-  color:#8b9bb4;
-  text-decoration:none;
-  margin-right:15px;
-  font:inherit;
-  cursor:pointer;
-  padding:10px 2px
-}
+/* =========================
+   RESPONSIVE
+========================= */
 
-.login-link:hover{
-  color:#fff
-}
-
-.login-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.78);
-  backdrop-filter:blur(8px);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:200
-}
-
-.login-modal.show{
-  display:flex
-}
-
-.login-box{
-  width:min(430px,100%);
-  background:linear-gradient(180deg,#0d1628,#080e1a);
-  border:1px solid #1e90ff;
-  border-radius:20px;
-  padding:32px;
-  position:relative;
-  box-shadow:0 0 55px rgba(30,144,255,.22)
-}
-
-.login-brand{
-  text-align:center;
-  margin-bottom:24px
-}
-
-.login-brand .logo{
-  justify-content:center
-}
-
-.login-brand .logo img{
-  width:220px
-}
-
-.login-brand p{
-  color:#70829e;
-  font-size:13px;
-  margin-top:8px;
-  line-height:1.6
-}
-
-.login-close{
-  position:absolute;
-  right:16px;
-  top:16px;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  background:#0b1525;
-  border:1px solid #243957;
-  color:#8b9bb4;
-  font-size:22px;
-  cursor:pointer
-}
-
-.login-close:hover{
-  color:#fff;
-  border-color:#1e90ff
-}
-
-.login-form{
-  display:grid;
-  gap:17px
-}
-
-.form-group{
-  display:grid;
-  gap:7px
-}
-
-.form-group label{
-  font-size:13px;
-  color:#b9c6d8;
-  font-weight:600
-}
-
-.form-group input{
-  width:100%;
-  padding:13px 14px;
-  border-radius:9px;
-  border:1px solid #24324a;
-  background:#070d18;
-  color:#fff;
-  outline:none;
-  font-size:14px;
-  transition:.2s
-}
-
-.form-group input:focus{
-  border-color:#1e90ff;
-  box-shadow:0 0 0 3px rgba(30,144,255,.12)
-}
-
-.form-group input.invalid{
-  border-color:#ff5b6e;
-  box-shadow:0 0 0 3px rgba(255,91,110,.08)
-}
-
-.password-wrap{
-  position:relative
-}
-
-.password-wrap input{
-  padding-right:78px
-}
-
-.show-pass{
-  position:absolute;
-  right:10px;
-  top:50%;
-  transform:translateY(-50%);
-  background:none;
-  border:0;
-  color:#6f86a3;
-  font-size:12px;
-  font-weight:700;
-  cursor:pointer
-}
-
-.show-pass:hover{
-  color:#1e90ff
-}
-
-.field-error{
-  min-height:16px;
-  color:#ff7180;
-  font-size:11px
-}
-
-.login-options{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  font-size:12px;
-  color:#70829e
-}
-
-.remember{
-  display:flex;
-  align-items:center;
-  gap:7px
-}
-
-.remember input{
-  accent-color:#1e90ff
-}
-
-.forgot{
-  color:#1e90ff;
-  text-decoration:none
-}
-
-.forgot:hover{
-  text-decoration:underline
-}
-
-.login-submit{
-  width:100%;
-  padding:13px;
-  border:0;
-  border-radius:9px;
-  background:linear-gradient(135deg,#1e90ff,#0066ff);
-  color:#fff;
-  font-weight:800;
-  font-size:14px;
-  cursor:pointer;
-  box-shadow:0 0 25px rgba(30,144,255,.25)
-}
-
-.login-submit:hover{
-  filter:brightness(1.08)
-}
-
-.login-status{
-  display:none;
-  padding:10px 12px;
-  border-radius:8px;
-  background:rgba(40,190,120,.1);
-  border:1px solid rgba(40,190,120,.35);
-  color:#67dfa8;
-  font-size:12px;
-  text-align:center
-}
-
-.login-status.show{
-  display:block
-}
-
-.login-note{
-  text-align:center;
-  color:#5f718b;
-  font-size:11px;
-  line-height:1.5;
-  margin-top:2px
-}
-
-/* RESPONSIVE */
 @media(max-width:900px){
 
   nav{
@@ -752,7 +684,8 @@ footer{
   }
 
   .grid{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
+    max-width:550px
   }
 
   .footer-grid{
@@ -763,6 +696,7 @@ footer{
     grid-column:1/-1;
     max-width:none
   }
+
 }
 
 @media(max-width:600px){
@@ -788,7 +722,20 @@ footer{
   }
 
   .plans{
-    padding:60px 5%
+    padding:55px 5% 70px
+  }
+
+  .location-selector{
+    padding:23px 20px;
+    margin-bottom:35px
+  }
+
+  .location-label{
+    font-size:16px
+  }
+
+  .location-select{
+    height:53px
   }
 
   .card{
@@ -828,14 +775,8 @@ footer{
     max-width:310px
   }
 
-  .login-box{
-    padding:28px 20px
-  }
-
-  .login-options{
-    align-items:flex-start
-  }
 }
+
 </style>
 </head>
 
@@ -843,35 +784,56 @@ footer{
 
 <div class="overlay" id="overlay"></div>
 
-<!-- SIDEBAR -->
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
 <aside class="sidebar" id="sidebar">
 
   <div class="side-head">
+
     <a class="logo" href="index.html">
       <img src="images/logo.jpg" alt="Vertex Core">
     </a>
 
     <button class="side-close" id="closeMenu">×</button>
+
   </div>
 
   <div class="side-links">
+
     <a href="index.html">HOME</a>
     <a href="pricing.html">PRICING</a>
     <a href="locations.html">LOCATIONS</a>
     <a href="vps.html">VPS</a>
+    <a href="features.html">FEATURES</a>
     <a href="support.html">SUPPORT</a>
     <a href="about.html">ABOUT US</a>
     <a href="contact.html">CONTACT US</a>
+    <a href="blog.html">BLOG</a>
+
   </div>
 
   <div class="side-actions">
-    <a href="order.html" class="btn-blue">Order Now</a>
-    <a href="contact.html" class="btn-outline">Contact Us</a>
+
+    <a href="order.html" class="btn-blue">
+      Order Now
+    </a>
+
+    <a href="contact.html" class="btn-outline">
+      Contact Us
+    </a>
+
   </div>
 
 </aside>
 
-<!-- HEADER -->
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
   <button class="menu-btn" id="openMenu" aria-label="Open menu">
@@ -879,148 +841,388 @@ footer{
   </button>
 
   <a class="logo" href="index.html">
+
     <img src="images/logo.jpg" alt="Vertex Core">
+
   </a>
 
   <nav>
+
     <a href="index.html">Home</a>
     <a href="pricing.html">Pricing</a>
     <a href="vps.html">VPS</a>
     <a href="support.html">Support</a>
     <a href="blog.html">Blog</a>
+
   </nav>
 
   <div class="header-actions">
-    <a href="login.html" class="login-link">Login</a>
-    <a href="order.html" class="btn-blue">Get Started</a>
+
+    <a href="login.html" class="login-link">
+      Login
+    </a>
+
+    <a href="order.html" class="btn-blue">
+      Get Started
+    </a>
+
   </div>
 
 </header>
 
-<!-- MAIN -->
+
+<!-- =========================
+     MAIN
+========================= -->
+
 <main>
 
-  <!-- PAGE HERO -->
-  <section class="page-hero">
-    <h1>VPS Pricing</h1>
 
-    <p>
-      Scalable Windows VPS plans built for performance.
-      All plans include RDP, NVMe storage, and 99.95% SLA.
+<!-- =========================
+     PAGE HERO
+========================= -->
+
+<section class="page-hero">
+
+  <h1>VPS Pricing</h1>
+
+  <p>
+    Scalable Windows VPS plans built for performance.
+    All plans include RDP, NVMe storage, and 99.95% SLA.
+  </p>
+
+</section>
+
+
+<!-- =========================
+     PLANS
+========================= -->
+
+<section class="plans">
+
+
+  <!-- LOCATION SELECTOR -->
+
+  <div class="location-selector">
+
+    <label class="location-label" for="locationSelect">
+      Select Your Server Location
+    </label>
+
+    <p class="location-description">
+      Choose your preferred VPS location to view the available plans.
     </p>
-  </section>
 
-  <!-- PLANS -->
-  <section class="plans">
+    <div class="select-wrap">
 
-    <div class="grid">
+      <select
+        id="locationSelect"
+        class="location-select"
+      >
 
-      <!-- 2GB -->
-      <a class="card plan-card" href="vps-plan.html?plan=2gb" aria-label="View 2GB VPS details">
+        <option value="">
+          Select a server location
+        </option>
 
-        <span class="card-glow"></span>
-        <span class="plan-arrow">↗</span>
+        <option value="Italy">
+          Italy
+        </option>
 
-        <h3>2GB VPS</h3>
+        <option value="Greece">
+          Greece
+        </option>
 
-        <div class="price">
-          $10.00 USD <small>/mo</small>
-        </div>
+        <option value="Norway">
+          Norway
+        </option>
 
-        <ul>
-          <li>• 2 GB DDR4 RAM</li>
-          <li>• 40GB NVMe SSD</li>
-          <li>• 2 TB Bandwidth</li>
-          <li>• Windows Server</li>
-          <li>• Full RDP Access</li>
-        </ul>
+        <option value="Canada">
+          Canada
+        </option>
 
-        <span class="btn-blue card-button">
-          View 2GB Details <span>→</span>
-        </span>
+        <option value="London">
+          London
+        </option>
 
-      </a>
+        <option value="Australia">
+          Australia
+        </option>
 
-      <!-- 4GB -->
-      <a class="card plan-card" href="vps-plan.html?plan=4gb" aria-label="View 4GB VPS details">
+        <option value="France">
+          France
+        </option>
 
-        <span class="card-glow"></span>
-        <span class="plan-arrow">↗</span>
+        <option value="Austria">
+          Austria
+        </option>
 
-        <h3>4GB VPS</h3>
+        <option value="Belgium">
+          Belgium
+        </option>
 
-        <div class="price">
-          $18.00 USD <small>/mo</small>
-        </div>
+        <option value="Netherlands">
+          Netherlands
+        </option>
 
-        <ul>
-          <li>• 4 GB DDR4 RAM</li>
-          <li>• 80GB NVMe SSD</li>
-          <li>• 4 TB Bandwidth</li>
-          <li>• Windows Server</li>
-          <li>• Full RDP Access</li>
-        </ul>
+        <option value="Ireland">
+          Ireland
+        </option>
 
-        <span class="btn-blue card-button">
-          View 4GB Details <span>→</span>
-        </span>
+        <option value="Manchester UK">
+          Manchester UK
+        </option>
 
-      </a>
+        <option value="Germany">
+          Germany
+        </option>
 
-      <!-- 8GB -->
-      <a class="card plan-card popular" href="vps-plan.html?plan=8gb" aria-label="View 8GB VPS details">
+        <option value="Spain">
+          Spain
+        </option>
 
-        <span class="card-glow"></span>
-        <span class="plan-arrow">↗</span>
+        <option value="KSA">
+          KSA
+        </option>
 
-        <div class="badge-top">
-          MOST POPULAR
-        </div>
+        <option value="South Korea">
+          South Korea
+        </option>
 
-        <h3>8GB VPS</h3>
+        <option value="Bangladesh">
+          Bangladesh
+        </option>
 
-        <div class="price">
-          $32.00 USD <small>/mo</small>
-        </div>
+        <option value="Bahrain">
+          Bahrain
+        </option>
 
-        <ul>
-          <li>• 8 GB DDR4 RAM</li>
-          <li>• 160GB NVMe SSD</li>
-          <li>• 6 TB Bandwidth</li>
-          <li>• Windows Server</li>
-          <li>• Full RDP Access</li>
-        </ul>
+        <option value="Qatar">
+          Qatar
+        </option>
 
-        <span class="btn-blue card-button">
-          View 8GB Details <span>→</span>
-        </span>
+        <option value="UAE">
+          UAE
+        </option>
 
-      </a>
+      </select>
+
+      <span class="select-arrow">
+        ▼
+      </span>
 
     </div>
 
-  </section>
+    <div class="location-error" id="locationError">
+      Please select a server location before choosing a VPS plan.
+    </div>
+
+  </div>
+
+
+  <!-- SELECTED LOCATION STATUS -->
+
+  <div class="location-status" id="locationStatus">
+
+    Selected Server Location:
+    <strong id="selectedLocation">
+      -
+    </strong>
+
+  </div>
+
+
+  <!-- VPS CARDS -->
+
+  <div class="grid plans-locked" id="plansGrid">
+
+
+    <!-- =========================
+         2GB VPS
+    ========================= -->
+
+    <a
+      class="card plan-card"
+      id="plan2gb"
+      href="javascript:void(0)"
+      aria-label="Select 2GB VPS"
+    >
+
+      <span class="card-glow"></span>
+
+      <span class="plan-arrow">
+        ↗
+      </span>
+
+      <h3>
+        2GB VPS
+      </h3>
+
+      <div class="price">
+        $10.00 USD
+        <small>/mo</small>
+      </div>
+
+      <ul>
+
+        <li>
+          • 2 GB DDR4 RAM
+        </li>
+
+        <li>
+          • 40GB NVMe SSD
+        </li>
+
+        <li>
+          • 2 TB Bandwidth
+        </li>
+
+        <li>
+          • Windows Server
+        </li>
+
+        <li>
+          • Full RDP Access
+        </li>
+
+      </ul>
+
+      <span class="btn-blue card-button">
+
+        View 2GB Details
+
+        <span>
+          →
+        </span>
+
+      </span>
+
+    </a>
+
+
+    <!-- =========================
+         4GB VPS
+    ========================= -->
+
+    <a
+      class="card plan-card"
+      id="plan4gb"
+      href="javascript:void(0)"
+      aria-label="Select 4GB VPS"
+    >
+
+      <span class="card-glow"></span>
+
+      <span class="plan-arrow">
+        ↗
+      </span>
+
+      <h3>
+        4GB VPS
+      </h3>
+
+      <div class="price">
+        $18.00 USD
+        <small>/mo</small>
+      </div>
+
+      <ul>
+
+        <li>
+          • 4 GB DDR4 RAM
+        </li>
+
+        <li>
+          • 80GB NVMe SSD
+        </li>
+
+        <li>
+          • 4 TB Bandwidth
+        </li>
+
+        <li>
+          • Windows Server
+        </li>
+
+        <li>
+          • Full RDP Access
+        </li>
+
+      </ul>
+
+      <span class="btn-blue card-button">
+
+        View 4GB Details
+
+        <span>
+          →
+        </span>
+
+      </span>
+
+    </a>
+
+
+  </div>
+
+
+  <!-- LOCK MESSAGE -->
+
+  <div class="lock-message" id="lockMessage">
+
+    <div class="lock-icon">
+      🔒
+    </div>
+
+    <strong>
+      Select a server location first
+    </strong>
+
+    <br>
+
+    Choose your preferred location above to unlock the VPS plans.
+
+  </div>
+
+
+</section>
 
 </main>
 
-<!-- WHATSAPP -->
-<a class="whatsapp"
-   href="https://wa.me/"
-   target="_blank"
-   rel="noopener">
+
+<!-- =========================
+     WHATSAPP
+========================= -->
+
+<a
+  class="whatsapp"
+  href="https://wa.me/"
+  target="_blank"
+  rel="noopener"
+>
   💬 WhatsApp Channel
 </a>
 
-<!-- FOOTER -->
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
   <div class="footer-grid">
 
+
     <!-- BRAND -->
+
     <div class="footer-brand">
 
       <a class="logo" href="index.html">
-        <img src="images/logo.jpg" alt="Vertex Core">
+
+        <img
+          src="images/logo.jpg"
+          alt="Vertex Core"
+        >
+
       </a>
 
       <p>
@@ -1029,92 +1231,391 @@ footer{
       </p>
 
       <p style="margin-top:12px">
-        <a href="mailto:vertexcore95@gmail.com"
-           style="color:#8b9bb4;text-decoration:none">
+
+        <a
+          href="mailto:vertexcore95@gmail.com"
+          style="color:#8b9bb4;text-decoration:none"
+        >
           vertexcore95@gmail.com
         </a>
+
       </p>
 
     </div>
 
+
     <!-- COMPANY -->
+
     <div class="footer-column">
 
-      <h3>Company</h3>
+      <h3>
+        Company
+      </h3>
 
-      <a href="about.html">About Us</a>
-      <a href="features.html">Services / Features</a>
-      <a href="locations.html">Locations</a>
-      <a href="vps.html">VPS</a>
-      <a href="blog.html">Blog</a>
+      <a href="about.html">
+        About Us
+      </a>
+
+      <a href="features.html">
+        Services / Features
+      </a>
+
+      <a href="locations.html">
+        Locations
+      </a>
+
+      <a href="vps.html">
+        VPS
+      </a>
+
+      <a href="blog.html">
+        Blog
+      </a>
 
     </div>
+
 
     <!-- SUPPORT -->
+
     <div class="footer-column">
 
-      <h3>Support</h3>
+      <h3>
+        Support
+      </h3>
 
-      <a href="support.html">Help &amp; Supports</a>
-      <a href="docs.html">Documentation</a>
-      <a href="dashboard.html">Customer Dashboard</a>
+      <a href="support.html">
+        Help &amp; Supports
+      </a>
+
+      <a href="docs.html">
+        Documentation
+      </a>
+
+      <a href="dashboard.html">
+        Customer Dashboard
+      </a>
 
     </div>
+
 
     <!-- LEGAL -->
+
     <div class="footer-column">
 
-      <h3>Legal</h3>
+      <h3>
+        Legal
+      </h3>
 
-      <a href="terms.html">Terms of Services</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="refund.html">Refund Policy</a>
-      <a href="faqs.html">FAQs</a>
-      <a href="contact.html">Contact Us</a>
-      <a href="login.html">Login</a>
+      <a href="terms.html">
+        Terms of Services
+      </a>
+
+      <a href="privacy.html">
+        Privacy Policy
+      </a>
+
+      <a href="refund.html">
+        Refund Policy
+      </a>
+
+      <a href="faqs.html">
+        FAQs
+      </a>
+
+      <a href="contact.html">
+        Contact Us
+      </a>
+
+      <a href="login.html">
+        Login
+      </a>
 
     </div>
+
 
   </div>
 
+
   <div class="footer-bottom">
+
     © 2026 Vertex Core - All plans include free backups -
     99.95% uptime SLA - Cancel anytime - 24/7 Support
+
   </div>
 
 </footer>
 
-<!-- JAVASCRIPT -->
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script>
 
-const sidebar = document.getElementById('sidebar');
-const overlay = document.getElementById('overlay');
+/* =========================
+   SIDEBAR
+========================= */
+
+const sidebar =
+  document.getElementById('sidebar');
+
+const overlay =
+  document.getElementById('overlay');
+
 
 function openSide(){
+
   sidebar.classList.add('open');
+
   overlay.classList.add('show');
+
 }
 
+
 function closeSide(){
+
   sidebar.classList.remove('open');
+
   overlay.classList.remove('show');
+
 }
+
 
 document
   .getElementById('openMenu')
   .addEventListener('click',openSide);
 
+
 document
   .getElementById('closeMenu')
   .addEventListener('click',closeSide);
 
-overlay.addEventListener('click',closeSide);
+
+overlay.addEventListener(
+  'click',
+  closeSide
+);
+
 
 document
-  .querySelectorAll('.side-links a,.side-actions a')
+  .querySelectorAll(
+    '.side-links a,.side-actions a'
+  )
   .forEach(a=>{
-    a.addEventListener('click',closeSide);
+
+    a.addEventListener(
+      'click',
+      closeSide
+    );
+
   });
+
+
+/* =========================
+   LOCATION + VPS PLANS
+========================= */
+
+const locationSelect =
+  document.getElementById('locationSelect');
+
+const plansGrid =
+  document.getElementById('plansGrid');
+
+const locationStatus =
+  document.getElementById('locationStatus');
+
+const selectedLocation =
+  document.getElementById('selectedLocation');
+
+const locationError =
+  document.getElementById('locationError');
+
+const lockMessage =
+  document.getElementById('lockMessage');
+
+const plan2gb =
+  document.getElementById('plan2gb');
+
+const plan4gb =
+  document.getElementById('plan4gb');
+
+
+/* LOCATION CHANGE */
+
+locationSelect.addEventListener(
+  'change',
+  function(){
+
+    const location =
+      this.value;
+
+
+    /* NO LOCATION */
+
+    if(!location){
+
+      plansGrid.classList.add(
+        'plans-locked'
+      );
+
+      locationStatus.classList.remove(
+        'show'
+      );
+
+      lockMessage.style.display =
+        'block';
+
+      locationError.classList.remove(
+        'show'
+      );
+
+      this.classList.remove(
+        'has-selection'
+      );
+
+      plan2gb.href =
+        'javascript:void(0)';
+
+      plan4gb.href =
+        'javascript:void(0)';
+
+      return;
+
+    }
+
+
+    /* LOCATION SELECTED */
+
+    plansGrid.classList.remove(
+      'plans-locked'
+    );
+
+    locationStatus.classList.add(
+      'show'
+    );
+
+    lockMessage.style.display =
+      'none';
+
+    locationError.classList.remove(
+      'show'
+    );
+
+    this.classList.add(
+      'has-selection'
+    );
+
+
+    /* SHOW SELECTED LOCATION */
+
+    selectedLocation.textContent =
+      location;
+
+
+    /* CREATE SAFE URL VALUE */
+
+    const locationURL =
+      encodeURIComponent(location);
+
+
+    /* 2GB LINK */
+
+    plan2gb.href =
+      'vps-plan.html?plan=2gb&location='
+      + locationURL;
+
+
+    /* 4GB LINK */
+
+    plan4gb.href =
+      'vps-plan.html?plan=4gb&location='
+      + locationURL;
+
+  }
+);
+
+
+/* =========================
+   PREVENT CARD CLICK
+   WITHOUT LOCATION
+========================= */
+
+plan2gb.addEventListener(
+  'click',
+  function(e){
+
+    if(!locationSelect.value){
+
+      e.preventDefault();
+
+      locationError.classList.add(
+        'show'
+      );
+
+      locationSelect.focus();
+
+    }
+
+  }
+);
+
+
+plan4gb.addEventListener(
+  'click',
+  function(e){
+
+    if(!locationSelect.value){
+
+      e.preventDefault();
+
+      locationError.classList.add(
+        'show'
+      );
+
+      locationSelect.focus();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   OPTIONAL:
+   RESTORE LOCATION FROM URL
+========================= */
+
+const urlParams =
+  new URLSearchParams(
+    window.location.search
+  );
+
+const savedLocation =
+  urlParams.get('location');
+
+
+if(savedLocation){
+
+  const option =
+    Array.from(
+      locationSelect.options
+    ).find(
+      option =>
+        option.value === savedLocation
+    );
+
+  if(option){
+
+    locationSelect.value =
+      savedLocation;
+
+    locationSelect.dispatchEvent(
+      new Event('change')
+    );
+
+  }
+
+}
 
 </script>
 
