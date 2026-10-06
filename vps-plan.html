@@ -89,6 +89,33 @@ nav a:hover{color:#fff}
   display:inline-block;
   transition:.25s;
 }
+SIDEBAR
+========================= */
+
+.sidebar{
+position:fixed;
+top:0;
+left:-330px;
+width:310px;
+height:100vh;
+background:#080d18;
+border-right:1px solid #1e90ff;
+z-index:100;
+padding:25px;
+transition:.3s;
+box-shadow:10px 0 40px rgba(0,0,0,.5)
+}
+
+.sidebar.open{
+left:0
+}
+
+.side-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:45px
+}
 
 .btn-outline:hover{
   border-color:#1e90ff;
