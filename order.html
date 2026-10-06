@@ -4,2347 +4,3837 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Order VPS | Vertex Core</title>
+<title>Checkout | Vertex Core</title>
 
 <meta name="description"
-content="Order your Windows VPS from Vertex Core with flexible quantity, billing and payment options.">
+content="Complete your Vertex Core Windows VPS order securely.">
 
 <style>
+  window.location.href =
+    "checkout.html?plan=" + plan +
+    "&location=" + encodeURIComponent(location);
+/* =========================================================
+   VERTEX CORE - CHECKOUT PAGE
+   ========================================================= */
+
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Inter,Segoe UI,Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,Segoe UI,Arial,sans-serif;
 }
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  background:#060a14;
-  color:#fff;
-  overflow-x:hidden;
+    background:#060a14;
+    color:#fff;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at 15% 10%,rgba(30,144,255,.08),transparent 28%),
+        radial-gradient(circle at 85% 80%,rgba(30,144,255,.06),transparent 30%);
+    z-index:-1;
 }
 
 a{
-  color:inherit;
+    color:inherit;
+    text-decoration:none;
+}
+<a href="checkout.html?plan=2gb&location=Canada">
+    Select 2GB VPS
+</a>
+  <a href="checkout.html?plan=4gb&location=Canada">
+    Select 4GB VPS
+</a>
+  <a href="checkout.html?plan=8gb&location=Canada">
+    Select 8GB VPS
+</a>
+button,
+input,
+select,
+textarea{
+    font:inherit;
 }
 
-/* ================= HEADER ================= */
+
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 5%;
-  background:rgba(10,15,30,.94);
-  border-bottom:1px solid #1a233a;
-  position:sticky;
-  top:0;
-  z-index:50;
-  backdrop-filter:blur(12px);
+    height:74px;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 32px;
+
+    background:rgba(10,15,30,.94);
+    border-bottom:1px solid #1e293b;
+
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  text-decoration:none;
+.logo-wrap{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.logo img{
-  width:185px;
-  height:auto;
-  display:block;
-  object-fit:contain;
+.logo-wrap img{
+    width:44px;
+    height:44px;
+    object-fit:contain;
+    border-radius:9px;
 }
 
-nav a{
-  color:#8b9bb4;
-  text-decoration:none;
-  margin:0 12px;
-  font-size:14px;
+.logo-text{
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:.4px;
 }
 
-nav a:hover{
-  color:#fff;
+.logo-text span{
+    color:#1e90ff;
 }
 
-.btn-blue{
-  background:#1e90ff;
-  color:#fff;
-  padding:11px 20px;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:700;
-  box-shadow:0 0 20px rgba(30,144,255,.4);
-  border:none;
-  display:inline-block;
-  cursor:pointer;
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.btn-blue:hover{
-  filter:brightness(1.1);
+.header-btn{
+    padding:10px 18px;
+    border-radius:9px;
+    border:1px solid #263550;
+    background:#10192c;
+    color:#fff;
+    transition:.25s;
+    cursor:pointer;
+}
+
+.header-btn:hover{
+    border-color:#1e90ff;
+    box-shadow:0 0 18px rgba(30,144,255,.18);
+}
+
+.header-btn.primary{
+    background:#1e90ff;
+    border-color:#1e90ff;
+    color:#fff;
+    font-weight:700;
+}
+
+.header-btn.primary:hover{
+    background:#1682e8;
+    transform:translateY(-1px);
 }
 
 .menu-btn{
-  display:block;
-  background:transparent;
-  border:1px solid #1e90ff;
-  color:#1e90ff;
-  width:44px;
-  height:44px;
-  border-radius:10px;
-  font-size:25px;
-  cursor:pointer;
+    width:43px;
+    height:43px;
+    border:1px solid #263550;
+    border-radius:9px;
+    background:#10192c;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:5px;
+    transition:.25s;
 }
 
-/* ================= SIDEBAR ================= */
+.menu-btn:hover{
+    border-color:#1e90ff;
+}
+
+.menu-btn span{
+    width:20px;
+    height:2px;
+    background:#fff;
+    border-radius:5px;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
 
 .sidebar{
-  position:fixed;
-  top:0;
-  left:-330px;
-  width:310px;
-  height:100vh;
-  background:#080d18;
-  border-right:1px solid #1e90ff;
-  z-index:100;
-  padding:25px;
-  transition:.3s;
-  box-shadow:10px 0 40px rgba(0,0,0,.5);
+    position:fixed;
+    top:0;
+    right:-330px;
+
+    width:310px;
+    height:100vh;
+
+    z-index:2000;
+
+    background:#0a1020;
+    border-left:1px solid #1e293b;
+
+    padding:90px 25px 25px;
+
+    transition:.35s ease;
+
+    box-shadow:-20px 0 50px rgba(0,0,0,.35);
 }
 
-.sidebar.open{
-  left:0;
+.sidebar.active{
+    right:0;
 }
 
-.side-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:45px;
+.sidebar-close{
+    position:absolute;
+    top:25px;
+    right:24px;
+
+    width:38px;
+    height:38px;
+
+    border:1px solid #263550;
+    background:#10192c;
+    color:#fff;
+    border-radius:8px;
+
+    cursor:pointer;
+    font-size:20px;
 }
 
-.side-close{
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  background:#0c1525;
-  border:1px solid #27405f;
-  color:#1e90ff;
-  font-size:23px;
-  cursor:pointer;
+.sidebar-title{
+    color:#8b9bb4;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    margin:10px 0 12px;
 }
 
-.side-links{
-  display:grid;
-  gap:7px;
+.sidebar a{
+    display:block;
+    padding:13px 14px;
+    margin-bottom:5px;
+
+    color:#c7d2e3;
+    border-radius:8px;
+
+    transition:.25s;
 }
 
-.side-links a{
-  padding:14px;
-  color:#aab8cb;
-  text-decoration:none;
-  border-radius:9px;
+.sidebar a:hover{
+    color:#fff;
+    background:#101c31;
+    transform:translateX(3px);
 }
 
-.side-links a:hover{
-  background:#0d1a2d;
-  color:#fff;
-}
-
-.side-actions{
-  display:grid;
-  gap:12px;
-  margin-top:25px;
-}
-
-.side-actions a{
-  text-align:center;
+.sidebar-divider{
+    height:1px;
+    background:#1e293b;
+    margin:18px 0;
 }
 
 .overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.65);
-  z-index:90;
-  display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.58);
+    z-index:1500;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.3s;
 }
 
-.overlay.show{
-  display:block;
+.overlay.active{
+    opacity:1;
+    visibility:visible;
 }
 
-/* ================= HERO ================= */
 
-.page-hero{
-  padding:70px 5% 45px;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-  border-bottom:1px solid #121d32;
-  background:linear-gradient(180deg,#0a1020,#060a14);
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.page{
+    width:min(1220px,calc(100% - 40px));
+    margin:0 auto;
+    padding-top:115px;
+    padding-bottom:70px;
 }
 
-.page-hero:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(180deg,rgba(6,10,20,.6),#060a14 95%),
-    url('images/hero-servers.jpg') center/cover no-repeat;
-  opacity:.16;
-  z-index:0;
+.page-heading{
+    text-align:center;
+    margin-bottom:42px;
 }
 
-.page-hero>*{
-  position:relative;
-  z-index:1;
+.page-heading .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:7px 13px;
+    border-radius:30px;
+
+    background:rgba(30,144,255,.08);
+    border:1px solid rgba(30,144,255,.2);
+
+    color:#6dbaff;
+    font-size:12px;
+    font-weight:700;
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+
+    margin-bottom:16px;
 }
 
-.page-hero h1{
-  font-size:clamp(38px,5vw,62px);
-  margin-bottom:12px;
+.page-heading h1{
+    font-size:clamp(32px,5vw,48px);
+    line-height:1.1;
+    margin-bottom:12px;
 }
 
-.page-hero p{
-  max-width:700px;
-  margin:auto;
-  color:#8b9bb4;
-  line-height:1.7;
+.page-heading h1 span{
+    color:#1e90ff;
 }
 
-/* ================= MAIN ================= */
-
-.checkout-wrapper{
-  width:min(1180px,90%);
-  margin:55px auto 80px;
+.page-heading p{
+    color:#8b9bb4;
+    max-width:650px;
+    margin:auto;
+    line-height:1.7;
 }
+
+
+/* =========================================================
+   CHECKOUT GRID
+   ========================================================= */
 
 .checkout-grid{
-  display:grid;
-  grid-template-columns:minmax(0,1.5fr) minmax(320px,.7fr);
-  gap:25px;
-  align-items:start;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 360px;
+    gap:25px;
+    align-items:start;
 }
 
-/* ================= BOX ================= */
-
-.box{
-  background:linear-gradient(180deg,#10182a,#090f1d);
-  border:1px solid #1b2941;
-  border-radius:16px;
-  padding:26px;
-  margin-bottom:22px;
+.left-column{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
 }
 
-.box-title{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:22px;
+.right-column{
+    position:sticky;
+    top:100px;
 }
 
-.box-number{
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:#1e90ff;
-  color:#fff;
-  font-size:14px;
-  font-weight:800;
-  box-shadow:0 0 20px rgba(30,144,255,.3);
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.checkout-card{
+    background:
+        linear-gradient(145deg,#121a2e,#0a1020);
+
+    border:1px solid #1e293b;
+    border-radius:16px;
+
+    padding:26px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.16);
+
+    transition:.3s;
 }
 
-.box-title h2{
-  font-size:20px;
+.checkout-card:hover{
+    border-color:#263c60;
 }
 
-/* ================= PRODUCT ================= */
+.card-header{
+    display:flex;
+    align-items:center;
+    gap:13px;
 
-.product-select-wrap{
-  position:relative;
+    padding-bottom:18px;
+    margin-bottom:21px;
+
+    border-bottom:1px solid #1e293b;
 }
 
-.product-select{
-  width:100%;
-  padding:15px 45px 15px 15px;
-  border:1px solid #263753;
-  border-radius:10px;
-  background:#070d18;
-  color:#fff;
-  font-size:14px;
-  outline:none;
-  cursor:pointer;
-  appearance:auto;
+.card-number{
+    width:32px;
+    height:32px;
+
+    border-radius:9px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(30,144,255,.12);
+    border:1px solid rgba(30,144,255,.28);
+
+    color:#48a8ff;
+    font-size:13px;
+    font-weight:800;
 }
 
-.product-select:focus{
-  border-color:#1e90ff;
-  box-shadow:0 0 0 3px rgba(30,144,255,.1);
+.card-header h2{
+    font-size:19px;
 }
 
-.product-select option{
-  background:#0b1221;
-  color:#fff;
+.card-header p{
+    color:#71819a;
+    font-size:12px;
+    margin-top:3px;
 }
 
-/* ================= QUANTITY ================= */
 
-.quantity-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-  margin-top:20px;
+/* =========================================================
+   PRODUCT
+   ========================================================= */
+
+.product-row{
+    display:grid;
+    grid-template-columns:1fr 160px;
+    gap:16px;
 }
 
-.field-label{
-  display:block;
-  color:#aebbd0;
-  font-size:13px;
-  font-weight:600;
-  margin-bottom:8px;
+.field{
+    margin-bottom:17px;
 }
 
-.quantity-control{
-  display:flex;
-  align-items:center;
-  width:100%;
-  height:50px;
-  background:#070d18;
-  border:1px solid #263753;
-  border-radius:10px;
-  overflow:hidden;
+.field:last-child{
+    margin-bottom:0;
 }
 
-.qty-btn{
-  width:48px;
-  height:100%;
-  border:0;
-  background:#0c1627;
-  color:#8da2bf;
-  font-size:22px;
-  cursor:pointer;
-  transition:.2s;
+.field label{
+    display:block;
+    margin-bottom:8px;
+
+    color:#c8d2e2;
+    font-size:13px;
+    font-weight:600;
 }
 
-.qty-btn:hover{
-  background:#12243c;
-  color:#fff;
+.required{
+    color:#ff6680;
 }
 
-.qty-input{
-  flex:1;
-  height:100%;
-  border:0;
-  border-left:1px solid #1d2b42;
-  border-right:1px solid #1d2b42;
-  background:#070d18;
-  color:#fff;
-  text-align:center;
-  font-size:16px;
-  font-weight:700;
-  outline:none;
+.input-wrap{
+    position:relative;
 }
 
-/* Remove number arrows */
-.qty-input::-webkit-inner-spin-button,
-.qty-input::-webkit-outer-spin-button{
-  opacity:1;
+.input,
+.select,
+.textarea{
+    width:100%;
+
+    padding:13px 14px;
+
+    color:#fff;
+    background:#080f1d;
+
+    border:1px solid #263550;
+    border-radius:9px;
+
+    outline:none;
+
+    transition:.25s;
 }
 
-/* ================= PRICE TABLE ================= */
-
-.price-info{
-  margin-top:22px;
-  border:1px solid #1b2b44;
-  border-radius:12px;
-  overflow:hidden;
+.select{
+    appearance:auto;
 }
 
-.price-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 16px;
-  border-bottom:1px solid #16243a;
+.input::placeholder,
+.textarea::placeholder{
+    color:#53647d;
 }
 
-.price-row:last-child{
-  border-bottom:0;
+.input:focus,
+.select:focus,
+.textarea:focus{
+    border-color:#1e90ff;
+    box-shadow:0 0 0 3px rgba(30,144,255,.08);
 }
 
-.price-row span:first-child{
-  color:#8b9bb4;
-  font-size:13px;
+.input.invalid,
+.select.invalid,
+.textarea.invalid{
+    border-color:#ff5572;
+    box-shadow:0 0 0 3px rgba(255,85,114,.07);
 }
 
-.price-row strong{
-  color:#fff;
+.validation{
+    color:#ff6d86;
+    font-size:11px;
+    margin-top:6px;
+    display:none;
+    animation:shake .3s ease;
 }
 
-.price-row.current{
-  background:rgba(30,144,255,.08);
+.validation.show{
+    display:block;
 }
 
-.price-row.current span:first-child{
-  color:#c4d4e8;
+@keyframes shake{
+    0%,100%{transform:translateX(0)}
+    25%{transform:translateX(-4px)}
+    75%{transform:translateX(4px)}
 }
 
-.price-row.current strong{
-  color:#42a5ff;
+
+/* =========================================================
+   QUANTITY
+   ========================================================= */
+
+.quantity-box{
+    display:flex;
+    align-items:center;
+
+    height:46px;
+
+    border:1px solid #263550;
+    background:#080f1d;
+    border-radius:9px;
+
+    overflow:hidden;
 }
 
-/* ================= BILLING ================= */
+.quantity-btn{
+    width:43px;
+    height:100%;
 
-.saved-account{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  padding:15px;
-  border:1px solid #263753;
-  border-radius:11px;
-  background:#080f1d;
-  margin-bottom:20px;
+    border:0;
+    background:#101a2d;
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    transition:.2s;
 }
 
-.saved-account-left{
-  display:flex;
-  align-items:center;
-  gap:12px;
+.quantity-btn:hover{
+    background:#162640;
+    color:#45a9ff;
 }
 
-.saved-icon{
-  width:38px;
-  height:38px;
-  border-radius:9px;
-  background:rgba(30,144,255,.12);
-  border:1px solid rgba(30,144,255,.3);
-  display:grid;
-  place-items:center;
-  color:#1e90ff;
+.quantity-value{
+    flex:1;
+    text-align:center;
+    font-weight:800;
+    font-size:15px;
 }
 
-.saved-account p{
-  font-size:13px;
-  color:#aebbd0;
+
+/* =========================================================
+   PRODUCT INFO
+   ========================================================= */
+
+.product-info{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:15px;
+
+    margin-top:18px;
+
+    background:rgba(30,144,255,.045);
+    border:1px solid rgba(30,144,255,.12);
+    border-radius:11px;
 }
 
-.saved-account small{
-  display:block;
-  color:#687b96;
-  margin-top:3px;
+.product-info-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.use-saved{
-  background:#101d31;
-  color:#42a5ff;
-  border:1px solid #244263;
-  border-radius:8px;
-  padding:9px 13px;
-  cursor:pointer;
-  font-size:12px;
-  font-weight:700;
+.product-icon{
+    width:43px;
+    height:43px;
+
+    border-radius:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(30,144,255,.1);
+    border:1px solid rgba(30,144,255,.2);
+
+    color:#1e90ff;
+    font-size:19px;
 }
 
-.use-saved:hover{
-  border-color:#1e90ff;
-  color:#fff;
+.product-name{
+    font-weight:750;
+}
+
+.product-location{
+    color:#71819a;
+    font-size:12px;
+    margin-top:3px;
+}
+
+.product-price{
+    text-align:right;
+}
+
+.product-price strong{
+    display:block;
+    color:#fff;
+    font-size:18px;
+}
+
+.product-price span{
+    color:#71819a;
+    font-size:11px;
+}
+
+
+/* =========================================================
+   BILLING
+   ========================================================= */
+
+.previous-billing{
+    display:none;
+
+    padding:14px;
+
+    margin-bottom:20px;
+
+    background:rgba(30,144,255,.06);
+    border:1px solid rgba(30,144,255,.2);
+    border-radius:10px;
+
+    animation:slideDown .35s ease;
+}
+
+.previous-billing.show{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.previous-billing p{
+    color:#a9b7ca;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.previous-billing strong{
+    color:#fff;
+    display:block;
+    margin-bottom:2px;
+}
+
+.small-btn{
+    white-space:nowrap;
+
+    border:1px solid #1e90ff;
+    background:rgba(30,144,255,.08);
+    color:#5fb3ff;
+
+    border-radius:8px;
+    padding:9px 12px;
+
+    cursor:pointer;
+    font-size:12px;
+    font-weight:700;
+
+    transition:.2s;
+}
+
+.small-btn:hover{
+    background:#1e90ff;
+    color:#fff;
+}
+
+@keyframes slideDown{
+    from{
+        opacity:0;
+        transform:translateY(-8px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 .form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:17px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:17px;
 }
 
-.form-group{
-  display:grid;
-  gap:7px;
+.full{
+    grid-column:1/-1;
 }
 
-.form-group.full{
-  grid-column:1/-1;
+
+/* =========================================================
+   ACCOUNT
+   ========================================================= */
+
+.account-box{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+
+    padding:16px;
+
+    margin-top:20px;
+
+    border:1px solid #263550;
+    background:#080f1d;
+
+    border-radius:11px;
 }
 
-.form-group label{
-  font-size:13px;
-  color:#b9c6d8;
-  font-weight:600;
+.account-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.form-group input,
-.form-group textarea{
-  width:100%;
-  padding:13px 14px;
-  border-radius:9px;
-  border:1px solid #24324a;
-  background:#070d18;
-  color:#fff;
-  outline:none;
-  font-size:14px;
-  transition:.2s;
+.google-icon{
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#fff;
+    color:#4285f4;
+
+    border-radius:9px;
+
+    font-size:19px;
+    font-weight:800;
 }
 
-.form-group textarea{
-  min-height:100px;
-  resize:vertical;
+.account-info strong{
+    font-size:13px;
 }
 
-.form-group input:focus,
-.form-group textarea:focus{
-  border-color:#1e90ff;
-  box-shadow:0 0 0 3px rgba(30,144,255,.1);
+.account-info span{
+    display:block;
+    color:#71819a;
+    font-size:11px;
+    margin-top:3px;
 }
 
-/* ================= ACCOUNT ================= */
+.google-btn{
+    border:1px solid #34445f;
+    background:#111a2c;
+    color:#fff;
 
-.account-options{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:20px;
+    border-radius:8px;
+
+    padding:9px 13px;
+
+    cursor:pointer;
+    font-size:12px;
+    font-weight:700;
+
+    transition:.2s;
 }
 
-.account-option{
-  border:1px solid #23344e;
-  border-radius:10px;
-  padding:15px;
-  cursor:pointer;
-  background:#080f1d;
-  transition:.2s;
+.google-btn:hover{
+    border-color:#fff;
 }
 
-.account-option:hover{
-  border-color:#1e90ff;
-}
 
-.account-option.active{
-  border-color:#1e90ff;
-  background:rgba(30,144,255,.08);
-}
+/* =========================================================
+   PAYMENT
+   ========================================================= */
 
-.account-option strong{
-  display:block;
-  font-size:14px;
-  margin-bottom:5px;
-}
-
-.account-option span{
-  color:#71849e;
-  font-size:12px;
-}
-
-/* ================= PAYMENT ================= */
-
-.payment-methods{
-  display:grid;
-  gap:12px;
+.payment-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
 }
 
 .payment-option{
-  border:1px solid #23344e;
-  border-radius:11px;
-  padding:16px;
-  cursor:pointer;
-  background:#080f1d;
-  transition:.2s;
+    position:relative;
 }
 
-.payment-option:hover{
-  border-color:#1e90ff;
+.payment-option input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
 }
 
-.payment-option.active{
-  border-color:#1e90ff;
-  background:rgba(30,144,255,.07);
-  box-shadow:0 0 20px rgba(30,144,255,.06);
+.payment-label{
+    display:block;
+
+    padding:16px;
+
+    min-height:94px;
+
+    border:1px solid #263550;
+    border-radius:11px;
+
+    background:#080f1d;
+
+    cursor:pointer;
+
+    transition:.25s;
 }
 
-.payment-head{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.payment-label:hover{
+    border-color:#3a5277;
+    transform:translateY(-2px);
 }
 
-.payment-head input{
-  accent-color:#1e90ff;
+.payment-option input:checked + .payment-label{
+    border-color:#1e90ff;
+    background:
+        linear-gradient(145deg,rgba(30,144,255,.11),rgba(30,144,255,.035));
+
+    box-shadow:
+        0 0 0 1px rgba(30,144,255,.18),
+        0 10px 25px rgba(30,144,255,.08);
 }
 
-.payment-head strong{
-  font-size:14px;
+.payment-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+
+    margin-bottom:8px;
 }
 
-.payment-details{
-  margin:12px 0 0 26px;
-  padding:11px 13px;
-  border-left:2px solid #1e90ff;
-  background:#070d18;
-  border-radius:0 7px 7px 0;
-  color:#9dafc7;
-  font-size:12px;
-  line-height:1.7;
+.payment-name{
+    font-weight:750;
+    font-size:13px;
 }
 
-/* ================= RIGHT SUMMARY ================= */
+.radio-dot{
+    width:15px;
+    height:15px;
 
-.summary{
-  position:sticky;
-  top:90px;
+    border:2px solid #4b5b73;
+    border-radius:50%;
+
+    transition:.2s;
 }
 
-.summary-box{
-  background:linear-gradient(180deg,#111a2d,#080e1a);
-  border:1px solid #1e90ff;
-  border-radius:18px;
-  padding:25px;
-  box-shadow:0 0 35px rgba(30,144,255,.1);
+.payment-option input:checked + .payment-label .radio-dot{
+    border-color:#1e90ff;
+    background:#1e90ff;
+    box-shadow:inset 0 0 0 3px #080f1d;
 }
 
-.summary-title{
-  font-size:20px;
-  margin-bottom:22px;
+.payment-detail{
+    color:#71819a;
+    font-size:11px;
+    line-height:1.5;
+}
+
+.payment-detail strong{
+    color:#d6dfec;
+    font-weight:600;
+}
+
+
+/* =========================================================
+   NOTES
+   ========================================================= */
+
+.textarea{
+    min-height:115px;
+    resize:vertical;
+}
+
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.summary-card{
+    overflow:hidden;
+}
+
+.summary-top{
+    padding-bottom:20px;
+    margin-bottom:20px;
+
+    border-bottom:1px solid #1e293b;
+}
+
+.summary-top h2{
+    font-size:20px;
+    margin-bottom:5px;
+}
+
+.summary-top p{
+    color:#71819a;
+    font-size:12px;
 }
 
 .summary-product{
-  padding:16px;
-  border-radius:11px;
-  background:#080f1d;
-  border:1px solid #1b2b44;
-  margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+
+    padding:14px;
+
+    background:#080f1d;
+    border:1px solid #1e293b;
+    border-radius:10px;
+
+    margin-bottom:18px;
 }
 
-.summary-product h3{
-  font-size:18px;
-  margin-bottom:5px;
+.summary-icon{
+    width:42px;
+    height:42px;
+
+    border-radius:9px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(30,144,255,.1);
+    color:#1e90ff;
 }
 
-.summary-product p{
-  color:#71849e;
-  font-size:12px;
+.summary-product strong{
+    font-size:14px;
+}
+
+.summary-product span{
+    display:block;
+    color:#71819a;
+    font-size:11px;
+    margin-top:4px;
+}
+
+.summary-lines{
+    display:flex;
+    flex-direction:column;
+    gap:13px;
+
+    margin-bottom:20px;
 }
 
 .summary-line{
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  padding:11px 0;
-  color:#8b9bb4;
-  font-size:13px;
-  border-bottom:1px solid #17243a;
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+
+    color:#8b9bb4;
+    font-size:13px;
 }
 
 .summary-line strong{
-  color:#fff;
+    color:#dce5f2;
+    font-weight:600;
 }
 
 .summary-total{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  padding:20px 0 5px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+
+    padding-top:19px;
+
+    border-top:1px solid #263550;
 }
 
 .summary-total span{
-  color:#8b9bb4;
-  font-size:13px;
+    color:#8b9bb4;
+    font-size:13px;
 }
 
 .summary-total strong{
-  font-size:29px;
-  color:#fff;
+    color:#fff;
+    font-size:28px;
 }
 
-.summary-note{
-  color:#61738e;
-  font-size:11px;
-  line-height:1.6;
-  margin-top:15px;
+.total-cycle{
+    display:block;
+    text-align:right;
+    color:#71819a;
+    font-size:10px;
+    margin-top:2px;
 }
 
-.place-order{
-  width:100%;
-  margin-top:20px;
-  padding:14px;
-  font-size:14px;
+.order-btn{
+    width:100%;
+
+    margin-top:22px;
+
+    padding:15px;
+
+    border:0;
+    border-radius:10px;
+
+    background:linear-gradient(135deg,#1e90ff,#1679d1);
+
+    color:#fff;
+
+    font-weight:800;
+    font-size:14px;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 28px rgba(30,144,255,.2);
+
+    transition:.25s;
+
+    position:relative;
+    overflow:hidden;
 }
 
-/* ================= EMPTY STATE ================= */
-
-.empty-message{
-  display:none;
-  padding:14px;
-  margin-top:15px;
-  border:1px solid rgba(255,91,110,.3);
-  background:rgba(255,91,110,.06);
-  color:#ff8793;
-  border-radius:9px;
-  font-size:12px;
+.order-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 32px rgba(30,144,255,.3);
 }
 
-/* ================= SUCCESS ================= */
-
-.success-message{
-  display:none;
-  margin-top:15px;
-  padding:14px;
-  border-radius:9px;
-  border:1px solid rgba(40,190,120,.35);
-  background:rgba(40,190,120,.08);
-  color:#67dfa8;
-  font-size:12px;
-  line-height:1.6;
+.order-btn:active{
+    transform:translateY(0);
 }
 
-/* ================= WHATSAPP ================= */
-
-.whatsapp{
-  position:fixed;
-  right:22px;
-  bottom:22px;
-  z-index:70;
-  background:#18c968;
-  color:#fff;
-  text-decoration:none;
-  padding:13px 18px;
-  border-radius:30px;
-  font-weight:700;
-  box-shadow:0 8px 30px rgba(24,201,104,.3);
+.order-btn.loading{
+    pointer-events:none;
+    opacity:.75;
 }
 
-/* ================= FOOTER ================= */
+.order-btn.loading::after{
+    content:"";
+
+    width:17px;
+    height:17px;
+
+    border:2px solid rgba(255,255,255,.4);
+    border-top-color:#fff;
+
+    border-radius:50%;
+
+    position:absolute;
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    animation:spin .7s linear infinite;
+}
+
+.order-btn.loading .btn-text{
+    visibility:hidden;
+}
+
+@keyframes spin{
+    to{transform:translate(-50%,-50%) rotate(360deg)}
+}
+
+.secure-note{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+
+    margin-top:14px;
+
+    color:#63738b;
+    font-size:10px;
+}
+
+
+/* =========================================================
+   EMPTY PRODUCT
+   ========================================================= */
+
+.empty-product{
+    display:none;
+
+    text-align:center;
+    padding:22px;
+
+    border:1px dashed #30415c;
+    border-radius:11px;
+
+    background:#080f1d;
+
+    margin-top:18px;
+}
+
+.empty-product.show{
+    display:block;
+    animation:fadeIn .3s ease;
+}
+
+.empty-product p{
+    color:#8493a9;
+    font-size:12px;
+    margin-bottom:12px;
+}
+
+.shop-btn{
+    display:inline-block;
+
+    padding:10px 15px;
+
+    background:#1e90ff;
+    color:#fff;
+
+    border-radius:8px;
+
+    font-size:12px;
+    font-weight:700;
+}
+
+@keyframes fadeIn{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+
+/* =========================================================
+   ALERT
+   ========================================================= */
+
+.alert-container{
+    position:fixed;
+
+    top:92px;
+    right:25px;
+
+    z-index:5000;
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+    width:min(380px,calc(100% - 30px));
+}
+
+.alert{
+    padding:14px 15px;
+
+    display:flex;
+    align-items:flex-start;
+    gap:11px;
+
+    border-radius:10px;
+
+    background:#101a2d;
+    border:1px solid #263550;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.3);
+
+    animation:alertIn .35s ease;
+}
+
+.alert.success{
+    border-color:rgba(41,201,125,.4);
+}
+
+.alert.error{
+    border-color:rgba(255,76,105,.4);
+}
+
+.alert-icon{
+    width:25px;
+    height:25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    flex:none;
+
+    font-size:12px;
+}
+
+.success .alert-icon{
+    background:rgba(41,201,125,.12);
+    color:#45d995;
+}
+
+.error .alert-icon{
+    background:rgba(255,76,105,.12);
+    color:#ff6680;
+}
+
+.alert-content strong{
+    display:block;
+    font-size:12px;
+    margin-bottom:3px;
+}
+
+.alert-content p{
+    color:#8998ae;
+    font-size:11px;
+    line-height:1.5;
+}
+
+.alert-close{
+    margin-left:auto;
+    background:none;
+    border:0;
+    color:#65758d;
+    cursor:pointer;
+}
+
+@keyframes alertIn{
+    from{
+        opacity:0;
+        transform:translateX(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+.alert.out{
+    animation:alertOut .3s ease forwards;
+}
+
+@keyframes alertOut{
+    to{
+        opacity:0;
+        transform:translateX(30px);
+    }
+}
+
+
+/* =========================================================
+   CONFIRM MODAL
+   ========================================================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+
+    z-index:6000;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.7);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.25s;
+}
+
+.modal.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.modal-box{
+    width:min(440px,100%);
+
+    padding:27px;
+
+    background:#0d1628;
+    border:1px solid #263550;
+    border-radius:15px;
+
+    box-shadow:0 25px 70px rgba(0,0,0,.5);
+
+    transform:scale(.94) translateY(10px);
+
+    transition:.25s;
+}
+
+.modal.active .modal-box{
+    transform:scale(1) translateY(0);
+}
+
+.modal-icon{
+    width:48px;
+    height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:rgba(255,171,64,.1);
+    border:1px solid rgba(255,171,64,.22);
+
+    color:#ffb45c;
+
+    font-size:21px;
+
+    margin-bottom:17px;
+}
+
+.modal-box h3{
+    margin-bottom:8px;
+}
+
+.modal-box p{
+    color:#8190a6;
+    line-height:1.6;
+    font-size:13px;
+}
+
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+
+    margin-top:23px;
+}
+
+.modal-btn{
+    padding:10px 16px;
+    border-radius:8px;
+
+    cursor:pointer;
+
+    border:1px solid #2a3b56;
+
+    background:#121d31;
+    color:#fff;
+
+    font-size:12px;
+    font-weight:700;
+}
+
+.modal-btn.danger{
+    background:#e44862;
+    border-color:#e44862;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 footer{
-  padding:40px 5% 15px;
-  background:#080e1b;
-  border-top:1px solid #121a2e;
-  color:#8b9bb4;
+    border-top:1px solid #1e293b;
+    background:#070c17;
+
+    padding:55px 30px 25px;
 }
 
 .footer-grid{
-  display:grid;
-  grid-template-columns:1.2fr 1fr 1fr 1fr;
-  gap:35px;
-  max-width:1100px;
-  margin:0 auto 35px;
-}
+    width:min(1180px,100%);
+    margin:auto;
 
-.footer-brand{
-  max-width:280px;
-}
-
-.footer-brand .logo img{
-  width:185px;
-  margin-bottom:18px;
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:35px;
 }
 
 .footer-brand p{
-  color:#70829e;
-  font-size:13px;
-  line-height:1.7;
+    color:#71819a;
+    line-height:1.7;
+    font-size:12px;
+    max-width:300px;
+    margin-top:13px;
 }
 
-.footer-column h3{
-  font-size:16px;
-  color:#fff;
-  margin-bottom:18px;
+.footer-title{
+    color:#fff;
+    font-size:13px;
+    font-weight:750;
+    margin-bottom:14px;
 }
 
-.footer-column a{
-  display:block;
-  color:#8b9bb4;
-  text-decoration:none;
-  font-size:13px;
-  margin-bottom:13px;
+footer a{
+    display:block;
+    color:#71819a;
+    font-size:12px;
+    margin-bottom:10px;
+    transition:.2s;
 }
 
-.footer-column a:hover{
-  color:#1e90ff;
+footer a:hover{
+    color:#1e90ff;
+    transform:translateX(2px);
 }
 
 .footer-bottom{
-  text-align:center;
-  padding-top:22px;
-  border-top:1px solid #121a2e;
-  color:#5a6d8a;
-  font-size:12px;
-  line-height:1.8;
+    width:min(1180px,100%);
+    margin:35px auto 0;
+
+    padding-top:20px;
+
+    border-top:1px solid #1e293b;
+
+    text-align:center;
+
+    color:#596980;
+    font-size:11px;
 }
 
-/* ================= RESPONSIVE ================= */
 
-@media(max-width:900px){
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
-  nav{
-    display:none;
-  }
+@media(max-width:950px){
 
-  .header-actions{
-    display:none;
-  }
+    .checkout-grid{
+        grid-template-columns:1fr;
+    }
 
-  .checkout-grid{
-    grid-template-columns:1fr;
-  }
+    .right-column{
+        position:static;
+    }
 
-  .summary{
-    position:static;
-  }
+    .summary-card{
+        position:relative;
+    }
 
-  .footer-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .footer-brand{
-    grid-column:1/-1;
-    max-width:none;
-  }
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
 }
 
-@media(max-width:600px){
+@media(max-width:700px){
 
-  header{
-    padding:12px 5%;
-  }
+    header{
+        padding:0 17px;
+    }
 
-  .logo img{
-    width:165px;
-  }
+    .logo-text{
+        display:none;
+    }
 
-  .page-hero{
-    padding:55px 5%;
-  }
+    .header-btn{
+        display:none;
+    }
 
-  .page-hero h1{
-    font-size:40px;
-  }
+    .page{
+        width:min(100% - 24px,1220px);
+        padding-top:100px;
+    }
 
-  .checkout-wrapper{
-    width:92%;
-    margin-top:35px;
-  }
+    .checkout-card{
+        padding:19px;
+    }
 
-  .box{
-    padding:20px;
-  }
+    .product-row,
+    .form-grid,
+    .payment-list{
+        grid-template-columns:1fr;
+    }
 
-  .quantity-row,
-  .form-grid,
-  .account-options{
-    grid-template-columns:1fr;
-  }
+    .footer-grid{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
 
-  .form-group.full{
-    grid-column:auto;
-  }
+    .account-box,
+    .previous-billing.show{
+        align-items:flex-start;
+        flex-direction:column;
+    }
 
-  .footer-grid{
-    grid-template-columns:1fr 1fr;
-    gap:28px;
-  }
+    .small-btn,
+    .google-btn{
+        width:100%;
+    }
+}
 
-  .footer-brand{
-    grid-column:1/-1;
-  }
+@media(max-width:430px){
 
-  .whatsapp{
-    right:15px;
-    bottom:15px;
-  }
+    .page-heading h1{
+        font-size:32px;
+    }
 
-  .sidebar{
-    width:85vw;
-    max-width:310px;
-  }
+    .checkout-card{
+        padding:16px;
+    }
+
+    .summary-total strong{
+        font-size:23px;
+    }
 }
 </style>
 </head>
 
+
 <body>
 
-<div class="overlay" id="overlay"></div>
-
-<!-- ================= SIDEBAR ================= -->
-
-<aside class="sidebar" id="sidebar">
-
-  <div class="side-head">
-
-    <a class="logo" href="index.html">
-      <img src="images/logo.jpg" alt="Vertex Core">
-    </a>
-
-    <button class="side-close" id="closeMenu">×</button>
-
-  </div>
-
-  <div class="side-links">
-    <a href="index.html">HOME</a>
-    <a href="pricing.html">PRICING</a>
-    <a href="locations.html">LOCATIONS</a>
-    <a href="vps.html">VPS</a>
-    <a href="support.html">SUPPORT</a>
-    <a href="docs.html">DOCUMENTATION</a>
-    <a href="blog.html">BLOG</a>
-    <a href="about.html">ABOUT US</a>
-    <a href="contact.html">CONTACT US</a>
-  </div>
-
-  <div class="side-actions">
-    <a href="order.html" class="btn-blue">Order Now</a>
-    <a href="contact.html" class="btn-blue">Contact Us</a>
-  </div>
-
-</aside>
-
-<!-- ================= HEADER ================= -->
+<!-- =======================================================
+     HEADER
+======================================================= -->
 
 <header>
 
-  <button class="menu-btn" id="openMenu">☰</button>
-
-  <a class="logo" href="index.html">
-    <img src="images/logo.jpg" alt="Vertex Core">
-  </a>
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="vps.html">VPS</a>
-    <a href="support.html">Support</a>
-    <a href="blog.html">Blog</a>
-  </nav>
-
-  <div class="header-actions">
-    <a href="login.html"
-       style="color:#8b9bb4;text-decoration:none;margin-right:18px">
-       Login
+    <a href="index.html" class="logo-wrap">
+        <img src="images/logo.jpg" alt="Vertex Core Logo">
+        <div class="logo-text">
+            Vertex <span>Core</span>
+        </div>
     </a>
 
-    <a href="order.html" class="btn-blue">
-      Get Started
-    </a>
-  </div>
+    <div class="header-right">
+
+        <a href="login.html" class="header-btn">
+            Login
+        </a>
+
+        <a href="pricing.html" class="header-btn primary">
+            Get Started
+        </a>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
 
 </header>
 
-<!-- ================= HERO ================= -->
 
-<section class="page-hero">
+<!-- =======================================================
+     SIDEBAR
+======================================================= -->
 
-  <h1>Order Your VPS</h1>
+<div class="overlay" id="overlay"></div>
 
-  <p>
-    Configure your Windows VPS, choose your quantity,
-    provide your billing details and select your preferred payment method.
-  </p>
+<aside class="sidebar" id="sidebar">
 
-</section>
-
-<!-- ================= CHECKOUT ================= -->
-
-<main class="checkout-wrapper">
-
-<div class="checkout-grid">
-
-<!-- ================= LEFT ================= -->
-
-<div>
-
-<!-- PRODUCT -->
-
-<section class="box">
-
-  <div class="box-title">
-    <div class="box-number">1</div>
-    <h2>Product / Options</h2>
-  </div>
-
-  <label class="field-label">
-    Select VPS Plan
-  </label>
-
-  <select class="product-select" id="productSelect">
-
-    <option value="">
-      — Select a VPS Plan —
-    </option>
-
-    <option value="2gb">
-      2GB VPS — Windows VPS
-    </option>
-
-    <option value="4gb">
-      4GB VPS — Windows VPS
-    </option>
-
-    <option value="8gb">
-      8GB VPS — Windows VPS
-    </option>
-
-  </select>
-
-  <div class="quantity-row">
-
-    <div>
-
-      <label class="field-label">
-        Qty
-      </label>
-
-      <div class="quantity-control">
-
-        <button class="qty-btn"
-                type="button"
-                id="minusQty">
-          −
-        </button>
-
-        <input
-          class="qty-input"
-          id="qtyInput"
-          type="number"
-          min="1"
-          max="20"
-          value="1"
-        >
-
-        <button class="qty-btn"
-                type="button"
-                id="plusQty">
-          +
-        </button>
-
-      </div>
-
-    </div>
-
-    <div>
-
-      <label class="field-label">
-        Price / Cycle
-      </label>
-
-      <div class="quantity-control"
-           style="padding:0 15px">
-
-        <strong id="cyclePrice">
-          $0.00 USD
-        </strong>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="price-info" id="priceInfo">
-
-    <div class="price-row current">
-      <span>Current Unit Price</span>
-      <strong id="unitPrice">$0.00</strong>
-    </div>
-
-    <div class="price-row">
-      <span>Quantity</span>
-      <strong id="displayQty">1</strong>
-    </div>
-
-    <div class="price-row">
-      <span>Monthly Total</span>
-      <strong id="monthlyTotal">$0.00</strong>
-    </div>
-
-  </div>
-
-  <div class="empty-message" id="emptyMessage">
-    Your product selection has been cleared.
-  </div>
-
-</section>
-
-
-<!-- BILLING -->
-
-<section class="box">
-
-  <div class="box-title">
-    <div class="box-number">2</div>
-    <h2>Billing Details</h2>
-  </div>
-
-  <!-- SAVED DETAILS -->
-
-  <div class="saved-account">
-
-    <div class="saved-account-left">
-
-      <div class="saved-icon">
-        👤
-      </div>
-
-      <div>
-
-        <p>
-          N/A - Username N/A
-        </p>
-
-        <small>
-          Use your previously saved billing details
-        </small>
-
-      </div>
-
-    </div>
-
-    <button type="button"
-            class="use-saved"
-            id="useSaved">
-      Use Details
+    <button class="sidebar-close" id="sidebarClose">
+        ×
     </button>
 
-  </div>
-
-  <div class="form-grid">
-
-    <div class="form-group">
-
-      <label>Full Name</label>
-
-      <input
-        type="text"
-        id="fullName"
-        placeholder="Your full name"
-      >
-
+    <div class="sidebar-title">
+        Navigation
     </div>
 
-    <div class="form-group">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="locations.html">Locations</a>
+    <a href="vps.html">VPS</a>
+    <a href="support.html">Support</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="blog.html">Blog</a>
 
-      <label>Email Address</label>
+    <div class="sidebar-divider"></div>
 
-      <input
-        type="email"
-        id="email"
-        placeholder="you@example.com"
-      >
-
+    <div class="sidebar-title">
+        Account
     </div>
 
-    <div class="form-group">
-
-      <label>Phone Number</label>
-
-      <input
-        type="tel"
-        id="phone"
-        placeholder="Your phone number"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Country</label>
-
-      <input
-        type="text"
-        id="country"
-        placeholder="Country"
-      >
-
-    </div>
-
-    <div class="form-group full">
-
-      <label>Billing Address</label>
-
-      <input
-        type="text"
-        id="address"
-        placeholder="Street / billing address"
-      >
-
-    </div>
-
-  </div>
-
-  <!-- ACCOUNT -->
-
-  <div style="margin-top:24px">
-
-    <label class="field-label">
-      Account
-    </label>
-
-    <div class="account-options">
-
-      <div class="account-option active"
-           id="existingAccount">
-
-        <strong>Existing Account</strong>
-
-        <span>
-          Continue with your saved details
-        </span>
-
-      </div>
-
-      <div class="account-option"
-           id="newAccount">
-
-        <strong>Create a New Account</strong>
-
-        <span>
-          Create an account using Google
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="success-message"
-       id="savedMessage">
-    Your previously saved billing details have been loaded.
-  </div>
-
-</section>
-
-
-<!-- PAYMENT -->
-
-<section class="box">
-
-  <div class="box-title">
-    <div class="box-number">3</div>
-    <h2>Payment Method</h2>
-  </div>
-
-  <div class="payment-methods">
-
-    <!-- SADAPAY -->
-
-    <label class="payment-option">
-
-      <div class="payment-head">
-
-        <input
-          type="radio"
-          name="payment"
-          value="sadapay"
-        >
-
-        <strong>SadaPay</strong>
-
-      </div>
-
-      <div class="payment-details">
-        03402759190<br>
-        Huzaifa Khan
-      </div>
-
-    </label>
-
-
-    <!-- NAYAPAY -->
-
-    <label class="payment-option">
-
-      <div class="payment-head">
-
-        <input
-          type="radio"
-          name="payment"
-          value="nayapay"
-        >
-
-        <strong>NayaPay</strong>
-
-      </div>
-
-      <div class="payment-details">
-        03112396550<br>
-        Huzaifa Khan
-      </div>
-
-    </label>
-
-
-    <!-- JAZZCASH -->
-
-    <label class="payment-option">
-
-      <div class="payment-head">
-
-        <input
-          type="radio"
-          name="payment"
-          value="jazzcash"
-        >
-
-        <strong>JazzCash</strong>
-
-      </div>
-
-      <div class="payment-details">
-        03402759190<br>
-        Huzaifa Khan
-      </div>
-
-    </label>
-
-
-    <!-- EASYPAISA -->
-
-    <label class="payment-option">
-
-      <div class="payment-head">
-
-        <input
-          type="radio"
-          name="payment"
-          value="easypaisa"
-        >
-
-        <strong>Easypaisa</strong>
-
-      </div>
-
-      <div class="payment-details">
-        03112396550<br>
-        Huzaifa Khan
-      </div>
-
-    </label>
-
-  </div>
-
-</section>
-
-
-<!-- NOTES -->
-
-<section class="box">
-
-  <div class="box-title">
-
-    <div class="box-number">4</div>
-
-    <h2>Additional Notes</h2>
-
-  </div>
-
-  <div class="form-group">
-
-    <label>
-      Notes / Special Instructions
-    </label>
-
-    <textarea
-      id="notes"
-      placeholder="Enter any additional information..."
-    ></textarea>
-
-  </div>
-
-</section>
-
-</div>
-
-
-<!-- ================= RIGHT SUMMARY ================= -->
-
-<aside class="summary">
-
-  <div class="summary-box">
-
-    <h2 class="summary-title">
-      Order Summary
-    </h2>
-
-    <div class="summary-product">
-
-      <h3 id="summaryProduct">
-        No VPS Selected
-      </h3>
-
-      <p id="summaryDescription">
-        Select a VPS plan to continue.
-      </p>
-
-    </div>
-
-    <div class="summary-line">
-
-      <span>Quantity</span>
-
-      <strong id="summaryQty">
-        1
-      </strong>
-
-    </div>
-
-    <div class="summary-line">
-
-      <span>Price / VPS</span>
-
-      <strong id="summaryUnitPrice">
-        $0.00
-      </strong>
-
-    </div>
-
-    <div class="summary-line">
-
-      <span>Billing Cycle</span>
-
-      <strong>
-        Monthly
-      </strong>
-
-    </div>
-
-    <div class="summary-total">
-
-      <span>
-        Total
-      </span>
-
-      <strong id="summaryTotal">
-        $0.00
-      </strong>
-
-    </div>
-
-    <button
-      class="btn-blue place-order"
-      id="placeOrder"
-      type="button">
-
-      Place Order
-
-    </button>
-
-    <p class="summary-note">
-
-      By placing your order, you confirm that
-      the information provided is accurate and
-      you agree to the applicable service terms.
-
-    </p>
-
-  </div>
+    <a href="order.html">Order Now</a>
+    <a href="login.html">Login</a>
 
 </aside>
 
-</div>
+
+<!-- =======================================================
+     ALERT CONTAINER
+======================================================= -->
+
+<div class="alert-container" id="alertContainer"></div>
+
+
+<!-- =======================================================
+     MAIN
+======================================================= -->
+
+<main class="page">
+
+    <section class="page-heading">
+
+        <div class="eyebrow">
+            <span>●</span>
+            Secure Checkout
+        </div>
+
+        <h1>
+            Complete Your <span>Order</span>
+        </h1>
+
+        <p>
+            Review your VPS configuration, enter your billing details,
+            choose your preferred payment method, and place your order.
+        </p>
+
+    </section>
+
+
+    <div class="checkout-grid">
+
+
+        <!-- =================================================
+             LEFT COLUMN
+        ================================================= -->
+
+        <div class="left-column">
+
+
+            <!-- PRODUCT -->
+
+            <section class="checkout-card">
+
+                <div class="card-header">
+
+                    <div class="card-number">
+                        01
+                    </div>
+
+                    <div>
+                        <h2>Product / Options</h2>
+                        <p>Configure your selected VPS plan</p>
+                    </div>
+
+                </div>
+
+
+                <div class="product-row">
+
+                    <div class="field">
+
+                        <label>
+                            VPS Plan
+                            <span class="required">*</span>
+                        </label>
+
+                        <select class="select" id="planSelect">
+
+                            <option value="">
+                                Select VPS Plan
+                            </option>
+
+                            <option value="2gb">
+                                2GB Windows VPS
+                            </option>
+
+                            <option value="4gb">
+                                4GB Windows VPS
+                            </option>
+
+                            <option value="8gb">
+                                8GB Windows VPS
+                            </option>
+
+                        </select>
+
+                        <div class="validation" id="planError">
+                            Please select a VPS plan.
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Qty
+                            <span class="required">*</span>
+                        </label>
+
+                        <div class="quantity-box">
+
+                            <button
+                                type="button"
+                                class="quantity-btn"
+                                id="qtyMinus">
+                                −
+                            </button>
+
+                            <div
+                                class="quantity-value"
+                                id="qtyValue">
+                                1
+                            </div>
+
+                            <button
+                                type="button"
+                                class="quantity-btn"
+                                id="qtyPlus">
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Location
+                        <span class="required">*</span>
+                    </label>
+
+                    <select class="select" id="locationSelect">
+
+                        <option value="">
+                            Select Server Location
+                        </option>
+
+                        <option>Australia</option>
+                        <option>Austria</option>
+                        <option>Bahrain</option>
+                        <option>Bangladesh</option>
+                        <option>Belgium</option>
+                        <option>Canada</option>
+                        <option>France</option>
+                        <option>Germany</option>
+                        <option>Greece</option>
+                        <option>Hungary</option>
+                        <option>Ireland</option>
+                        <option>Italy</option>
+                        <option>KSA</option>
+                        <option>London</option>
+                        <option>Manchester UK</option>
+                        <option>Netherlands</option>
+                        <option>Norway</option>
+                        <option>Qatar</option>
+                        <option>South Korea</option>
+                        <option>Spain</option>
+                        <option>Sweden</option>
+                        <option>UAE</option>
+
+                    </select>
+
+                    <div class="validation" id="locationError">
+                        Please select your server location.
+                    </div>
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="product-info-left">
+
+                        <div class="product-icon">
+                            ⚡
+                        </div>
+
+                        <div>
+
+                            <div
+                                class="product-name"
+                                id="productName">
+                                Select a VPS plan
+                            </div>
+
+                            <div
+                                class="product-location"
+                                id="productLocation">
+                                Server location not selected
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="product-price">
+
+                        <strong id="productPrice">
+                            $0.00
+                        </strong>
+
+                        <span>
+                            / monthly
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="empty-product" id="emptyProduct">
+
+                    <p>
+                        No VPS product is currently selected.
+                        Please choose a plan to continue.
+                    </p>
+
+                    <a href="pricing.html" class="shop-btn">
+                        Shop Again
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- BILLING -->
+
+            <section class="checkout-card">
+
+                <div class="card-header">
+
+                    <div class="card-number">
+                        02
+                    </div>
+
+                    <div>
+                        <h2>Billing Details</h2>
+                        <p>Your information for this order</p>
+                    </div>
+
+                </div>
+
+
+                <div class="previous-billing" id="previousBilling">
+
+                    <div>
+
+                        <strong>
+                            Previous billing details available
+                        </strong>
+
+                        <p id="previousBillingText">
+                            Use your previously saved information.
+                        </p>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="small-btn"
+                        id="usePreviousBtn">
+                        Use Previous Details
+                    </button>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Account / Username
+                    </label>
+
+                    <input
+                        type="text"
+                        class="input"
+                        id="usernameDisplay"
+                        value="N/A - username N/A"
+                        readonly>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="field">
+
+                        <label>
+                            First Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            class="input required-field"
+                            id="firstName"
+                            placeholder="Enter first name">
+
+                        <div class="validation">
+                            First name is required.
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Last Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            class="input required-field"
+                            id="lastName"
+                            placeholder="Enter last name">
+
+                        <div class="validation">
+                            Last name is required.
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Email Address
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            class="input required-field"
+                            id="email"
+                            placeholder="you@example.com">
+
+                        <div class="validation">
+                            Please enter a valid email address.
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Phone Number
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            class="input required-field"
+                            id="phone"
+                            placeholder="+1 000 000 0000">
+
+                        <div class="validation">
+                            Phone number is required.
+                        </div>
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label>
+                            Address
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            class="input required-field"
+                            id="address"
+                            placeholder="Street address">
+
+                        <div class="validation">
+                            Address is required.
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            City
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            class="input required-field"
+                            id="city"
+                            placeholder="City">
+
+                        <div class="validation">
+                            City is required.
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Postal Code
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            class="input required-field"
+                            id="postal"
+                            placeholder="Postal code">
+
+                        <div class="validation">
+                            Postal code is required.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="account-box">
+
+                    <div class="account-info">
+
+                        <div class="google-icon">
+                            G
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Create a New Account
+                            </strong>
+
+                            <span>
+                                Use Google to create your account
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="google-btn"
+                        id="googleBtn">
+
+                        Continue with Google
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- PAYMENT -->
+
+            <section class="checkout-card">
+
+                <div class="card-header">
+
+                    <div class="card-number">
+                        03
+                    </div>
+
+                    <div>
+                        <h2>Payment Method</h2>
+                        <p>Select your preferred payment method</p>
+                    </div>
+
+                </div>
+
+
+                <div class="payment-list">
+
+
+                    <!-- BANK -->
+
+                    <div class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            id="bank"
+                            value="Bank Transfer">
+
+                        <label
+                            for="bank"
+                            class="payment-label">
+
+                            <div class="payment-top">
+
+                                <span class="payment-name">
+                                    Bank Transfer
+                                </span>
+
+                                <span class="radio-dot"></span>
+
+                            </div>
+
+                            <div class="payment-detail">
+                                Direct bank payment.
+                                <br>
+                                <strong>Payment details will be provided after order.</strong>
+                            </div>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- STRIPE -->
+
+                    <div class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            id="stripe"
+                            value="Stripe Debit/Credit Card">
+
+                        <label
+                            for="stripe"
+                            class="payment-label">
+
+                            <div class="payment-top">
+
+                                <span class="payment-name">
+                                    Stripe Debit/Credit Card
+                                </span>
+
+                                <span class="radio-dot"></span>
+
+                            </div>
+
+                            <div class="payment-detail">
+                                Secure card payment through Stripe.
+                                <br>
+                                <strong>Visa • Mastercard • Amex</strong>
+                            </div>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- SADAPAY -->
+
+                    <div class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            id="sadapay"
+                            value="SadaPay">
+
+                        <label
+                            for="sadapay"
+                            class="payment-label">
+
+                            <div class="payment-top">
+
+                                <span class="payment-name">
+                                    SadaPay
+                                </span>
+
+                                <span class="radio-dot"></span>
+
+                            </div>
+
+                            <div class="payment-detail">
+
+                                Account:
+                                <strong>03402759190</strong>
+
+                                <br>
+
+                                Name:
+                                <strong>Huzaifa Khan</strong>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- NAYAPAY -->
+
+                    <div class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            id="nayapay"
+                            value="NayaPay">
+
+                        <label
+                            for="nayapay"
+                            class="payment-label">
+
+                            <div class="payment-top">
+
+                                <span class="payment-name">
+                                    NayaPay
+                                </span>
+
+                                <span class="radio-dot"></span>
+
+                            </div>
+
+                            <div class="payment-detail">
+
+                                Account:
+                                <strong>03112396550</strong>
+
+                                <br>
+
+                                Name:
+                                <strong>Huzaifa Khan</strong>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- JAZZCASH -->
+
+                    <div class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            id="jazzcash"
+                            value="JazzCash">
+
+                        <label
+                            for="jazzcash"
+                            class="payment-label">
+
+                            <div class="payment-top">
+
+                                <span class="payment-name">
+                                    JazzCash
+                                </span>
+
+                                <span class="radio-dot"></span>
+
+                            </div>
+
+                            <div class="payment-detail">
+
+                                Account:
+                                <strong>03402759190</strong>
+
+                                <br>
+
+                                Name:
+                                <strong>Huzaifa Khan</strong>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- EASYPAISA -->
+
+                    <div class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            id="easypaisa"
+                            value="Easypaisa">
+
+                        <label
+                            for="easypaisa"
+                            class="payment-label">
+
+                            <div class="payment-top">
+
+                                <span class="payment-name">
+                                    Easypaisa
+                                </span>
+
+                                <span class="radio-dot"></span>
+
+                            </div>
+
+                            <div class="payment-detail">
+
+                                Account:
+                                <strong>03112396550</strong>
+
+                                <br>
+
+                                Name:
+                                <strong>Huzaifa Khan</strong>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+                <div
+                    class="validation"
+                    id="paymentError"
+                    style="margin-top:12px;">
+                    Please select a payment method.
+                </div>
+
+            </section>
+
+
+            <!-- NOTES -->
+
+            <section class="checkout-card">
+
+                <div class="card-header">
+
+                    <div class="card-number">
+                        04
+                    </div>
+
+                    <div>
+                        <h2>Additional Notes</h2>
+                        <p>Anything you want us to know?</p>
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <textarea
+                        class="textarea"
+                        id="notes"
+                        placeholder="Enter any additional information, special instructions, or notes..."></textarea>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+        <!-- =================================================
+             RIGHT COLUMN
+        ================================================= -->
+
+        <aside class="right-column">
+
+            <section class="checkout-card summary-card">
+
+                <div class="summary-top">
+
+                    <h2>Order Summary</h2>
+
+                    <p>
+                        Review your order before continuing.
+                    </p>
+
+                </div>
+
+
+                <div class="summary-product">
+
+                    <div class="summary-icon">
+                        ⚡
+                    </div>
+
+                    <div>
+
+                        <strong id="summaryPlan">
+                            No VPS Selected
+                        </strong>
+
+                        <span id="summaryLocation">
+                            Select a location
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-lines">
+
+                    <div class="summary-line">
+
+                        <span>
+                            Quantity
+                        </span>
+
+                        <strong id="summaryQty">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-line">
+
+                        <span>
+                            Price / Cycle
+                        </span>
+
+                        <strong id="summaryCycle">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-line">
+
+                        <span>
+                            Billing Cycle
+                        </span>
+
+                        <strong>
+                            Monthly
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-line">
+
+                        <span>
+                            Setup Fee
+                        </span>
+
+                        <strong>
+                            $0.00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <div>
+
+                        <strong id="summaryTotal">
+                            $0.00
+                        </strong>
+
+                        <span class="total-cycle">
+                            USD / Monthly
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="order-btn"
+                    id="placeOrderBtn">
+
+                    <span class="btn-text">
+                        Place Order
+                    </span>
+
+                </button>
+
+
+                <div class="secure-note">
+
+                    <span>🔒</span>
+
+                    Secure checkout • Vertex Core
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="small-btn"
+                    id="clearCartBtn"
+                    style="
+                    width:100%;
+                    margin-top:16px;
+                    border-color:#34445f;
+                    color:#8b9bb4;
+                    background:transparent;
+                    ">
+
+                    Clear Selection
+
+                </button>
+
+            </section>
+
+        </aside>
+
+    </div>
 
 </main>
 
 
-<!-- ================= WHATSAPP ================= -->
-
-<a
-  class="whatsapp"
-  href="https://wa.me/"
-  target="_blank"
-  rel="noopener">
-
-  💬 WhatsApp Channel
-
-</a>
-
-
-<!-- ================= FOOTER ================= -->
+<!-- =======================================================
+     FOOTER
+======================================================= -->
 
 <footer>
 
-  <div class="footer-grid">
+    <div class="footer-grid">
 
-    <div class="footer-brand">
 
-      <a class="logo" href="index.html">
+        <div class="footer-brand">
 
-        <img
-          src="images/logo.jpg"
-          alt="Vertex Core">
+            <div class="logo-wrap">
 
-      </a>
+                <img
+                    src="images/logo.jpg"
+                    alt="Vertex Core Logo"
+                    style="
+                    width:42px;
+                    height:42px;
+                    border-radius:8px;
+                    ">
 
-      <p>
-        Enterprise-grade Windows VPS infrastructure
-        built for performance, secure access and
-        reliable connectivity.
-      </p>
+                <div class="logo-text">
+                    Vertex <span>Core</span>
+                </div>
 
-      <p style="margin-top:12px">
+            </div>
 
-        <a
-          href="mailto:vertexcore95@gmail.com"
-          style="color:#8b9bb4;text-decoration:none">
+            <p>
+                Enterprise-grade Windows VPS hosting with
+                high-performance infrastructure, reliable
+                connectivity and professional support.
+            </p>
 
-          vertexcore95@gmail.com
+        </div>
 
-        </a>
 
-      </p>
+        <div>
+
+            <div class="footer-title">
+                Company
+            </div>
+
+            <a href="about.html">
+                About Us
+            </a>
+
+            <a href="features.html">
+                Services / Features
+            </a>
+
+            <a href="locations.html">
+                Locations
+            </a>
+
+            <a href="vps.html">
+                VPS
+            </a>
+
+            <a href="blog.html">
+                Blog
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">
+                Support
+            </div>
+
+            <a href="support.html">
+                Help &amp; Supports
+            </a>
+
+            <a href="docs.html">
+                Documentation
+            </a>
+
+            <a href="dashboard.html">
+                Customer Dashboard
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">
+                Legal
+            </div>
+
+            <a href="terms.html">
+                Terms of Services
+            </a>
+
+            <a href="privacy.html">
+                Privacy Policy
+            </a>
+
+            <a href="refund.html">
+                Refund Policy
+            </a>
+
+            <a href="faq.html">
+                FAQs
+            </a>
+
+            <a href="contact.html">
+                Contact Us
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+        </div>
 
     </div>
 
 
-    <div class="footer-column">
+    <div class="footer-bottom">
 
-      <h3>Company</h3>
-
-      <a href="about.html">About Us</a>
-      <a href="features.html">Services / Features</a>
-      <a href="locations.html">Locations</a>
-      <a href="vps.html">VPS</a>
-      <a href="blog.html">Blog</a>
+        © 2026 Vertex Core - All plans include free backups - 99.95% uptime SLA - Cancel anytime - 24/7 Support
 
     </div>
-
-
-    <div class="footer-column">
-
-      <h3>Support</h3>
-
-      <a href="support.html">
-        Help &amp; Supports
-      </a>
-
-      <a href="docs.html">
-        Documentation
-      </a>
-
-      <a href="dashboard.html">
-        Customer Dashboard
-      </a>
-
-    </div>
-
-
-    <div class="footer-column">
-
-      <h3>Legal</h3>
-
-      <a href="terms.html">
-        Terms of Services
-      </a>
-
-      <a href="privacy.html">
-        Privacy Policy
-      </a>
-
-      <a href="refund.html">
-        Refund Policy
-      </a>
-
-      <a href="faqs.html">
-        FAQs
-      </a>
-
-      <a href="contact.html">
-        Contact Us
-      </a>
-
-      <a href="login.html">
-        Login
-      </a>
-
-    </div>
-
-  </div>
-
-
-  <div class="footer-bottom">
-
-    © 2026 Vertex Core - All plans include free backups -
-    99.95% uptime SLA - Cancel anytime - 24/7 Support
-
-  </div>
 
 </footer>
 
 
-<!-- ================= JAVASCRIPT ================= -->
+<!-- =======================================================
+     CLEAR CONFIRM MODAL
+======================================================= -->
+
+<div class="modal" id="clearModal">
+
+    <div class="modal-box">
+
+        <div class="modal-icon">
+            !
+        </div>
+
+        <h3>
+            Clear your selection?
+        </h3>
+
+        <p>
+            This will remove the currently selected VPS plan,
+            location and quantity. You can shop again from the
+            pricing page.
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="modal-btn"
+                id="cancelClear">
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                class="modal-btn danger"
+                id="confirmClear">
+                Yes, Clear Selection
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
 
 <script>
 
-/* ==========================================
-   SIDEBAR
-========================================== */
-
-const sidebar =
-  document.getElementById('sidebar');
-
-const overlay =
-  document.getElementById('overlay');
-
-document
-  .getElementById('openMenu')
-  .addEventListener('click', () => {
-
-    sidebar.classList.add('open');
-    overlay.classList.add('show');
-
-  });
-
-document
-  .getElementById('closeMenu')
-  .addEventListener('click', () => {
-
-    sidebar.classList.remove('open');
-    overlay.classList.remove('show');
-
-  });
-
-overlay.addEventListener('click', () => {
-
-  sidebar.classList.remove('open');
-  overlay.classList.remove('show');
-
-});
+/* =========================================================
+   VERTEX CORE CHECKOUT JAVASCRIPT
+========================================================= */
 
 
-/* ==========================================
+/* ---------------------------------------------------------
+   ELEMENTS
+--------------------------------------------------------- */
+
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+const sidebarClose = document.getElementById("sidebarClose");
+const overlay = document.getElementById("overlay");
+
+const planSelect = document.getElementById("planSelect");
+const locationSelect = document.getElementById("locationSelect");
+
+const qtyValue = document.getElementById("qtyValue");
+const qtyMinus = document.getElementById("qtyMinus");
+const qtyPlus = document.getElementById("qtyPlus");
+
+const productName = document.getElementById("productName");
+const productLocation = document.getElementById("productLocation");
+const productPrice = document.getElementById("productPrice");
+
+const summaryPlan = document.getElementById("summaryPlan");
+const summaryLocation = document.getElementById("summaryLocation");
+const summaryQty = document.getElementById("summaryQty");
+const summaryCycle = document.getElementById("summaryCycle");
+const summaryTotal = document.getElementById("summaryTotal");
+
+const placeOrderBtn = document.getElementById("placeOrderBtn");
+const clearCartBtn = document.getElementById("clearCartBtn");
+
+const emptyProduct = document.getElementById("emptyProduct");
+
+const alertContainer =
+    document.getElementById("alertContainer");
+
+const clearModal =
+    document.getElementById("clearModal");
+
+const cancelClear =
+    document.getElementById("cancelClear");
+
+const confirmClear =
+    document.getElementById("confirmClear");
+
+const googleBtn =
+    document.getElementById("googleBtn");
+
+
+/* ---------------------------------------------------------
    VPS PRICING
-========================================== */
+   ---------------------------------------------------------
 
-/*
-  YAHAN HAR VPS KI QUANTITY-WISE PRICING HAI.
+   Each quantity has its own price.
 
-  Example:
-  2GB x 1 = $10
-  2GB x 2 = $19
-  2GB x 3 = $28
+   You can change these numbers anytime.
+--------------------------------------------------------- */
 
-  Aap in values ko apni exact pricing
-  ke according change kar sakte ho.
-*/
+const pricing = {
 
-const prices = {
+    "2gb": {
+        name:"2GB Windows VPS",
 
-  "2gb": [
-    10.00,
-    19.00,
-    28.00,
-    37.00,
-    46.00,
-    55.00,
-    64.00,
-    73.00,
-    82.00,
-    91.00,
-    100.00,
-    109.00,
-    118.00,
-    127.00,
-    136.00,
-    145.00,
-    154.00,
-    163.00,
-    172.00,
-    181.00
-  ],
+        prices:{
+            1:10,
+            2:19,
+            3:28,
+            4:37,
+            5:45,
+            6:53,
+            7:61,
+            8:69,
+            9:77,
+            10:85,
+            11:93,
+            12:101,
+            13:109,
+            14:117,
+            15:125,
+            16:133,
+            17:141,
+            18:149,
+            19:157,
+            20:165
+        }
+    },
 
-  "4gb": [
-    18.00,
-    35.00,
-    52.00,
-    69.00,
-    86.00,
-    103.00,
-    120.00,
-    137.00,
-    154.00,
-    171.00,
-    188.00,
-    205.00,
-    222.00,
-    239.00,
-    256.00,
-    273.00,
-    290.00,
-    307.00,
-    324.00,
-    341.00
-  ],
+    "4gb": {
+        name:"4GB Windows VPS",
 
-  "8gb": [
-    32.00,
-    63.00,
-    94.00,
-    125.00,
-    156.00,
-    187.00,
-    218.00,
-    249.00,
-    280.00,
-    311.00,
-    342.00,
-    373.00,
-    404.00,
-    435.00,
-    466.00,
-    497.00,
-    528.00,
-    559.00,
-    590.00,
-    621.00
-  ]
+        prices:{
+            1:18,
+            2:35,
+            3:51,
+            4:67,
+            5:83,
+            6:99,
+            7:115,
+            8:131,
+            9:147,
+            10:163,
+            11:179,
+            12:195,
+            13:211,
+            14:227,
+            15:243,
+            16:259,
+            17:275,
+            18:291,
+            19:307,
+            20:323
+        }
+    },
 
-};
+    "8gb": {
+        name:"8GB Windows VPS",
 
-
-/* Product names */
-
-const productNames = {
-
-  "2gb":"2GB Windows VPS",
-
-  "4gb":"4GB Windows VPS",
-
-  "8gb":"8GB Windows VPS"
+        prices:{
+            1:32,
+            2:62,
+            3:91,
+            4:120,
+            5:149,
+            6:178,
+            7:207,
+            8:236,
+            9:265,
+            10:294,
+            11:323,
+            12:352,
+            13:381,
+            14:410,
+            15:439,
+            16:468,
+            17:497,
+            18:526,
+            19:555,
+            20:584
+        }
+    }
 
 };
 
 
-/* Product descriptions */
+/* ---------------------------------------------------------
+   LOCATIONS THAT DO NOT SUPPORT 8GB
+--------------------------------------------------------- */
 
-const productDescriptions = {
+const restrictedLocations = [
 
-  "2gb":
-    "2 GB RAM • 40GB NVMe SSD • Windows Server • Full RDP",
+    "KSA",
+    "South Korea",
+    "Bangladesh",
+    "Bahrain",
+    "Qatar",
+    "UAE"
 
-  "4gb":
-    "4 GB RAM • 80GB NVMe SSD • Windows Server • Full RDP",
-
-  "8gb":
-    "8 GB RAM • 160GB NVMe SSD • Windows Server • Full RDP"
-
-};
-
-
-const productSelect =
-  document.getElementById('productSelect');
-
-const qtyInput =
-  document.getElementById('qtyInput');
-
-const minusQty =
-  document.getElementById('minusQty');
-
-const plusQty =
-  document.getElementById('plusQty');
-
-const cyclePrice =
-  document.getElementById('cyclePrice');
-
-const unitPrice =
-  document.getElementById('unitPrice');
-
-const displayQty =
-  document.getElementById('displayQty');
-
-const monthlyTotal =
-  document.getElementById('monthlyTotal');
-
-const summaryProduct =
-  document.getElementById('summaryProduct');
-
-const summaryDescription =
-  document.getElementById('summaryDescription');
-
-const summaryQty =
-  document.getElementById('summaryQty');
-
-const summaryUnitPrice =
-  document.getElementById('summaryUnitPrice');
-
-const summaryTotal =
-  document.getElementById('summaryTotal');
-
-const emptyMessage =
-  document.getElementById('emptyMessage');
+];
 
 
-function money(value){
+/* ---------------------------------------------------------
+   CURRENT STATE
+--------------------------------------------------------- */
 
-  return "$" + Number(value).toFixed(2) + " USD";
+let quantity = 1;
+
+
+/* ---------------------------------------------------------
+   SIDEBAR
+--------------------------------------------------------- */
+
+function openSidebar(){
+
+    sidebar.classList.add("active");
+    overlay.classList.add("active");
+
+}
+
+function closeSidebar(){
+
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+
+}
+
+menuBtn.addEventListener("click",openSidebar);
+
+sidebarClose.addEventListener("click",closeSidebar);
+
+overlay.addEventListener("click",closeSidebar);
+
+
+/* ---------------------------------------------------------
+   URL PARAMETERS
+--------------------------------------------------------- */
+
+function getUrlParameters(){
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const plan =
+        params.get("plan");
+
+    const location =
+        params.get("location");
+
+    if(plan && pricing[plan]){
+
+        planSelect.value = plan;
+
+    }
+
+    if(location){
+
+        const locationExists =
+            [...locationSelect.options]
+            .some(option =>
+                option.value.toLowerCase() ===
+                location.toLowerCase()
+            );
+
+        if(locationExists){
+
+            const matched =
+                [...locationSelect.options]
+                .find(option =>
+                    option.value.toLowerCase() ===
+                    location.toLowerCase()
+                );
+
+            locationSelect.value =
+                matched.value;
+
+        }
+
+    }
 
 }
 
 
-function updateOrder(){
-
-  const product =
-    productSelect.value;
-
-  let qty =
-    parseInt(qtyInput.value) || 1;
-
-  if(qty < 1){
-    qty = 1;
-  }
-
-  if(qty > 20){
-    qty = 20;
-  }
-
-  qtyInput.value = qty;
-
-  displayQty.textContent = qty;
-
-  summaryQty.textContent = qty;
-
-
-  if(!product){
-
-    cyclePrice.textContent = "$0.00 USD";
-
-    unitPrice.textContent = "$0.00";
-
-    monthlyTotal.textContent = "$0.00";
-
-    summaryProduct.textContent =
-      "No VPS Selected";
-
-    summaryDescription.textContent =
-      "Select a VPS plan to continue.";
-
-    summaryUnitPrice.textContent =
-      "$0.00";
-
-    summaryTotal.textContent =
-      "$0.00";
-
-    return;
-
-  }
-
-
-  const total =
-    prices[product][qty - 1];
-
-  /*
-    Per VPS price is calculated from
-    the selected total / quantity.
-  */
-
-  const perUnit =
-    total / qty;
-
-
-  cyclePrice.textContent =
-    money(total);
-
-
-  unitPrice.textContent =
-    money(perUnit);
-
-
-  monthlyTotal.textContent =
-    money(total);
-
-
-  summaryProduct.textContent =
-    productNames[product];
-
-
-  summaryDescription.textContent =
-    productDescriptions[product];
-
-
-  summaryUnitPrice.textContent =
-    money(perUnit);
-
-
-  summaryTotal.textContent =
-    money(total);
-
-}
-
-
-/* Product change */
-
-productSelect.addEventListener(
-  'change',
-  updateOrder
-);
-
-
-/* Minus */
-
-minusQty.addEventListener(
-  'click',
-  () => {
-
-    let qty =
-      parseInt(qtyInput.value) || 1;
-
-    if(qty > 1){
-
-      qty--;
-
-      qtyInput.value = qty;
-
-      updateOrder();
-
-    }
-
-  }
-);
-
-
-/* Plus */
-
-plusQty.addEventListener(
-  'click',
-  () => {
-
-    let qty =
-      parseInt(qtyInput.value) || 1;
-
-    if(qty < 20){
-
-      qty++;
-
-      qtyInput.value = qty;
-
-      updateOrder();
-
-    }
-
-  }
-);
-
-
-/* Manual quantity typing */
-
-qtyInput.addEventListener(
-  'input',
-  () => {
-
-    let qty =
-      parseInt(qtyInput.value);
-
-    if(!qty){
-      return;
-    }
-
-    if(qty < 1){
-      qty = 1;
-    }
-
-    if(qty > 20){
-      qty = 20;
-    }
-
-    qtyInput.value = qty;
-
-    updateOrder();
-
-  }
-);
-
-
-/* ==========================================
-   REMOVE / EMPTY PRODUCT
-========================================== */
-
-productSelect.addEventListener(
-  'change',
-  function(){
-
-    if(this.value === ""){
-
-      const confirmClear =
-        confirm(
-          "Are you sure you want to remove your VPS selection?"
+/* ---------------------------------------------------------
+   RESTRICT 8GB BASED ON LOCATION
+--------------------------------------------------------- */
+
+function updatePlanAvailability(){
+
+    const location =
+        locationSelect.value;
+
+    const option8 =
+        [...planSelect.options]
+        .find(option =>
+            option.value === "8gb"
         );
 
-      if(confirmClear){
+    if(!option8) return;
 
-        emptyMessage.style.display =
-          "block";
+    if(restrictedLocations.includes(location)){
 
-        alert(
-          "Your selection has been cleared. Please shop again."
-        );
+        option8.disabled = true;
 
-        updateOrder();
+        if(planSelect.value === "8gb"){
 
-      }else{
+            planSelect.value = "";
 
-        /*
-          If user cancels, automatically restore
-          the previous product.
-        */
+            showAlert(
+                "error",
+                "8GB VPS unavailable",
+                "8GB VPS is not available in the selected location. Please choose 2GB or 4GB."
+            );
 
-        this.value =
-          this.dataset.previous || "";
-
-        updateOrder();
-
-      }
+        }
 
     }else{
 
-      this.dataset.previous =
-        this.value;
-
-      emptyMessage.style.display =
-        "none";
+        option8.disabled = false;
 
     }
-
-  }
-);
-
-
-/* ==========================================
-   SAVED BILLING DETAILS
-========================================== */
-
-/*
-  Demo/local browser storage.
-
-  Jab user billing form fill karega,
-  details browser mein save ho sakti hain.
-*/
-
-const billingFields = {
-
-  fullName:
-    document.getElementById('fullName'),
-
-  email:
-    document.getElementById('email'),
-
-  phone:
-    document.getElementById('phone'),
-
-  country:
-    document.getElementById('country'),
-
-  address:
-    document.getElementById('address')
-
-};
-
-
-/* Save details when user leaves fields */
-
-Object.values(billingFields)
-.forEach(field => {
-
-  field.addEventListener(
-    'change',
-    saveBillingDetails
-  );
-
-});
-
-
-function saveBillingDetails(){
-
-  const data = {
-
-    fullName:
-      billingFields.fullName.value,
-
-    email:
-      billingFields.email.value,
-
-    phone:
-      billingFields.phone.value,
-
-    country:
-      billingFields.country.value,
-
-    address:
-      billingFields.address.value
-
-  };
-
-  localStorage.setItem(
-    'vertexCoreBilling',
-    JSON.stringify(data)
-  );
 
 }
 
 
-/* Use previous details */
+/* ---------------------------------------------------------
+   GET CURRENT PRICE
+--------------------------------------------------------- */
 
-document
-  .getElementById('useSaved')
-  .addEventListener(
-    'click',
-    () => {
+function getCurrentPrice(){
 
-      const saved =
-        localStorage.getItem(
-          'vertexCoreBilling'
-        );
+    const plan =
+        planSelect.value;
 
-      if(!saved){
+    if(!plan || !pricing[plan]){
 
-        alert(
-          "No previous billing details were found. Please fill in your billing details first."
+        return 0;
+
+    }
+
+    return pricing[plan].prices[quantity] || 0;
+
+}
+
+
+/* ---------------------------------------------------------
+   UPDATE CHECKOUT
+--------------------------------------------------------- */
+
+function updateCheckout(){
+
+    const plan =
+        planSelect.value;
+
+    const location =
+        locationSelect.value;
+
+    const price =
+        getCurrentPrice();
+
+
+    qtyValue.textContent =
+        quantity;
+
+
+    if(plan && pricing[plan]){
+
+        productName.textContent =
+            pricing[plan].name;
+
+        summaryPlan.textContent =
+            pricing[plan].name;
+
+        productPrice.textContent =
+            "$" + price.toFixed(2);
+
+        summaryCycle.textContent =
+            "$" + price.toFixed(2);
+
+        summaryTotal.textContent =
+            "$" + price.toFixed(2);
+
+        emptyProduct.classList.remove("show");
+
+    }else{
+
+        productName.textContent =
+            "Select a VPS plan";
+
+        summaryPlan.textContent =
+            "No VPS Selected";
+
+        productPrice.textContent =
+            "$0.00";
+
+        summaryCycle.textContent =
+            "$0.00";
+
+        summaryTotal.textContent =
+            "$0.00";
+
+    }
+
+
+    if(location){
+
+        productLocation.textContent =
+            "Server: " + location;
+
+        summaryLocation.textContent =
+            location;
+
+    }else{
+
+        productLocation.textContent =
+            "Server location not selected";
+
+        summaryLocation.textContent =
+            "Select a location";
+
+    }
+
+
+    summaryQty.textContent =
+        plan ? quantity : 0;
+
+}
+
+
+/* ---------------------------------------------------------
+   QUANTITY BUTTONS
+--------------------------------------------------------- */
+
+qtyPlus.addEventListener("click",function(){
+
+    if(quantity >= 20){
+
+        showAlert(
+            "error",
+            "Maximum quantity reached",
+            "You can order a maximum of 20 VPS units."
         );
 
         return;
 
-      }
+    }
 
-      const data =
+    quantity++;
+
+    updateCheckout();
+
+});
+
+
+qtyMinus.addEventListener("click",function(){
+
+    if(quantity <= 1){
+
+        showAlert(
+            "error",
+            "Minimum quantity",
+            "Quantity cannot be less than 1."
+        );
+
+        return;
+
+    }
+
+    quantity--;
+
+    updateCheckout();
+
+});
+
+
+/* ---------------------------------------------------------
+   PLAN CHANGE
+--------------------------------------------------------- */
+
+planSelect.addEventListener("change",function(){
+
+    clearValidation(planSelect);
+
+    updateCheckout();
+
+});
+
+
+/* ---------------------------------------------------------
+   LOCATION CHANGE
+--------------------------------------------------------- */
+
+locationSelect.addEventListener("change",function(){
+
+    clearValidation(locationSelect);
+
+    updatePlanAvailability();
+
+    updateCheckout();
+
+});
+
+
+/* ---------------------------------------------------------
+   ALERT SYSTEM
+--------------------------------------------------------- */
+
+function showAlert(type,title,message){
+
+    const alert =
+        document.createElement("div");
+
+    alert.className =
+        "alert " + type;
+
+    const icon =
+        type === "success"
+        ? "✓"
+        : "!";
+
+    alert.innerHTML = `
+
+        <div class="alert-icon">
+            ${icon}
+        </div>
+
+        <div class="alert-content">
+
+            <strong>
+                ${title}
+            </strong>
+
+            <p>
+                ${message}
+            </p>
+
+        </div>
+
+        <button
+            class="alert-close"
+            type="button">
+            ×
+        </button>
+
+    `;
+
+
+    alertContainer.appendChild(alert);
+
+
+    const close =
+        alert.querySelector(".alert-close");
+
+
+    function remove(){
+
+        alert.classList.add("out");
+
+        setTimeout(
+            () => alert.remove(),
+            300
+        );
+
+    }
+
+
+    close.addEventListener(
+        "click",
+        remove
+    );
+
+
+    setTimeout(
+        remove,
+        5000
+    );
+
+}
+
+
+/* ---------------------------------------------------------
+   VALIDATION HELPERS
+--------------------------------------------------------- */
+
+function showValidation(element,message){
+
+    element.classList.add("invalid");
+
+    const error =
+        element.parentElement.querySelector(".validation");
+
+    if(error){
+
+        if(message){
+            error.textContent = message;
+        }
+
+        error.classList.add("show");
+
+    }
+
+}
+
+
+function clearValidation(element){
+
+    element.classList.remove("invalid");
+
+    const error =
+        element.parentElement.querySelector(".validation");
+
+    if(error){
+
+        error.classList.remove("show");
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   BILLING VALIDATION
+--------------------------------------------------------- */
+
+function validateBilling(){
+
+    let valid = true;
+
+    const fields = [
+
+        document.getElementById("firstName"),
+        document.getElementById("lastName"),
+        document.getElementById("email"),
+        document.getElementById("phone"),
+        document.getElementById("address"),
+        document.getElementById("city"),
+        document.getElementById("postal")
+
+    ];
+
+
+    fields.forEach(field => {
+
+        if(!field.value.trim()){
+
+            showValidation(field);
+
+            valid = false;
+
+        }else{
+
+            clearValidation(field);
+
+        }
+
+    });
+
+
+    const email =
+        document.getElementById("email");
+
+
+    if(
+        email.value.trim() &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        .test(email.value.trim())
+    ){
+
+        showValidation(
+            email,
+            "Please enter a valid email address."
+        );
+
+        valid = false;
+
+    }
+
+
+    return valid;
+
+}
+
+
+/* ---------------------------------------------------------
+   PAYMENT VALIDATION
+--------------------------------------------------------- */
+
+function getSelectedPayment(){
+
+    const selected =
+        document.querySelector(
+            'input[name="payment"]:checked'
+        );
+
+    return selected
+        ? selected.value
+        : "";
+
+}
+
+
+function validatePayment(){
+
+    const payment =
+        getSelectedPayment();
+
+    const error =
+        document.getElementById("paymentError");
+
+
+    if(!payment){
+
+        error.classList.add("show");
+
+        return false;
+
+    }
+
+
+    error.classList.remove("show");
+
+    return true;
+
+}
+
+
+document
+.querySelectorAll('input[name="payment"]')
+.forEach(input => {
+
+    input.addEventListener("change",function(){
+
+        document
+        .getElementById("paymentError")
+        .classList.remove("show");
+
+    });
+
+});
+
+
+/* ---------------------------------------------------------
+   SAVE BILLING DETAILS
+--------------------------------------------------------- */
+
+function saveBillingDetails(){
+
+    const data = {
+
+        firstName:
+            document.getElementById("firstName").value.trim(),
+
+        lastName:
+            document.getElementById("lastName").value.trim(),
+
+        email:
+            document.getElementById("email").value.trim(),
+
+        phone:
+            document.getElementById("phone").value.trim(),
+
+        address:
+            document.getElementById("address").value.trim(),
+
+        city:
+            document.getElementById("city").value.trim(),
+
+        postal:
+            document.getElementById("postal").value.trim()
+
+    };
+
+
+    localStorage.setItem(
+        "vertexCoreBilling",
+        JSON.stringify(data)
+    );
+
+}
+
+
+/* ---------------------------------------------------------
+   LOAD PREVIOUS BILLING DETAILS
+--------------------------------------------------------- */
+
+function loadPreviousBilling(){
+
+    const saved =
+        localStorage.getItem(
+            "vertexCoreBilling"
+        );
+
+
+    if(!saved) return;
+
+
+    try{
+
+        const data =
+            JSON.parse(saved);
+
+
+        const previousBilling =
+            document.getElementById(
+                "previousBilling"
+            );
+
+
+        const previousText =
+            document.getElementById(
+                "previousBillingText"
+            );
+
+
+        previousBilling.classList.add("show");
+
+
+        previousText.textContent =
+            `${data.firstName || ""} ${data.lastName || ""} • ${data.email || ""}`;
+
+
+    }catch(error){
+
+        localStorage.removeItem(
+            "vertexCoreBilling"
+        );
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   USE PREVIOUS BILLING DETAILS
+--------------------------------------------------------- */
+
+document
+.getElementById("usePreviousBtn")
+.addEventListener("click",function(){
+
+    const saved =
+        localStorage.getItem(
+            "vertexCoreBilling"
+        );
+
+
+    if(!saved){
+
+        showAlert(
+            "error",
+            "No saved details",
+            "No previous billing information was found."
+        );
+
+        return;
+
+    }
+
+
+    const data =
         JSON.parse(saved);
 
 
-      billingFields.fullName.value =
-        data.fullName || "";
+    document.getElementById("firstName").value =
+        data.firstName || "";
 
-      billingFields.email.value =
+    document.getElementById("lastName").value =
+        data.lastName || "";
+
+    document.getElementById("email").value =
         data.email || "";
 
-      billingFields.phone.value =
+    document.getElementById("phone").value =
         data.phone || "";
 
-      billingFields.country.value =
-        data.country || "";
-
-      billingFields.address.value =
+    document.getElementById("address").value =
         data.address || "";
 
+    document.getElementById("city").value =
+        data.city || "";
 
-      const savedMessage =
-        document.getElementById(
-          'savedMessage'
-        );
-
-      savedMessage.style.display =
-        "block";
-
-    }
-  );
+    document.getElementById("postal").value =
+        data.postal || "";
 
 
-/* ==========================================
-   ACCOUNT OPTIONS
-========================================== */
-
-const existingAccount =
-  document.getElementById(
-    'existingAccount'
-  );
-
-const newAccount =
-  document.getElementById(
-    'newAccount'
-  );
+    document.getElementById(
+        "usernameDisplay"
+    ).value =
+        `${data.firstName || ""} ${data.lastName || ""}`.trim()
+        + " - saved account";
 
 
-existingAccount.addEventListener(
-  'click',
-  () => {
+    /*
+       Product selection intentionally stays editable.
+       Payment method and additional notes remain untouched.
+    */
 
-    existingAccount.classList.add(
-      'active'
+
+    document
+    .querySelectorAll(".required-field")
+    .forEach(field => clearValidation(field));
+
+
+    showAlert(
+        "success",
+        "Details loaded",
+        "Your previous billing details have been filled in successfully."
     );
 
-    newAccount.classList.remove(
-      'active'
-    );
-
-  }
-);
+});
 
 
-newAccount.addEventListener(
-  'click',
-  () => {
-
-    newAccount.classList.add(
-      'active'
-    );
-
-    existingAccount.classList.remove(
-      'active'
-    );
-
-
-    const googleLogin =
-      confirm(
-        "Create a new Vertex Core account using Google?"
-      );
-
-
-    if(googleLogin){
-
-      /*
-        Real Google OAuth requires backend/
-        Google Identity integration.
-
-        For now this is the frontend action.
-      */
-
-      alert(
-        "Google Sign-In will be connected here when authentication is configured."
-      );
-
-    }
-
-  }
-);
-
-
-/* ==========================================
-   PAYMENT SELECTION
-========================================== */
+/* ---------------------------------------------------------
+   SAVE DETAILS WHEN USER LEAVES FIELD
+--------------------------------------------------------- */
 
 document
-  .querySelectorAll(
-    '.payment-option'
-  )
-  .forEach(option => {
+.querySelectorAll(".required-field")
+.forEach(field => {
 
-    option.addEventListener(
-      'click',
-      () => {
+    field.addEventListener("blur",function(){
 
-        document
-          .querySelectorAll(
-            '.payment-option'
-          )
-          .forEach(item => {
+        if(this.value.trim()){
 
-            item.classList.remove(
-              'active'
+            clearValidation(this);
+
+        }
+
+    });
+
+});
+
+
+/* ---------------------------------------------------------
+   GOOGLE ACCOUNT BUTTON
+--------------------------------------------------------- */
+
+googleBtn.addEventListener("click",function(){
+
+    showAlert(
+        "success",
+        "Google Account",
+        "Google sign-in is ready for OAuth integration. Connect your Google OAuth Client ID/backend to enable live sign-in."
+    );
+
+});
+
+
+/* ---------------------------------------------------------
+   CLEAR CART MODAL
+--------------------------------------------------------- */
+
+clearCartBtn.addEventListener("click",function(){
+
+    clearModal.classList.add("active");
+
+});
+
+
+cancelClear.addEventListener("click",function(){
+
+    clearModal.classList.remove("active");
+
+});
+
+
+clearModal.addEventListener("click",function(event){
+
+    if(event.target === clearModal){
+
+        clearModal.classList.remove("active");
+
+    }
+
+});
+
+
+/* ---------------------------------------------------------
+   CONFIRM CLEAR
+--------------------------------------------------------- */
+
+confirmClear.addEventListener("click",function(){
+
+    planSelect.value = "";
+
+    locationSelect.value = "";
+
+    quantity = 1;
+
+    updatePlanAvailability();
+    updateCheckout();
+
+    emptyProduct.classList.add("show");
+
+    clearModal.classList.remove("active");
+
+
+    showAlert(
+        "success",
+        "Selection cleared",
+        "Your current VPS selection has been removed. Please shop again when you are ready."
+    );
+
+});
+
+
+/* ---------------------------------------------------------
+   PLACE ORDER
+--------------------------------------------------------- */
+
+placeOrderBtn.addEventListener("click",function(){
+
+    const plan =
+        planSelect.value;
+
+    const location =
+        locationSelect.value;
+
+
+    /* PLAN */
+
+    if(!plan){
+
+        showValidation(
+            planSelect,
+            "Please select a VPS plan."
+        );
+
+        planSelect.focus();
+
+        showAlert(
+            "error",
+            "VPS plan required",
+            "Please select a VPS plan before placing your order."
+        );
+
+        return;
+
+    }
+
+
+    /* LOCATION */
+
+    if(!location){
+
+        showValidation(
+            locationSelect,
+            "Please select your server location."
+        );
+
+        locationSelect.focus();
+
+        showAlert(
+            "error",
+            "Location required",
+            "Please select your preferred server location."
+        );
+
+        return;
+
+    }
+
+
+    /* RESTRICTED 8GB */
+
+    if(
+        restrictedLocations.includes(location) &&
+        plan === "8gb"
+    ){
+
+        showAlert(
+            "error",
+            "Plan unavailable",
+            "8GB VPS is not available in this server location."
+        );
+
+        return;
+
+    }
+
+
+    /* BILLING */
+
+    if(!validateBilling()){
+
+        showAlert(
+            "error",
+            "Billing details incomplete",
+            "Please complete all required billing fields."
+        );
+
+        const firstInvalid =
+            document.querySelector(
+                ".required-field.invalid"
             );
 
-          });
+        if(firstInvalid){
 
+            firstInvalid.focus();
 
-        option.classList.add(
-          'active'
-        );
-
-        const radio =
-          option.querySelector(
-            'input[type="radio"]'
-          );
-
-        radio.checked = true;
-
-      }
-    );
-
-  });
-
-
-/* ==========================================
-   PLACE ORDER
-========================================== */
-
-document
-  .getElementById('placeOrder')
-  .addEventListener(
-    'click',
-    () => {
-
-      const product =
-        productSelect.value;
-
-      if(!product){
-
-        alert(
-          "Please select a VPS plan before placing your order."
-        );
-
-        productSelect.focus();
+        }
 
         return;
-
-      }
-
-
-      const name =
-        billingFields.fullName.value.trim();
-
-      const email =
-        billingFields.email.value.trim();
-
-
-      if(!name || !email){
-
-        alert(
-          "Please complete your billing details before placing your order."
-        );
-
-        return;
-
-      }
-
-
-      const payment =
-        document.querySelector(
-          'input[name="payment"]:checked'
-        );
-
-
-      if(!payment){
-
-        alert(
-          "Please select a payment method."
-        );
-
-        return;
-
-      }
-
-
-      const qty =
-        parseInt(qtyInput.value) || 1;
-
-      const total =
-        prices[product][qty - 1];
-
-
-      /*
-        This currently displays the order.
-        For real payment processing / VPS
-        provisioning, connect this button
-        to your backend.
-      */
-
-      alert(
-        "Order ready!\n\n" +
-        productNames[product] +
-        "\nQuantity: " +
-        qty +
-        "\nTotal: " +
-        money(total) +
-        "\nPayment: " +
-        payment.value
-      );
 
     }
-  );
 
 
-/* ==========================================
-   INITIAL STATE
-========================================== */
+    /* PAYMENT */
 
-updateOrder();
+    if(!validatePayment()){
+
+        showAlert(
+            "error",
+            "Payment method required",
+            "Please choose one of the available payment methods."
+        );
+
+        document
+        .querySelector(
+            ".payment-label"
+        )
+        ?.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+        return;
+
+    }
+
+
+    /* SAVE */
+
+    saveBillingDetails();
+
+
+    /* LOADING */
+
+    placeOrderBtn.classList.add("loading");
+
+
+    setTimeout(function(){
+
+        placeOrderBtn.classList.remove("loading");
+
+
+        showAlert(
+            "success",
+            "Order ready",
+            "Your order information has been validated successfully. Payment/order backend can now process this checkout."
+        );
+
+
+        /*
+           IMPORTANT:
+           Replace this section with your real backend/order
+           API when you connect payment processing.
+        */
+
+
+    },1500);
+
+});
+
+
+/* ---------------------------------------------------------
+   INITIALIZATION
+--------------------------------------------------------- */
+
+getUrlParameters();
+
+updatePlanAvailability();
+
+updateCheckout();
+
+loadPreviousBilling();
+
+
+/* ---------------------------------------------------------
+   KEYBOARD ESC
+--------------------------------------------------------- */
+
+document.addEventListener("keydown",function(event){
+
+    if(event.key === "Escape"){
+
+        closeSidebar();
+
+        clearModal.classList.remove("active");
+
+    }
+
+});
+
 
 </script>
 
