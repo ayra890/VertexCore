@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -16,7 +16,7 @@ header{height:76px;position:fixed;inset:0 0 auto;z-index:3000;display:flex;align
 header nav{display:flex;gap:28px;margin-left:45px}header nav a{font-size:13px;font-weight:650;color:#8b9bb4;transition:.2s}header nav a:hover{color:#fff}
 .header-actions{margin-left:auto;display:flex;align-items:center;gap:15px}.login-link{font-size:13px;color:#9aa9bf}.login-link:hover{color:#fff}
 .btn-blue{display:inline-flex;align-items:center;justify-content:center;padding:10px 17px;border-radius:8px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-size:12px;font-weight:800;box-shadow:0 8px 25px rgba(30,144,255,.18);transition:.2s}.btn-blue:hover{transform:translateY(-2px)}
-.menu-btn{width:42px;height:42px;border:1px solid #263550;background:#0d1628;color:#fff;border-radius:9px;cursor:pointer;font-size:21px}.header-actions .menu-btn{display:none}
+.menu-btn{width:42px;height:42px;border:1px solid #263550;background:#0d1628;color:#fff;border-radius:99px;cursor:pointer;font-size:21px}.header-actions .menu-btn{display:none}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:3500;opacity:0;visibility:hidden;transition:.25s}.overlay.active{opacity:1;visibility:visible}
 .sidebar{position:fixed;top:0;right:-330px;width:310px;height:100vh;z-index:4000;padding:24px;background:#09111f;border-left:1px solid #24334b;box-shadow:-20px 0 60px #0007;transition:.3s;overflow:auto}.sidebar.active{right:0}
 .side-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid var(--border)}.side-close{width:38px;height:38px;border:1px solid #263550;background:#101a2d;color:#fff;border-radius:8px;cursor:pointer;font-size:25px}
@@ -39,7 +39,35 @@ label{display:block;margin-bottom:8px;color:#c8d2e1;font-size:11px;font-weight:7
 .previous-billing{display:none;align-items:center;justify-content:space-between;gap:15px;padding:13px;margin-bottom:18px;border:1px solid #1e90ff33;background:#1e90ff0d;border-radius:10px}.previous-billing.show{display:flex}.previous-billing strong{display:block;font-size:11px;margin-bottom:4px}.previous-billing p{color:#71819a;font-size:10px}
 .small-btn{border:1px solid #2b3b55;background:#111c30;color:#d0d8e5;border-radius:8px;padding:9px 12px;cursor:pointer;font-size:10px;font-weight:750;transition:.2s}.small-btn:hover{border-color:var(--blue);color:#fff}
 .account-box{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:15px;margin-top:18px;border:1px solid #24334b;background:#080f1d;border-radius:11px}.account-info{display:flex;align-items:center;gap:11px}.google-icon{width:35px;height:35px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#fff;color:#4285f4;font-weight:900}.account-info strong{display:block;font-size:11px;margin-bottom:3px}.account-info span{color:#697991;font-size:10px}.google-btn{padding:10px 13px;border:1px solid #2c3d58;border-radius:8px;background:#121d31;color:#fff;cursor:pointer;font-size:10px;font-weight:750}
-.payment-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}.payment-option input{position:absolute;opacity:0}.payment-label{display:block;height:100%;margin:0;padding:14px;border:1px solid #263550;border-radius:10px;background:#080f1d;cursor:pointer;transition:.2s}.payment-label:hover{border-color:#385174}.payment-option input:checked+.payment-label{border-color:var(--blue);background:#1e90ff0d;box-shadow:0 0 0 2px #1e90ff14}.payment-top{display:flex;justify-content:space-between;gap:10px}.payment-name{font-size:11px;font-weight:800}.radio-dot{width:14px;height:14px;border:1px solid #53647e;border-radius:50%;position:relative}.payment-option input:checked+.payment-label .radio-dot{border-color:var(--blue)}.payment-option input:checked+.payment-label .radio-dot:after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--blue)}.payment-detail{margin-top:9px;color:#667790;font-size:9px;line-height:1.6}.payment-detail strong{color:#9baac0}
+
+/* Payment Methods List */
+.payment-list{display:flex;flex-direction:column;gap:10px}
+.payment-option input{position:absolute;opacity:0}
+.payment-label{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border:1px solid #263550;border-radius:10px;background:#080f1d;cursor:pointer;transition:.2s}
+.payment-label:hover{border-color:#385174}
+.payment-option input:checked+.payment-label{border-color:var(--blue);background:#1e90ff0d;box-shadow:0 0 0 2px #1e90ff14}
+.payment-left{display:flex;align-items:center;gap:14px}
+.payment-name{font-size:13px;font-weight:700;color:#e2e8f0}
+.radio-dot{width:16px;height:16px;border:2px solid #53647e;border-radius:50%;position:relative;flex-shrink:0}
+.payment-option input:checked+.payment-label .radio-dot{border-color:#8b5cf6}
+.payment-option input:checked+.payment-label .radio-dot:after{content:"";position:absolute;inset:3px;border-radius:50%;background:#8b5cf6}
+.payment-brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px;letter-spacing:-0.5px}
+.brand-bank{color:#38bdf8}
+.brand-stripe{color:#6366f1;font-weight:900;font-style:italic}
+.brand-paypal{color:#0079C1;font-weight:900;font-style:italic}.brand-paypal span{color:#00457C}
+.brand-crypto{color:#f59e0b;font-size:13px;font-weight:700}
+.brand-local{color:#10b981;font-size:13px;font-weight:700}
+
+/* Mailing List Section */
+.mailing-card{margin-top:28px;margin-bottom:28px}
+.mailing-title{font-size:20px;font-weight:700;margin-bottom:12px;color:#fff}
+.mailing-desc{color:#8b9bb4;font-size:12px;line-height:1.6;margin-bottom:20px}
+.switch-box{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border:1px solid #263550;border-radius:12px;background:#080f1d;max-width:320px}
+.switch-label{font-size:12px;font-weight:700;color:#e2e8f0}
+.switch-btn{width:50px;height:26px;border-radius:13px;background:#8b5cf6;padding:3px;cursor:pointer;display:flex;align-items:center;justify-content:flex-end;transition:.2s}
+.switch-btn.off{background:#334155;justify-content:flex-start}
+.switch-knob{width:20px;height:20px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:900;color:#8b5cf6}
+
 .summary-top{padding-bottom:17px;border-bottom:1px solid var(--border)}.summary-top h2{font-size:16px;margin-bottom:5px}.summary-top p{color:#687890;font-size:10px}.summary-product{display:flex;align-items:center;gap:11px;padding:16px 0}.summary-product strong{display:block;font-size:12px;margin-bottom:4px}.summary-product span{color:#667790;font-size:10px}.summary-lines{padding:4px 0 15px;border-bottom:1px solid var(--border)}.summary-line{display:flex;justify-content:space-between;padding:8px 0;color:#71819a;font-size:10px}.summary-line strong{color:#dbe4ef}.summary-total{display:flex;justify-content:space-between;align-items:center;padding:18px 0 16px}.summary-total>span{color:#a7b5c8;font-size:11px;font-weight:700}.summary-total div{text-align:right}.summary-total strong{display:block;font-size:25px}.total-cycle{color:#62738b;font-size:9px}
 .order-btn{width:100%;height:47px;border:0;border-radius:9px;background:linear-gradient(135deg,#1e90ff,#1679d1);color:#fff;font-weight:850;font-size:12px;cursor:pointer;position:relative;box-shadow:0 10px 28px #1e90ff33}.order-btn:hover{transform:translateY(-2px)}.order-btn.loading{pointer-events:none;opacity:.75}.order-btn.loading .btn-text{visibility:hidden}.order-btn.loading:after{content:"";width:17px;height:17px;border:2px solid #ffffff66;border-top-color:#fff;border-radius:50%;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);animation:spin .7s linear infinite}.secure-note{text-align:center;margin-top:13px;color:#596a82;font-size:9px}.continue-btn{width:100%;margin-top:10px;padding:11px;border:1px solid #2a3b56;border-radius:8px;background:transparent;color:#9aa9bf;cursor:pointer;font-size:10px;font-weight:750}.continue-btn:hover{border-color:var(--blue);color:#fff}
 .alert-container{position:fixed;top:92px;right:24px;z-index:6000;width:min(380px,calc(100% - 30px));display:flex;flex-direction:column;gap:10px}.alert{display:flex;gap:10px;padding:14px;border-radius:10px;background:#101a2d;border:1px solid #263550;box-shadow:0 18px 45px #00000059;animation:in .3s}.alert.success{border-color:#29c97d66}.alert.error{border-color:#ff4c6966}.alert-icon{width:25px;height:25px;display:flex;align-items:center;justify-content:center;flex:none;border-radius:50%}.success .alert-icon{color:#45d995;background:#29c97d1f}.error .alert-icon{color:#ff6680;background:#ff4c691f}.alert-content strong{display:block;font-size:12px;margin-bottom:3px}.alert-content p{color:#8998ae;font-size:10px;line-height:1.5}.alert-close{margin-left:auto;border:0;background:none;color:#65758d;cursor:pointer}.alert.out{animation:out .3s forwards}
@@ -47,7 +75,7 @@ label{display:block;margin-bottom:8px;color:#c8d2e1;font-size:11px;font-weight:7
 footer{border-top:1px solid var(--border);background:#070c17;padding:55px 30px 25px}.footer-grid{width:min(1180px,100%);margin:auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:35px}.footer-brand p{color:#71819a;line-height:1.7;font-size:12px;max-width:300px;margin-top:13px}.footer-column h3{color:#fff;font-size:13px;margin-bottom:14px}footer a{display:block;color:#71819a;font-size:12px;margin-bottom:10px;transition:.2s}footer a:hover{color:var(--blue);transform:translateX(2px)}.footer-bottom{width:min(1180px,100%);margin:35px auto 0;padding-top:20px;border-top:1px solid var(--border);text-align:center;color:#596980;font-size:11px}
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}@keyframes fade{from{opacity:0}}@keyframes in{from{opacity:0;transform:translateX(30px)}}@keyframes out{to{opacity:0;transform:translateX(30px)}}
 @media(max-width:950px){header nav{display:none}.header-actions .menu-btn{display:block}.checkout-grid{grid-template-columns:1fr}.right-column{position:static}.footer-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){header{padding:0 17px}.header-actions .login-link,.header-actions>.btn-blue{display:none}.page{width:calc(100% - 24px);padding-top:108px}.page-heading h1{font-size:34px}.checkout-card{padding:18px}.product-row,.form-grid,.payment-list{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.previous-billing,.account-box{align-items:flex-start;flex-direction:column}.small-btn,.google-btn{width:100%}}
+@media(max-width:700px){header{padding:0 17px}.header-actions .login-link,.header-actions>.btn-blue{display:none}.page{width:calc(100% - 24px);padding-top:108px}.page-heading h1{font-size:34px}.checkout-card{padding:18px}.product-row,.form-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.previous-billing,.account-box{align-items:flex-start;flex-direction:column}.small-btn,.google-btn{width:100%}}
 </style>
 </head>
 <body>
@@ -121,16 +149,91 @@ footer{border-top:1px solid var(--border);background:#070c17;padding:55px 30px 2
 </section>
 
 <section class="checkout-card">
-<div class="card-header"><div class="card-number">03</div><div><h2>Payment Method</h2><p>Select your preferred payment method</p></div></div>
+<div class="card-header">
+<div class="card-number">03</div>
+<div><h2>Payment Method</h2><p>Select your preferred payment method</p></div>
+</div>
 <div class="payment-list">
 
-<div class="payment-option"><input type="radio" name="payment" id="bank" value="Bank Transfer"><label for="bank" class="payment-label"><div class="payment-top"><span class="payment-name">Bank Transfer</span><span class="radio-dot"></span></div><div class="payment-detail">Direct bank payment.<br><strong>Payment details will be provided after order.</strong></div></label></div>
-<div class="payment-option"><input type="radio" name="payment" id="stripe" value="Stripe Debit/Credit Card"><label for="stripe" class="payment-label"><div class="payment-top"><span class="payment-name">Stripe Debit/Credit Card</span><span class="radio-dot"></span></div><div class="payment-detail">Secure card payment through Stripe.<br><strong>Visa • Mastercard • Amex</strong></div></label></div>
-<div class="payment-option"><input type="radio" name="payment" id="sadapay" value="SadaPay"><label for="sadapay" class="payment-label"><div class="payment-top"><span class="payment-name">SadaPay</span><span class="radio-dot"></span></div><div class="payment-detail"><strong>03402759190 — Huzaifa Khan</strong></div></label></div>
-<div class="payment-option"><input type="radio" name="payment" id="nayapay" value="NayaPay"><label for="nayapay" class="payment-label"><div class="payment-top"><span class="payment-name">NayaPay</span><span class="radio-dot"></span></div><div class="payment-detail"><strong>03112396550 — Huzaifa Khan</strong></div></label></div>
-<div class="payment-option"><input type="radio" name="payment" id="jazzcash" value="JazzCash"><label for="jazzcash" class="payment-label"><div class="payment-top"><span class="payment-name">JazzCash</span><span class="radio-dot"></span></div><div class="payment-detail"><strong>03402759190 — Huzaifa Khan</strong></div></label></div>
-<div class="payment-option"><input type="radio" name="payment" id="easypaisa" value="Easypaisa"><label for="easypaisa" class="payment-label"><div class="payment-top"><span class="payment-name">Easypaisa</span><span class="radio-dot"></span></div><div class="payment-detail"><strong>03112396550 — Huzaifa Khan</strong></div></label></div>
-</div><div class="validation" id="paymentError">Please select a payment method.</div>
+<div class="payment-option">
+<input type="radio" name="payment" id="bank" value="Local Bank Transfer" checked>
+<label for="bank" class="payment-label">
+<div class="payment-left">
+<span class="radio-dot"></span>
+<span class="payment-name">Local Bank Transfer</span>
+</div>
+<div class="payment-brand brand-bank">🏛️</div>
+</label>
+</div>
+
+<div class="payment-option">
+<input type="radio" name="payment" id="stripe" value="Stripe Debit/Credit Card">
+<label for="stripe" class="payment-label">
+<div class="payment-left">
+<span class="radio-dot"></span>
+<span class="payment-name">Stripe Debit/Credit Card</span>
+</div>
+<div class="payment-brand brand-stripe">stripe</div>
+</label>
+</div>
+
+<div class="payment-option">
+<input type="radio" name="payment" id="paypal" value="PayPal">
+<label for="paypal" class="payment-label">
+<div class="payment-left">
+<span class="radio-dot"></span>
+<span class="payment-name">PayPal</span>
+</div>
+<div class="payment-brand brand-paypal">Pay<span>Pal</span></div>
+</label>
+</div>
+
+<div class="payment-option">
+<input type="radio" name="payment" id="paypal-sub" value="PayPal (Subscription)">
+<label for="paypal-sub" class="payment-label">
+<div class="payment-left">
+<span class="radio-dot"></span>
+<span class="payment-name">PayPal (Subscription)</span>
+</div>
+<div class="payment-brand brand-paypal">Pay<span>Pal</span></div>
+</label>
+</div>
+
+<div class="payment-option">
+<input type="radio" name="payment" id="crypto" value="Bitcoin and other cryptocurrency">
+<label for="crypto" class="payment-label">
+<div class="payment-left">
+<span class="radio-dot"></span>
+<span class="payment-name">Bitcoin and other cryptocurrency</span>
+</div>
+<div class="payment-brand brand-crypto">₿</div>
+</label>
+</div>
+
+<div class="payment-option">
+<input type="radio" name="payment" id="local-wallets" value="Jazz Cash / Easy Paisa / NayaPay">
+<label for="local-wallets" class="payment-label">
+<div class="payment-left">
+<span class="radio-dot"></span>
+<span class="payment-name">Jazz Cash / Easy Paisa / NayaPay</span>
+</div>
+<div class="payment-brand brand-local">💳</div>
+</label>
+</div>
+
+</div>
+<div class="validation" id="paymentError">Please select a payment method.</div>
+</section>
+
+<section class="mailing-card">
+<h2 class="mailing-title">Join our mailing list</h2>
+<p class="mailing-desc">We would like to send you occasional news, information and special offers by email. To join our mailing list, simply tick the box below. You can unsubscribe at any time.</p>
+<div class="switch-box">
+<span class="switch-label">Receive Emails</span>
+<div class="switch-btn" id="mailingSwitch">
+<span class="switch-knob">ON</span>
+</div>
+</div>
 </section>
 
 <section class="checkout-card">
@@ -182,6 +285,20 @@ function openSidebar(){ $("sidebar").classList.add("active");$("overlay").classL
 function closeSidebar(){ $("sidebar").classList.remove("active");$("overlay").classList.remove("active") }
 $("openMenu").onclick=openSidebar;$("desktopMenu").onclick=openSidebar;$("closeMenu").onclick=closeSidebar;$("overlay").onclick=closeSidebar;
 
+// Toggle mailing list switch
+let receiveEmails = true;
+const switchBtn = $("mailingSwitch");
+switchBtn.onclick = () => {
+  receiveEmails = !receiveEmails;
+  if(receiveEmails) {
+    switchBtn.classList.remove("off");
+    switchBtn.querySelector(".switch-knob").textContent = "ON";
+  } else {
+    switchBtn.classList.add("off");
+    switchBtn.querySelector(".switch-knob").textContent = "OFF";
+  }
+};
+
 function alertMsg(type,title,msg){
 const a=document.createElement("div");a.className="alert "+type;
 a.innerHTML=`<div class="alert-icon">${type==="success"?"✓":"!"}</div><div class="alert-content"><strong>${title}</strong><p>${msg}</p></div><button class="alert-close">×</button>`;
@@ -216,14 +333,13 @@ if(!document.querySelector('input[name="payment"]:checked')){$("paymentError").c
 document.querySelectorAll('input[name="payment"]').forEach(x=>x.onchange=()=>$("paymentError").classList.remove("show"));
 function save(){let d={};["firstName","lastName","email","phone","address","city","postal"].forEach(id=>d[id]=$(id).value.trim());localStorage.setItem("vertexCoreBilling",JSON.stringify(d))}
 function loadSaved(){let s=localStorage.getItem("vertexCoreBilling");if(!s)return;try{let d=JSON.parse(s);$("previousBilling").classList.add("show");$("previousBillingText").textContent=`${d.firstName||""} ${d.lastName||""} • ${d.email||""}`}catch{}}
-$("usePreviousBtn").onclick=()=>{let s=localStorage.getItem("vertexCoreBilling");if(!s)return alertMsg("error","No saved details","No previous billing information was found.");let d=JSON.parse(s);["firstName","lastName","email","phone","address","city","postal"].forEach(id=>$(id).value=d[id]||"");$("usernameDisplay").value=`${d.firstName||""} ${d.lastName||""}`.trim()+" - saved account";document.querySelectorAll(".required-field").forEach(clearValidation);alertMsg("success","Details loaded","Your previous billing details have been filled in successfully.")};
+$("usePreviousBtn").onclick=()=>{let s=localStorage.getItem("vertexCoreBilling");if(!s)return alertMsg("error","No saved details","No previous billing information was found.");let d=JSON.parse(s);["firstName","lastName","email","phone","address","city","postal"].forEach(id=>$(id).value=d[id]\vert{}\vert{}"");$("usernameDisplay").value=`${d.firstName||""} ${d.lastName||""}`.trim()+" - saved account";document.querySelectorAll(".required-field").forEach(clearValidation);alertMsg("success","Details loaded","Your previous billing details have been filled in successfully.")};
 document.querySelectorAll(".required-field").forEach(x=>x.onblur=()=>{if(x.value.trim())clearValidation(x)});
 $("clearCartBtn").onclick=()=>$("clearModal").classList.add("active");$("cancelClear").onclick=()=>$("clearModal").classList.remove("active");
 $("clearModal").onclick=e=>{if(e.target===$("clearModal"))$("clearModal").classList.remove("active")};
 $("confirmClear").onclick=()=>{$("planSelect").value="";$("locationSelect").value="";quantity=1;updateAvailability();update();$("emptyProduct").classList.add("show");$("clearModal").classList.remove("active");alertMsg("success","Selection cleared","Your VPS selection has been removed. Your cart is now empty — shop again whenever you're ready.")};
-$("placeOrderBtn").onclick=()=>{if(!$("planSelect").value){alertMsg("error","VPS plan required","Please select a VPS plan.");$("planSelect").focus();return}if(!$("locationSelect").value){alertMsg("error","Location required","Please select your server location.");$("locationSelect").focus();return}if(!validate()){alertMsg("error","Checkout incomplete","Please complete your billing details and select a payment method.");return}save();let b=$("placeOrderBtn");b.classList.add("loading");setTimeout(()=>{b.classList.remove("loading");alertMsg("success","Order information verified","Your checkout details are complete. Connect your payment/order backend here to finalize the purchase.")},1200)};
-function init(){let q=new URLSearchParams(location.search),p=q.get("plan"),l=q.get("location"),n=parseInt(q.get("qty"),10);if(p&&pricing[p])$("planSelect").value=p;if(l){let o=[...$("locationSelect").options].find(x=>x.value.toLowerCase()===l.toLowerCase());if(o)$("locationSelect").value=o.value}if(n>=1&&n<=20)quantity=n;updateAvailability();update();loadSaved()}
-document.onkeydown=e=>{if(e.key==="Escape"){closeSidebar();$("clearModal").classList.remove("active")}};init();
+$("placeOrderBtn").onclick=()=>{if(!$("planSelect").value){alertMsg("error","VPS plan required","Please select a VPS plan.");$("planSelect").focus();return}if(!$("locationSelect").value){alertMsg("error","Location required","Please select your server location.");$("locationSelect").focus();return}if(!validate()){alertMsg("error","Checkout incomplete","Please complete your billing details and select a payment method.");return}save();let b=$("placeOrderBtn");b.classList.add("loading");setTimeout(()=>{b.classList.remove("loading");alertMsg("success","Order Placed","Your order has been submitted successfully!")},2000)};
+loadSaved();
 </script>
 </body>
 </html>
