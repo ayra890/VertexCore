@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -335,14 +334,44 @@ document.querySelectorAll('input[name="payment"]').forEach(x=>x.onchange=()=>$("
 function save(){let d={};["firstName","lastName","email","phone","address","city","postal"].forEach(id=>d[id]=$(id).value.trim());localStorage.setItem("vertexCoreBilling",JSON.stringify(d))}
 function loadSaved(){let s=localStorage.getItem("vertexCoreBilling");if(!s)return;try{let d=JSON.parse(s);$("previousBilling").classList.add("show");$("previousBillingText").textContent=`${d.firstName||""} ${d.lastName||""} • ${d.email||""}`}catch{}}
 $("usePreviousBtn").onclick=()=>{let s=localStorage.getItem("vertexCoreBilling");if(!s)return alertMsg("error","No saved details","No previous billing information was found.");let d=JSON.parse(s);["firstName","lastName","email","phone","address","city","postal"].forEach(id=>$(id).value=d[id]\vert{}\vert{}"");$("usernameDisplay").value=`${d.firstName||""} ${d.lastName||""}`.trim()+" - saved account";document.querySelectorAll(".required-field").forEach(clearValidation);alertMsg("success","Details loaded","Your previous billing details have been filled in successfully.")};
-document.querySelectorAll(".required-field").forEach(x=>x.onblur=()=>{if(x.value.trim())clearValidation(x)});
-$("clearCartBtn").onclick=()=>$("clearModal").classList.add("active");$("cancelClear").onclick=()=>$("clearModal").classList.remove("active");
-$("clearModal").onclick=e=>{if(e.target===$("clearModal"))$("clearModal").classList.remove("active")};
-$("confirmClear").onclick=()=>{$("planSelect").value="";$("locationSelect").value="";quantity=1;updateAvailability();update();$("emptyProduct").classList.add("show");$("clearModal").classList.remove("active");alertMsg("success","Selection cleared","Your VPS selection has been removed. Your cart is now empty — shop again whenever you're ready.")};
-$("placeOrderBtn").onclick=()=>{if(!$("planSelect").value){alertMsg("error","VPS plan required","Please select a VPS plan.");$("planSelect").focus();return}if(!$("locationSelect").value){alertMsg("error","Location required","Please select your server location.");$("locationSelect").focus();return}if(!validate()){alertMsg("error","Checkout incomplete","Please complete your billing details and select a payment method.");return}save();let b=$("placeOrderBtn");b.classList.add("loading");setTimeout(()=>{b.classList.remove("loading");alertMsg("success","Order Placed","Your order has been submitted successfully!")},2000)};
+document.querySelectorAll(".required-field").forEach(x => x.onblur = () => { if (x.value.trim()) clearValidation(x); });
+$("clearCartBtn").onclick = () => $("clearModal").classList.add("active");
+$("cancelClear").onclick = () => $("clearModal").classList.remove("active");
+$("clearModal").onclick = e => { if (e.target === $("clearModal")) $("clearModal").classList.remove("active"); };
+$("confirmClear").onclick = () => {
+  $("planSelect").value = "";
+  $("locationSelect").value = "";
+  quantity = 1;
+  updateAvailability();
+  update();
+  $("emptyProduct").classList.add("show");
+  $("clearModal").classList.remove("active");
+  alertMsg("success", "Selection cleared", "Your VPS selection has been removed. Your cart is now empty — shop again whenever you're ready.");
+};
+$("placeOrderBtn").onclick = () => {
+  if (!$("planSelect").value) {
+    alertMsg("error", "VPS plan required", "Please select a VPS plan.");
+    $("planSelect").focus();
+    return;
+  }
+  if (!$("locationSelect").value) {
+    alertMsg("error", "Location required", "Please select your server location.");
+    $("locationSelect").focus();
+    return;
+  }
+  if (!validate()) {
+    alertMsg("error", "Checkout incomplete", "Please complete your billing details and select a payment method.");
+    return;
+  }
+  save();
+  let b = $("placeOrderBtn");
+  b.classList.add("loading");
+  setTimeout(() => {
+    b.classList.remove("loading");
+    alertMsg("success", "Order Placed", "Your order has been submitted successfully!");
+  }, 2000);
+};
 loadSaved();
 </script>
 </body>
 </html>
-
-```
