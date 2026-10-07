@@ -22,8 +22,11 @@ body{
   overflow-x:hidden;
 }
 
-a{color:inherit}
+a{color:inherit; text-decoration:none;}
 
+/* =========================
+   HEADER & NAVBAR STYLES
+========================= */
 header{
   display:flex;
   justify-content:space-between;
@@ -50,6 +53,11 @@ header{
   object-fit:contain;
 }
 
+nav{
+  display:flex;
+  align-items:center;
+}
+
 nav a{
   color:#8b9bb4;
   text-decoration:none;
@@ -59,6 +67,11 @@ nav a{
 }
 
 nav a:hover{color:#fff}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+}
 
 .btn-blue{
   background:#1e90ff;
@@ -89,33 +102,6 @@ nav a:hover{color:#fff}
   display:inline-block;
   transition:.25s;
 }
-SIDEBAR
-========================= */
-
-.sidebar{
-position:fixed;
-top:0;
-left:-330px;
-width:310px;
-height:100vh;
-background:#080d18;
-border-right:1px solid #1e90ff;
-z-index:100;
-padding:25px;
-transition:.3s;
-box-shadow:10px 0 40px rgba(0,0,0,.5)
-}
-
-.sidebar.open{
-left:0
-}
-
-.side-head{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:45px
-}
 
 .btn-outline:hover{
   border-color:#1e90ff;
@@ -123,7 +109,7 @@ margin-bottom:45px
 }
 
 .menu-btn{
-  display:block;
+  display:none;
   background:transparent;
   border:1px solid #1e90ff;
   color:#1e90ff;
@@ -134,6 +120,99 @@ margin-bottom:45px
   cursor:pointer;
 }
 
+/* =========================
+   SIDEBAR STYLES
+========================= */
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-330px;
+  width:310px;
+  height:100vh;
+  background:#080d18;
+  border-right:1px solid #1e90ff;
+  z-index:100;
+  padding:25px;
+  transition:.3s;
+  box-shadow:10px 0 40px rgba(0,0,0,.5);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.sidebar.open{
+  left:0;
+}
+
+.side-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:30px;
+}
+
+.side-close{
+  background:transparent;
+  border:none;
+  color:#8b9bb4;
+  font-size:28px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.side-close:hover{ color:#fff; }
+
+.side-links{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  margin-bottom:auto;
+}
+
+.side-links a{
+  color:#8b9bb4;
+  font-size:15px;
+  font-weight:600;
+  transition:.2s;
+}
+
+.side-links a:hover{ color:#1e90ff; }
+
+.side-actions{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.side-actions .btn-outline{
+  margin-left:0;
+  text-align:center;
+}
+
+.side-actions .btn-blue{
+  text-align:center;
+}
+
+/* Overlay for Mobile Sidebar */
+.sidebar-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(4px);
+  z-index:99;
+  display:none;
+}
+
+.sidebar-overlay.active{
+  display:block;
+}
+
+/* =========================
+   HERO & MAIN CONFIG STYLES
+========================= */
 .hero{
   min-height:280px;
   padding:60px 5% 45px;
@@ -187,614 +266,4 @@ margin-bottom:45px
   height:7px;
   border-radius:50%;
   background:#1e90ff;
-  box-shadow:0 0 14px #1e90ff;
-}
-
-.hero h1{
-  font-size:clamp(36px,5vw,60px);
-  line-height:1.1;
-  margin-bottom:15px;
-}
-
-.hero h1 span{
-  color:#1e90ff;
-  text-shadow:0 0 30px rgba(30,144,255,.25);
-}
-
-.hero p{
-  max-width:720px;
-  margin:auto;
-  color:#8b9bb4;
-  line-height:1.7;
-  font-size:16px;
-}
-
-.detail-wrap{
-  padding:50px 5% 80px;
-}
-
-.main-container{
-  max-width:1100px;
-  margin:auto;
-}
-
-/* Section Titles */
-.section-title{
-  font-size:24px;
-  font-weight:700;
-  margin-bottom:20px;
-  color:#fff;
-}
-
-/* Config Grid Layout */
-.config-grid{
-  display:grid;
-  grid-template-columns:1fr 340px;
-  gap:30px;
-  align-items:start;
-}
-
-/* Left Panel */
-.config-left{
-  display:flex;
-  flex-direction:column;
-  gap:30px;
-}
-
-.card-box{
-  background:linear-gradient(180deg,#121a2e,#0a1020);
-  border:1px solid #1e293b;
-  border-radius:18px;
-  padding:28px;
-  box-shadow:0 15px 45px rgba(0,0,0,.25);
-  transition:all 0.3s ease;
-}
-
-/* Location Selection */
-.location-box label{
-  display:block;
-  font-size:14px;
-  color:#8b9bb4;
-  margin-bottom:12px;
-  font-weight:600;
-}
-
-.location-box label span{ color:#1e90ff; }
-
-.location-box select{
-  width:100%;
-  padding:14px 16px;
-  background:#0a1220;
-  border:1px solid #1e90ff;
-  border-radius:10px;
-  font-size:14px;
-  color:#fff;
-  outline:none;
-  cursor:pointer;
-  transition:.25s;
-}
-
-.location-box select:focus{
-  box-shadow:0 0 15px rgba(30,144,255,0.4);
-}
-
-/* Billing Cycle Section */
-.billing-cycles{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
-  gap:16px;
-}
-
-  .sidebar{
-width:85vw;
-max-width:310px
-}
-
-.cycle-card{
-  background:#0a1220;
-  border:1.5px solid #1c2b42;
-  border-radius:14px;
-  padding:20px;
-  cursor:pointer;
-  position:relative;
-  transition:all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.cycle-card:hover{
-  border-color:#1e90ff;
-  transform:translateY(-3px);
-  box-shadow:0 8px 25px rgba(30,144,255,0.15);
-}
-
-.cycle-card.active{
-  border-color:#1e90ff;
-  background:linear-gradient(180deg, rgba(30,144,255,0.12), rgba(10,18,32,0.9));
-  box-shadow:0 0 20px rgba(30,144,255,0.25);
-}
-
-.cycle-header{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.radio-dot{
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  border:2px solid #3a4d6d;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:0.2s;
-}
-
-.cycle-card.active .radio-dot{
-  border-color:#1e90ff;
-  background:#1e90ff;
-}
-
-.radio-dot::after{
-  content:"";
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#fff;
-  opacity:0;
-  transition:0.2s;
-}
-
-.cycle-card.active .radio-dot::after{
-  opacity:1;
-}
-
-.cycle-title{
-  font-size:15px;
-  font-weight:700;
-  color:#fff;
-}
-
-.cycle-price{
-  font-size:18px;
-  font-weight:800;
-  color:#1e90ff;
-  margin-left:28px;
-}
-
-.cycle-discount{
-  display:inline-block;
-  background:rgba(255, 64, 129, 0.15);
-  color:#ff4081;
-  border:1px solid rgba(255, 64, 129, 0.3);
-  font-size:11px;
-  font-weight:700;
-  padding:3px 8px;
-  border-radius:12px;
-  margin-left:28px;
-  width:fit-content;
-}
-
-.strike-price{
-  text-decoration:line-through;
-  color:#5a6d8a;
-  font-size:12px;
-  margin-left:6px;
-}
-
-/* Configuration Summary Card (Sticky Right Bar) */
-.summary-card{
-  background:linear-gradient(180deg, #180a3a, #0d071a);
-  border:1px solid #351a6d;
-  border-radius:20px;
-  padding:28px;
-  position:sticky;
-  top:90px;
-  box-shadow:0 20px 50px rgba(0, 0, 0, 0.4);
-  animation:fadeIn 0.5s ease-in-out;
-}
-
-.summary-card h3{
-  font-size:18px;
-  font-weight:700;
-  color:#fff;
-  margin-bottom:20px;
-  padding-bottom:12px;
-  border-bottom:1px solid rgba(255,255,255,0.1);
-}
-
-.summary-line{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:13px;
-  color:#aab8cb;
-  margin-bottom:15px;
-}
-
-.summary-line strong{
-  color:#fff;
-  font-weight:600;
-}
-
-.summary-divider{
-  height:1px;
-  background:rgba(255,255,255,0.1);
-  margin:20px 0;
-}
-
-.total-due-label{
-  font-size:12px;
-  color:#aab8cb;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  margin-bottom:8px;
-}
-
-.total-due-price{
-  font-size:42px;
-  font-weight:900;
-  color:#fff;
-  line-height:1;
-  transition:all 0.3s ease;
-}
-
-.total-due-currency{
-  font-size:22px;
-  font-weight:800;
-  color:#1e90ff;
-  margin-bottom:25px;
-}
-
-.continue-btn{
-  width:100%;
-  background:#1e90ff;
-  color:#fff;
-  border:none;
-  padding:15px;
-  font-size:16px;
-  font-weight:700;
-  border-radius:10px;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  transition:0.3s;
-  box-shadow:0 0 25px rgba(30,144,255,0.4);
-}
-
-.continue-btn:hover{
-  filter:brightness(1.15);
-  transform:translateY(-2px);
-  box-shadow:0 0 35px rgba(30,144,255,0.6);
-}
-
-/* Price Pulse Animation */
-.price-pop{
-  animation:popPrice 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes popPrice{
-  0%{ transform:scale(1); }
-  50%{ transform:scale(1.15); color:#1e90ff; }
-  100%{ transform:scale(1); }
-}
-
-@keyframes fadeIn{
-  from{ opacity:0; transform:translateY(10px); }
-  to{ opacity:1; transform:translateY(0); }
-}
-
-/* Responsive */
-@media(max-width:900px){
-  .config-grid{ grid-template-columns:1fr; }
-  .summary-card{ position:static; }
-}
-</style>
-</head>
-<body>
- <aside class="sidebar" id="sidebar">
-
-<div class="side-head">
-
-<a class="logo" href="index.html">
-<img src="images/logo.jpg" alt="Vertex Core">
-</a>
-
-<button class="side-close" id="closeMenu">×</button>
-
-</div>
-
-
-<div class="side-links">
-
-<a href="index.html">HOME</a>
-<a href="pricing.html">PRICING</a>
-<a href="locations.html">LOCATIONS</a>
-<a href="vps.html">VPS</a>
-<a href="support.html">SUPPORT</a>
-<a href="about.html">ABOUT US</a>
-<a href="contact.html">CONTACT US</a>
-
-</div>
-
-
-<div class="side-actions">
-
-<a href="order.html" class="btn-blue">
-Order Now
-</a>
-
-<a href="contact.html" class="btn-outline">
-Contact Us
-</a>
-
-</div>
-
-</aside>
-
-<header>
-  <button class="menu-btn" id="openMenu" aria-label="Open menu">
-☰
-</button>
-
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="vps.html">VPS</a>
-    <a href="support.html">Support</a>
-  </nav>
-  <div class="header-actions">
-    <a href="login.html" class="btn-outline">Login</a>
-    <a href="order.html" class="btn-blue">Get Started</a>
-  </div>
-</header>
-
-<main>
-  <section class="hero">
-    <div class="eyebrow">Vertex Core VPS</div>
-    <h1>Configure Your <span id="heroPlanTitle">VPS Plan</span></h1>
-    <p>Select your preferred location and billing cycle to continue with deployment.</p>
-  </section>
-
-  <section class="detail-wrap">
-    <div class="main-container">
-      <div class="config-grid">
-        
-        <!-- Left Side Options -->
-        <div class="config-left">
-          
-          <!-- Location Selection Box -->
-          <div class="card-box location-box">
-            <h2 class="section-title">1. Server Location</h2>
-            <label for="vpsLocation">Choose a VPS Location <span>*</span></label>
-            <select id="vpsLocation" onchange="updateCalculations()">
-              <optgroup label="Tier 1 Standard Locations ($15.00/mo base)">
-                <option value="Italy" selected>Italy</option>
-                <option value="Greece">Greece</option>
-                <option value="Norway">Norway</option>
-                <option value="Canada">Canada</option>
-                <option value="London">London (UK)</option>
-                <option value="Spain">Spain</option>
-                <option value="Manchester UK">Manchester (UK)</option>
-                <option value="Germany">Germany</option>
-                <option value="Sweden">Sweden</option>
-                <option value="France">France</option>
-                <option value="Austria">Austria</option>
-                <option value="Belgium">Belgium</option>
-                <option value="Hungary">Hungary</option>
-                <option value="Netherlands">Netherlands</option>
-                <option value="Ireland">Ireland</option>
-                <option value="Australia">Australia</option>
-              </optgroup>
-              <optgroup label="Middle East & Asia Tier ($20.00/mo base)">
-                <option value="KSA">Saudi Arabia (KSA)</option>
-                <option value="South Korea">South Korea</option>
-                <option value="Bangladesh">Bangladesh</option>
-                <option value="Bahrain">Bahrain</option>
-                <option value="Qatar">Qatar</option>
-                <option value="UAE">United Arab Emirates (UAE)</option>
-              </optgroup>
-            </select>
-          </div>
-
-          <!-- Billing Cycle Cards -->
-          <div class="card-box">
-            <h2 class="section-title">2. Choose Billing Cycle</h2>
-            <div class="billing-cycles">
-              
-              <div class="cycle-card active" data-cycle="monthly" onclick="selectCycle('monthly')">
-                <div class="cycle-header">
-                  <div class="radio-dot"></div>
-                  <span class="cycle-title">Monthly</span>
-                </div>
-                <div class="cycle-price" id="price-monthly">$15.00 USD</div>
-              </div>
-
-              <div class="cycle-card" data-cycle="quarterly" onclick="selectCycle('quarterly')">
-                <div class="cycle-header">
-                  <div class="radio-dot"></div>
-                  <span class="cycle-title">Quarterly</span>
-                </div>
-                <div class="cycle-price" id="price-quarterly">$45.00 USD</div>
-              </div>
-
-              <div class="cycle-card" data-cycle="semi-annually" onclick="selectCycle('semi-annually')">
-                <div class="cycle-header">
-                  <div class="radio-dot"></div>
-                  <span class="cycle-title">Semi-Annually</span>
-                </div>
-                <div class="cycle-price" id="price-semi">$90.00 USD</div>
-              </div>
-
-              <div class="cycle-card" data-cycle="annually" onclick="selectCycle('annually')">
-                <div class="cycle-header">
-                  <div class="radio-dot"></div>
-                  <span class="cycle-title">Annually</span>
-                </div>
-                <div class="cycle-price" id="price-annually">$150.00 USD</div>
-                <div class="cycle-discount" id="discount-tag">Save 17% <span class="strike-price" id="strike-price">$180.00 USD</span></div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Right Side Configuration Summary -->
-        <div class="summary-card">
-          <h3>Configuration Summary</h3>
-          
-          <div class="summary-line">
-            <span>Product:</span>
-            <strong id="summaryPlanName">VPS 2GB</strong>
-          </div>
-          
-          <div class="summary-line">
-            <span>Location:</span>
-            <strong id="summaryLocation">Italy</strong>
-          </div>
-
-          <div class="summary-line">
-            <span>Billing Cycle:</span>
-            <strong id="summaryCycle">Monthly</strong>
-          </div>
-
-          <div class="summary-line" style="margin-top:10px; font-size:12px;">
-            <span id="summaryRateDescription">VPS Promotional Rate</span>
-            <strong id="summaryRatePrice">$15.00 USD/mo</strong>
-          </div>
-
-          <div class="summary-divider"></div>
-
-          <div class="total-due-label">Configuration Total Due Today</div>
-          <div class="total-due-price">$<span id="summaryTotalPrice">15.00</span></div>
-          <div class="total-due-currency">USD</div>
-
-          <button class="continue-btn" onclick="proceedToCheckout()">
-            <span>➜ Continue</span>
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </section>
-</main>
-
-<script>
-/* Pricing Table from Provided Sheet Data */
-const pricingDatabase = {
-  // Tier 1 Countries
-  "Italy": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "Greece": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "Norway": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "Canada": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "London": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "Spain": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "Manchester UK": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "Germany": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "Sweden": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "France": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "Austria": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "Belgium": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "Hungary": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "Netherlands": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "Ireland": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-  "Australia": { "2gb": [15, 45, 90, 150], "4gb": [24, 72, 144, 240], "8gb": [38, 114, 228, 380] },
-
-  // Tier 2 Middle East / Asia
-  "KSA": { "2gb": [20, 60, 120, 240], "4gb": [35, 105, 210, 420], "8gb": [50, 150, 300, 600] },
-  "South Korea": { "2gb": [20, 60, 120, 240], "4gb": [35, 105, 210, 420], "8gb": [50, 150, 300, 600] },
-  "Bangladesh": { "2gb": [20, 60, 120, 240], "4gb": [35, 105, 210, 420], "8gb": [50, 150, 300, 600] },
-  "Bahrain": { "2gb": [20, 60, 120, 240], "4gb": [35, 105, 210, 420], "8gb": [50, 150, 300, 600] },
-  "Qatar": { "2gb": [20, 60, 120, 240], "4gb": [35, 105, 210, 420], "8gb": [50, 150, 300, 600] },
-  "UAE": { "2gb": [20, 60, 120, 240], "4gb": [35, 105, 210, 420], "8gb": [50, 150, 300, 600] }
-};
-
-const params = new URLSearchParams(window.location.search);
-let selectedPlanKey = params.get("plan") || "2gb";
-let selectedCycleKey = "monthly";
-
-function selectCycle(cycle){
-  selectedCycleKey = cycle;
-  document.querySelectorAll('.cycle-card').forEach(card => {
-    card.classList.remove('active');
-    if(card.getAttribute('data-cycle') === cycle){
-      card.classList.add('active');
-    }
-  });
-  updateCalculations();
-}
-
-function updateCalculations(){
-  const locationSelect = document.getElementById("vpsLocation");
-  const selectedLocation = locationSelect.value || "Italy";
-  
-  const planData = pricingDatabase[selectedLocation][selectedPlanKey] || pricingDatabase["Italy"]["2gb"];
-  
-  const monthlyP = planData[0];
-  const quarterlyP = planData[1];
-  const semiP = planData[2];
-  const annualP = planData[3];
-  
-  // Update Cycle Card Labels
-  document.getElementById("price-monthly").textContent = `$${monthlyP.toFixed(2)} USD`;
-  document.getElementById("price-quarterly").textContent = `$${quarterlyP.toFixed(2)} USD`;
-  document.getElementById("price-semi").textContent = `$${semiP.toFixed(2)} USD`;
-  document.getElementById("price-annually").textContent = `$${annualP.toFixed(2)} USD`;
-  
-  const strikeVal = (monthlyP * 12).toFixed(2);
-  document.getElementById("strike-price").textContent = `$${strikeVal} USD`;
-
-  // Determine Active Cycle Price
-  let activeTotal = monthlyP;
-  let cycleText = "Monthly";
-  let rateSuffix = "USD/mo";
-
-  if(selectedCycleKey === "quarterly"){
-    activeTotal = quarterlyP;
-    cycleText = "Quarterly";
-    rateSuffix = "USD/qtr";
-  } else if(selectedCycleKey === "semi-annually"){
-    activeTotal = semiP;
-    cycleText = "Semi-Annually";
-    rateSuffix = "USD/6mo";
-  } else if(selectedCycleKey === "annually"){
-    activeTotal = annualP;
-    cycleText = "Annually";
-    rateSuffix = "USD/yr";
-  }
-
-  // Update Summary Card
-  document.getElementById("summaryPlanName").textContent = `VPS ${selectedPlanKey.toUpperCase()}`;
-  document.getElementById("heroPlanTitle").textContent = `VPS ${selectedPlanKey.toUpperCase()}`;
-  document.getElementById("summaryLocation").textContent = selectedLocation;
-  document.getElementById("summaryCycle").textContent = cycleText;
-  document.getElementById("summaryRatePrice").textContent = `$${activeTotal.toFixed(2)} ${rateSuffix}`;
-  
-  const totalElem = document.getElementById("summaryTotalPrice");
-  totalElem.textContent = activeTotal.toFixed(2);
-  
-  // Animation on Price Change
-  totalElem.classList.remove("price-pop");
-  void totalElem.offsetWidth; 
-  totalElem.classList.add("price-pop");
-}
-
-function proceedToCheckout(){
-  const location = document.getElementById("vpsLocation").value;
-  const url = `order.html?plan=${encodeURIComponent(selectedPlanKey)}&cycle=${encodeURIComponent(selectedCycleKey)}&location=${encodeURIComponent(location)}`;
-  window.location.href = url;
-}
-
-// Initial setup
-window.onload = function(){
-  updateCalculations();
-};
-</script>
-</body>
-</html>
+  box-
