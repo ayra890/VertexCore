@@ -5,6 +5,94 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Vertex Core - Checkout</title>
 <style>
+  function save() {
+  let d = {
+    firstName: $("firstName").value.trim(),
+    lastName: $("lastName").value.trim(),
+    email: $("email").value.trim(),
+    phone: $("phone").value.trim(),
+    address: $("address").value.trim(),
+    city: $("city").value.trim(),
+    postal: $("postal").value.trim(),
+    mailingList: receiveEmails
+  };
+  localStorage.setItem("vertexCoreBilling", JSON.stringify(d));
+}
+
+function loadSaved() {
+  let raw = localStorage.getItem("vertexCoreBilling");
+  if (!raw) return;
+  try {
+    let d = JSON.parse(raw);
+    $("previousBillingText").textContent = `Saved for ${d.firstName || ""} ${d.lastName || ""} (${d.email || ""})`;
+    $("previousBilling").classList.add("show");
+    $("usePreviousBtn").onclick = () => {
+      if (d.firstName) $("firstName").value = d.firstName;
+      if (d.lastName) $("lastName").value = d.lastName;
+      if (d.email) $("email").value = d.email;
+      if (d.phone) $("phone").value = d.phone;
+      if (d.address) $("address").value = d.address;
+      if (d.city) $("city").value = d.city;
+      if (d.postal) $("postal").value = d.postal;
+      if (typeof d.mailingList === "boolean") {
+        receiveEmails = d.mailingList;
+        if (receiveEmails) {
+          switchBtn.classList.remove("off");
+          switchBtn.querySelector(".switch-knob").textContent = "ON";
+        } else {
+          switchBtn.classList.add("off");
+          switchBtn.querySelector(".switch-knob").textContent = "OFF";
+        }
+      }
+      ["firstName", "lastName", "email", "phone", "address", "city", "postal"].forEach(id => clearValidation($(id)));
+      alertMsg("success", "Details Restored", "Your billing details have been populated.");
+    };
+  } catch (e) {
+    console.error("Failed to parse billing details", e);
+  }
+}
+
+document.querySelectorAll(".required-field").forEach(x => x.onblur = () => { if (x.value.trim()) clearValidation(x); });
+$("clearCartBtn").onclick = () => $("clearModal").classList.add("active");
+$("cancelClear").onclick = () => $("clearModal").classList.remove("active");
+$("clearModal").onclick = e => { if (e.target === $("clearModal")) $("clearModal").classList.remove("active"); };
+$("confirmClear").onclick = () => {
+  $("planSelect").value = "";
+  $("locationSelect").value = "";
+  quantity = 1;
+  updateAvailability();
+  update();
+  $("emptyProduct").classList.add("show");
+  $("clearModal").classList.remove("active");
+  alertMsg("success", "Selection cleared", "Your VPS selection has been removed. Your cart is now empty — shop again whenever you're ready.");
+};
+$("placeOrderBtn").onclick = () => {
+  if (!$("planSelect").value) {
+    alertMsg("error", "VPS plan required", "Please select a VPS plan.");
+    $("planSelect").focus();
+    return;
+  }
+  if (!$("locationSelect").value) {
+    alertMsg("error", "Location required", "Please select your server location.");
+    $("locationSelect").focus();
+    return;
+  }
+  if (!validate()) {
+    alertMsg("error", "Checkout incomplete", "Please complete your billing details and select a payment method.");
+    return;
+  }
+  save();
+  let b = $("placeOrderBtn");
+  b.classList.add("loading");
+  setTimeout(() => {
+    b.classList.remove("loading");
+    alertMsg("success", "Order Placed", "Your order has been submitted successfully!");
+  }, 2000);
+};
+loadSaved();
+</script>
+</body>
+</html>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:Inter,Segoe UI,Arial,sans-serif;background:#060a14;color:#fff;min-height:100vh}
