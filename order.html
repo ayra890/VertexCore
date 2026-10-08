@@ -11,6 +11,11 @@ body{font-family:Inter,Segoe UI,Arial,sans-serif;background:#060a14;color:#fff;m
 a{text-decoration:none;color:inherit}
 button,input,select,textarea{font:inherit}
 :root{--blue:#1e90ff;--blue2:#1679d1;--panel:#0d1628;--border:#1e293b;--muted:#8b9bb4}
+  };
+try { sessionStorage.setItem('vertexCoreCurrentInvoice', JSON.stringify(order)); } catch(e) {}
+location.href='invoice.html?invoice='+encodeURIComponent(order.invoiceNumber);
+
+};
 
 header{height:76px;position:fixed;inset:0 0 auto;z-index:3000;display:flex;align-items:center;padding:0 30px;background:rgba(10,15,30,.94);border-bottom:1px solid var(--border);backdrop-filter:blur(18px)}
 .logo{display:flex;align-items:center}.logo img{width:185px;height:auto;display:block}
