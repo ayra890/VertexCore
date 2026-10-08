@@ -13,7 +13,7 @@ button,input,select,textarea{font:inherit}
 :root{--blue:#1e90ff;--blue2:#1679d1;--panel:#0d1628;--border:#1e293b;--muted:#8b9bb4}
 
 header{height:76px;position:fixed;inset:0 0 auto;z-index:3000;display:flex;align-items:center;padding:0 30px;background:rgba(10,15,30,.94);border-bottom:1px solid var(--border);backdrop-filter:blur(18px)}
-.logo{display:flex;align-items:center}.logo img{width:42px;height:42px;border-radius:8px;object-fit:cover}
+.logo{display:flex;align-items:center}.logo img{width:185px;height:auto;display:block}
 header nav{display:flex;gap:28px;margin-left:45px}
 header nav a{font-size:13px;font-weight:650;color:#8b9bb4;transition:.2s}
 header nav a:hover{color:#fff}
@@ -25,10 +25,10 @@ header nav a:hover{color:#fff}
 .header-actions .menu-btn{display:none}
 
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:3500;opacity:0;visibility:hidden;transition:.25s}
-.overlay.active{opacity:1;visibility:visible}
+.overlay.show{opacity:1;visibility:visible}
 
-.sidebar{position:fixed;top:0;right:-330px;width:310px;height:100vh;z-index:4000;padding:24px;background:#09111f;border-left:1px solid #24334b;box-shadow:-20px 0 60px #0007;transition:.3s;overflow:auto}
-.sidebar.active{right:0}
+.sidebar{position:fixed;top:0;left:-330px;width:310px;height:100vh;z-index:4000;padding:24px;background:#09111f;border-right:1px solid #24334b;box-shadow:20px 0 60px #0007;transition:.3s;overflow:auto}
+.sidebar.open{left:0}
 .side-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid var(--border)}
 .side-close{width:38px;height:38px;border:1px solid #263550;background:#101a2d;color:#fff;border-radius:8px;cursor:pointer;font-size:25px}
 .side-links{padding:24px 0}
@@ -70,6 +70,11 @@ label{display:block;margin-bottom:8px;color:#c8d2e1;font-size:11px;font-weight:7
 .invalid{border-color:#e44862!important}
 .validation{display:none;margin-top:6px;color:#ff7187;font-size:10px}
 .validation.show{display:block}
+.checkout-error-summary{display:none;background:#111a2d;border:1px solid #e44862;border-left:4px solid #e44862;border-radius:8px;padding:20px 22px;margin:0 0 20px;color:#c8d2e1;box-shadow:0 10px 30px #0002}
+.checkout-error-summary.show{display:block}
+.checkout-error-summary strong{display:block;margin-bottom:10px;color:#e8edf5;font-size:14px}
+.checkout-error-summary ul{margin:0;padding-left:20px;line-height:1.8;font-size:13px}
+
 
 .quantity-box{height:45px;display:grid;grid-template-columns:45px 1fr 45px;border:1px solid #263550;border-radius:9px;overflow:hidden;background:#080f1d}
 .quantity-btn{border:0;background:#0f192b;color:#c7d3e5;cursor:pointer;font-size:19px}
@@ -294,12 +299,12 @@ display:block;
 .modal-btn.danger{background:#e44862;border-color:#e44862}
 
 footer{border-top:1px solid var(--border);background:#070c17;padding:55px 30px 25px}
-.footer-grid{width:min(1180px,100%);margin:auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:35px}
+.footer-grid{width:min(1100px,100%);margin:auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:35px}
 .footer-brand p{color:#71819a;line-height:1.7;font-size:12px;max-width:300px;margin-top:13px}
 .footer-column h3{color:#fff;font-size:13px;margin-bottom:14px}
 footer a{display:block;color:#71819a;font-size:12px;margin-bottom:10px;transition:.2s}
 footer a:hover{color:var(--blue);transform:translateX(2px)}
-.footer-bottom{width:min(1180px,100%);margin:35px auto 0;padding-top:20px;border-top:1px solid var(--border);text-align:center;color:#596980;font-size:11px}
+.footer-bottom{width:min(1100px,100%);margin:35px auto 0;padding-top:20px;border-top:1px solid var(--border);text-align:center;color:#596980;font-size:11px}
 
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
 @keyframes fade{from{opacity:0}}
@@ -332,12 +337,10 @@ header{padding:0 17px}
 <body>
 
 <header>
-<button class="menu-btn" id="openMenu">☰</button>
-
+<button class="menu-btn" id="openMenu" aria-label="Open menu">☰</button>
 <a class="logo" href="index.html">
 <img src="images/logo.jpg" alt="Vertex Core">
 </a>
-
 <nav>
 <a href="index.html">Home</a>
 <a href="pricing.html">Pricing</a>
@@ -345,26 +348,19 @@ header{padding:0 17px}
 <a href="support.html">Support</a>
 <a href="blog.html">Blog</a>
 </nav>
-
 <div class="header-actions">
 <a href="login.html" class="login-link">Login</a>
 <a href="order.html" class="btn-blue">Get Started</a>
-<button class="menu-btn" id="desktopMenu">☰</button>
 </div>
 </header>
 
-<div class="overlay" id="overlay"></div>
-
 <aside class="sidebar" id="sidebar">
-
 <div class="side-head">
 <a class="logo" href="index.html">
 <img src="images/logo.jpg" alt="Vertex Core">
 </a>
-
-<button class="side-close" id="closeMenu">×</button>
+<button class="side-close" id="closeMenu" aria-label="Close menu">×</button>
 </div>
-
 <div class="side-links">
 <a href="index.html">HOME</a>
 <a href="pricing.html">PRICING</a>
@@ -374,13 +370,12 @@ header{padding:0 17px}
 <a href="about.html">ABOUT US</a>
 <a href="contact.html">CONTACT US</a>
 </div>
-
 <div class="side-actions">
 <a href="order.html" class="btn-blue">Order Now</a>
 <a href="contact.html" class="btn-outline">Contact Us</a>
 </div>
-
 </aside>
+<div class="overlay" id="overlay"></div>
 
 <div class="alert-container" id="alertContainer"></div>
 
@@ -400,6 +395,11 @@ enter your billing details, and choose your preferred payment method.
 </p>
 
 </section>
+
+<div class="checkout-error-summary" id="checkoutErrorSummary" role="alert" aria-live="assertive">
+<strong>Please correct the following errors before continuing:</strong>
+<ul id="checkoutErrorList"></ul>
+</div>
 
 <div class="checkout-grid">
 
@@ -1138,73 +1138,48 @@ Clear Selection
 
 
 <footer>
-
 <div class="footer-grid">
-
 <div class="footer-brand">
-
 <a class="logo" href="index.html">
 <img src="images/logo.jpg" alt="Vertex Core">
 </a>
-
 <p>
 Enterprise-grade Windows VPS infrastructure built for performance,
 secure access and reliable connectivity.
 </p>
-
 <p style="margin-top:12px">
-<a href="mailto:vertexcore95@gmail.com">
+<a href="mailto:vertexcore95@gmail.com" style="color:#8b9bb4;text-decoration:none">
 vertexcore95@gmail.com
 </a>
 </p>
-
 </div>
-
-
 <div class="footer-column">
-
 <h3>Company</h3>
-
 <a href="about.html">About Us</a>
 <a href="features.html">Services / Features</a>
 <a href="locations.html">Locations</a>
 <a href="vps.html">VPS</a>
 <a href="blog.html">Blog</a>
-
 </div>
-
-
 <div class="footer-column">
-
 <h3>Support</h3>
-
 <a href="support.html">Help &amp; Supports</a>
 <a href="docs.html">Documentation</a>
 <a href="dashboard.html">Customer Dashboard</a>
-
 </div>
-
-
 <div class="footer-column">
-
 <h3>Legal</h3>
-
 <a href="terms.html">Terms of Services</a>
 <a href="privacy.html">Privacy Policy</a>
 <a href="refund.html">Refund Policy</a>
 <a href="faqs.html">FAQs</a>
 <a href="contact.html">Contact Us</a>
 <a href="login.html">Login</a>
-
 </div>
-
 </div>
-
-
 <div class="footer-bottom">
 © 2026 Vertex Core - All plans include free backups - 99.95% uptime SLA - Cancel anytime - 24/7 Support
 </div>
-
 </footer>
 
 
@@ -1287,19 +1262,21 @@ const $=id=>document.getElementById(id);
 
 
 function openSidebar(){
-$("sidebar").classList.add("active");
-$("overlay").classList.add("active");
+$("sidebar").classList.add("open");
+$("overlay").classList.add("show");
 }
 
 function closeSidebar(){
-$("sidebar").classList.remove("active");
-$("overlay").classList.remove("active");
+$("sidebar").classList.remove("open");
+$("overlay").classList.remove("show");
 }
 
 $("openMenu").onclick=openSidebar;
-$("desktopMenu").onclick=openSidebar;
 $("closeMenu").onclick=closeSidebar;
 $("overlay").onclick=closeSidebar;
+document.querySelectorAll('.side-links a,.side-actions a').forEach(a=>{
+a.addEventListener('click',closeSidebar);
+});
 
 
 function alertMsg(type,title,msg){
@@ -1860,12 +1837,26 @@ alertMsg(
 };
 
 
+function showCheckoutErrorSummary(messages){
+const box=$("checkoutErrorSummary");
+const list=$("checkoutErrorList");
+list.innerHTML="";
+messages.forEach(message=>{
+const li=document.createElement("li");
+li.textContent=message;
+list.appendChild(li);
+});
+box.classList.toggle("show",messages.length>0);
+if(messages.length){box.scrollIntoView({behavior:"smooth",block:"start"});}
+}
+
 $("placeOrderBtn").onclick=()=>{
 
 /* VPS */
 
 if(!$("planSelect").value){
 
+showCheckoutErrorSummary(["Please select a VPS plan."]);
 alertMsg(
 "error",
 "VPS plan required",
@@ -1883,6 +1874,7 @@ return;
 
 if(!$("locationSelect").value){
 
+showCheckoutErrorSummary(["Please select your server location."]);
 alertMsg(
 "error",
 "Location required",
@@ -1898,19 +1890,56 @@ return;
 
 /* BILLING + PAYMENT + TERMS */
 
-if(!validate()){
+/*
+If the customer has saved billing details from a previous order,
+restore any fields they left blank before validating this checkout.
+Do not skip payment, terms, plan, location, or card validation.
+*/
+try{
+const savedBilling=localStorage.getItem("vertexCoreBilling");
+if(savedBilling){
+const savedData=JSON.parse(savedBilling);
+["firstName","lastName","email","phone","address","city","postal"].forEach(id=>{
+const field=$(id);
+if(field && !field.value.trim() && savedData[id]){
+field.value=savedData[id];
+clearValidation(field);
+}
+});
+if(!$("usernameDisplay").value.trim() || $("usernameDisplay").value==="N/A - username N/A"){
+const savedName=`${savedData.firstName||""} ${savedData.lastName||""}`.trim();
+if(savedName) $("usernameDisplay").value=savedName+" - saved account";
+}
+}
+}catch(error){
+/* Invalid saved data is ignored; normal validation will show errors. */
+}
 
+if(!validate()){
+const errors=[];
+["firstName","lastName","email","phone","address","city","postal"].forEach(id=>{
+const field=$(id);
+if(!field.value.trim()){
+const label=field.parentElement.querySelector("label")?.innerText.replace("*","").trim()||id;
+errors.push(label+" is required.");
+}
+});
+if($("email").value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("email").value.trim())) errors.push("Please enter a valid email address.");
+if(!document.querySelector('input[name="payment"]:checked')) errors.push("Please select a payment method.");
+if(document.querySelector('input[name="payment"]:checked') && !$("termsCheckbox").checked) errors.push("Please accept the Terms of Service.");
+if(document.querySelector('input[name="payment"]:checked')?.value==="Stripe Debit/Credit Card"){
+["cardName","cardNumber","cardExpiry","cardCvv"].forEach(id=>{if(!$(id).value.trim()) errors.push("Please complete all card details.");});
+}
+showCheckoutErrorSummary(errors.length?errors:["Please review the highlighted fields and correct the errors."]);
 alertMsg(
 "error",
 "Checkout incomplete",
-"Please complete your billing details, select a payment method, and accept the Terms of Service."
+"Please correct the errors shown on this page before continuing."
 );
-
 return;
-
 }
 
-
+showCheckoutErrorSummary([]);
 save();
 
 
