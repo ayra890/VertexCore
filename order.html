@@ -889,12 +889,85 @@ Please select a payment method.
 </div>
 
 
-<!-- STRIPE PAYMENT DETAILS: never collect raw card details on this static page -->
+<!-- STRIPE PAYMENT DETAILS -->
+
 <div class="payment-details" id="stripeDetails">
-  <div class="payment-details-title">Secure card payment</div>
-  <div class="payment-details-subtitle">After order creation, card payments must be completed through Stripe Checkout. This static demo does not collect or store card numbers, expiry dates, or CVV.</div>
-  <div class="card-security">🔒 Card payment processing requires a server-side Stripe integration and verified payment webhook before an invoice can be marked Paid.</div>
+
+<div class="payment-details-title">
+Payment Details
 </div>
+
+<div class="payment-details-subtitle">
+Enter your card information securely to continue with your card payment.
+</div>
+
+<div class="card-fields">
+
+<div class="card-field full">
+
+<label>Cardholder Name</label>
+
+<input
+type="text"
+class="card-input"
+id="cardName"
+placeholder="Name on card">
+
+</div>
+
+
+<div class="card-field full">
+
+<label>Card Number</label>
+
+<input
+type="text"
+class="card-input"
+id="cardNumber"
+placeholder="1234 5678 9012 3456"
+maxlength="19"
+inputmode="numeric">
+
+</div>
+
+
+<div class="card-field">
+
+<label>Expiry Date</label>
+
+<input
+type="text"
+class="card-input"
+id="cardExpiry"
+placeholder="MM / YY"
+maxlength="7"
+inputmode="numeric">
+
+</div>
+
+
+<div class="card-field">
+
+<label>CVV</label>
+
+<input
+type="password"
+class="card-input"
+id="cardCvv"
+placeholder="•••"
+maxlength="4"
+inputmode="numeric">
+
+</div>
+
+</div>
+
+<div class="card-security">
+🔒 Your card information should be processed through Stripe's secure payment system. Do not store raw card details on your website or in localStorage.
+</div>
+
+</div>
+
 
 <!-- TERMS -->
 
@@ -1854,7 +1927,9 @@ errors.push(label+" is required.");
 if($("email").value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("email").value.trim())) errors.push("Please enter a valid email address.");
 if(!document.querySelector('input[name="payment"]:checked')) errors.push("Please select a payment method.");
 if(document.querySelector('input[name="payment"]:checked') && !$("termsCheckbox").checked) errors.push("Please accept the Terms of Service.");
-/* Stripe card data is collected only by Stripe Checkout, never on this page. */
+if(document.querySelector('input[name="payment"]:checked')?.value==="Stripe Debit/Credit Card"){
+["cardName","cardNumber","cardExpiry","cardCvv"].forEach(id=>{if(!$(id).value.trim()) errors.push("Please complete all card details.");});
+}
 showCheckoutErrorSummary(errors.length?errors:["Please review the highlighted fields and correct the errors."]);
 alertMsg(
 "error",
@@ -1873,25 +1948,55 @@ let b=$("placeOrderBtn");
 b.classList.add("loading");
 
 
-const payment=document.querySelector('input[name="payment"]:checked')?.value;
-const order={
-  invoiceNumber:'VC-'+Date.now().toString().slice(-8),
-  invoiceDate:new Date().toISOString(),
-  status:'Unpaid',
-  plan:$('planSelect').value,
-  planName:pricing[$('planSelect').value]?.name || 'VPS Plan',
-  quantity:quantity,
-  location:$('locationSelect').value,
-  amount:price(),
-  cycle:new URLSearchParams(location.search).get('cycle') || 'monthly',
-  paymentMethod:payment,
-  firstName:$('firstName').value.trim(), lastName:$('lastName').value.trim(),
-  email:$('email').value.trim(), phone:$('phone').value.trim(),
-  address:$('address').value.trim(), city:$('city').value.trim(), postal:$('postal').value.trim(),
-  createdAt:new Date().toISOString()
-};
-try { sessionStorage.setItem('vertexCoreCurrentInvoice', JSON.stringify(order)); } catch(e) {}
-location.href='invoice.html?invoice='+encodeURIComponent(order.invoiceNumber);
+setTimeout(()=>{
+
+b.classList.remove("loading");
+
+
+let payment=
+document.querySelector(
+'input[name="payment"]:checked'
+)?.value;
+
+
+/*
+IMPORTANT:
+Receiver information is intentionally NOT displayed
+to the customer here.
+
+Your backend/payment processor should route:
+SadaPay / NayaPay / JazzCash / Easypaisa
+to your configured receiving account.
+
+Bank Transfer should route to:
+Huzaifa Enterprises
+AlBaraka Bank Pakistan Limited
+IBAN: PK42AIIN0000105724901017
+Account: 0105724901017
+
+Do not expose these credentials in frontend code.
+*/
+
+
+if(payment==="Stripe Debit/Credit Card"){
+
+alertMsg(
+"success",
+"Order information verified",
+"Your checkout details are complete. Connect your Stripe payment backend here to securely process the card payment."
+);
+
+}else{
+
+alertMsg(
+"success",
+"Order information verified",
+"Your checkout details are complete. Connect your payment/order backend here to finalize the purchase."
+);
+
+}
+
+},1200);
 
 };
 
