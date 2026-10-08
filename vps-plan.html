@@ -1265,6 +1265,29 @@ Login
 
 
 <script>
+/* Navbar sidebar controls */
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+const openMenuButton = document.getElementById('openMenu');
+const closeMenuButton = document.getElementById('closeMenu');
+
+function openSide(){
+  if (sidebar) sidebar.classList.add('open');
+  if (overlay) overlay.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeSide(){
+  if (sidebar) sidebar.classList.remove('open');
+  if (overlay) overlay.classList.remove('show');
+  document.body.style.overflow = '';
+}
+if (openMenuButton) openMenuButton.addEventListener('click', openSide);
+if (closeMenuButton) closeMenuButton.addEventListener('click', closeSide);
+if (overlay) overlay.addEventListener('click', closeSide);
+document.querySelectorAll('.side-links a, .side-actions a').forEach(link => {
+  link.addEventListener('click', closeSide);
+});
+
 /* Pricing Database */
 const pricingDatabase = {
   // Tier 1 Countries
