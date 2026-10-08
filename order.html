@@ -1947,60 +1947,11 @@ return;
 showCheckoutErrorSummary([]);
 save();
 
-
-let b=$("placeOrderBtn");
-
+const b=$("placeOrderBtn");
 b.classList.add("loading");
 
-
 setTimeout(()=>{
-
-b.classList.remove("loading");
-
-
-let payment=
-document.querySelector(
-'input[name="payment"]:checked'
-)?.value;
-
-
-/*
-IMPORTANT:
-Receiver information is intentionally NOT displayed
-to the customer here.
-
-Your backend/payment processor should route:
-SadaPay / NayaPay / JazzCash / Easypaisa
-to your configured receiving account.
-
-Bank Transfer should route to:
-Huzaifa Enterprises
-AlBaraka Bank Pakistan Limited
-IBAN: PK42AIIN0000105724901017
-Account: 0105724901017
-
-Do not expose these credentials in frontend code.
-*/
-
-
-if(payment==="Stripe Debit/Credit Card"){
-
-alertMsg(
-"success",
-"Order information verified",
-"Your checkout details are complete. Connect your Stripe payment backend here to securely process the card payment."
-);
-
-}else{
-
-alertMsg(
-"success",
-"Order information verified",
-"Your checkout details are complete. Connect your payment/order backend here to finalize the purchase."
-);
-
-}
-
+  window.location.href = "invoice.html";
 },1200);
 
 };
