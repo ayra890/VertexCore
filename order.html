@@ -11,14 +11,9 @@ body{font-family:Inter,Segoe UI,Arial,sans-serif;background:#060a14;color:#fff;m
 a{text-decoration:none;color:inherit}
 button,input,select,textarea{font:inherit}
 :root{--blue:#1e90ff;--blue2:#1679d1;--panel:#0d1628;--border:#1e293b;--muted:#8b9bb4}
-  };
-try { sessionStorage.setItem('vertexCoreCurrentInvoice', JSON.stringify(order)); } catch(e) {}
-location.href='invoice.html?invoice='+encodeURIComponent(order.invoiceNumber);
-
-};
 
 header{height:76px;position:fixed;inset:0 0 auto;z-index:3000;display:flex;align-items:center;padding:0 30px;background:rgba(10,15,30,.94);border-bottom:1px solid var(--border);backdrop-filter:blur(18px)}
-.logo{display:flex;align-items:center}.logo img{width:185px;height:auto;display:block}
+.logo{display:flex;align-items:center}.logo img{width:42px;height:42px;border-radius:8px;object-fit:cover}
 header nav{display:flex;gap:28px;margin-left:45px}
 header nav a{font-size:13px;font-weight:650;color:#8b9bb4;transition:.2s}
 header nav a:hover{color:#fff}
@@ -30,10 +25,10 @@ header nav a:hover{color:#fff}
 .header-actions .menu-btn{display:none}
 
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:3500;opacity:0;visibility:hidden;transition:.25s}
-.overlay.show{opacity:1;visibility:visible}
+.overlay.active{opacity:1;visibility:visible}
 
-.sidebar{position:fixed;top:0;left:-330px;width:310px;height:100vh;z-index:4000;padding:24px;background:#09111f;border-right:1px solid #24334b;box-shadow:20px 0 60px #0007;transition:.3s;overflow:auto}
-.sidebar.open{left:0}
+.sidebar{position:fixed;top:0;right:-330px;width:310px;height:100vh;z-index:4000;padding:24px;background:#09111f;border-left:1px solid #24334b;box-shadow:-20px 0 60px #0007;transition:.3s;overflow:auto}
+.sidebar.active{right:0}
 .side-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid var(--border)}
 .side-close{width:38px;height:38px;border:1px solid #263550;background:#101a2d;color:#fff;border-radius:8px;cursor:pointer;font-size:25px}
 .side-links{padding:24px 0}
@@ -75,11 +70,6 @@ label{display:block;margin-bottom:8px;color:#c8d2e1;font-size:11px;font-weight:7
 .invalid{border-color:#e44862!important}
 .validation{display:none;margin-top:6px;color:#ff7187;font-size:10px}
 .validation.show{display:block}
-.checkout-error-summary{display:none;background:#111a2d;border:1px solid #e44862;border-left:4px solid #e44862;border-radius:8px;padding:20px 22px;margin:0 0 20px;color:#c8d2e1;box-shadow:0 10px 30px #0002}
-.checkout-error-summary.show{display:block}
-.checkout-error-summary strong{display:block;margin-bottom:10px;color:#e8edf5;font-size:14px}
-.checkout-error-summary ul{margin:0;padding-left:20px;line-height:1.8;font-size:13px}
-
 
 .quantity-box{height:45px;display:grid;grid-template-columns:45px 1fr 45px;border:1px solid #263550;border-radius:9px;overflow:hidden;background:#080f1d}
 .quantity-btn{border:0;background:#0f192b;color:#c7d3e5;cursor:pointer;font-size:19px}
@@ -304,12 +294,12 @@ display:block;
 .modal-btn.danger{background:#e44862;border-color:#e44862}
 
 footer{border-top:1px solid var(--border);background:#070c17;padding:55px 30px 25px}
-.footer-grid{width:min(1100px,100%);margin:auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:35px}
+.footer-grid{width:min(1180px,100%);margin:auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:35px}
 .footer-brand p{color:#71819a;line-height:1.7;font-size:12px;max-width:300px;margin-top:13px}
 .footer-column h3{color:#fff;font-size:13px;margin-bottom:14px}
 footer a{display:block;color:#71819a;font-size:12px;margin-bottom:10px;transition:.2s}
 footer a:hover{color:var(--blue);transform:translateX(2px)}
-.footer-bottom{width:min(1100px,100%);margin:35px auto 0;padding-top:20px;border-top:1px solid var(--border);text-align:center;color:#596980;font-size:11px}
+.footer-bottom{width:min(1180px,100%);margin:35px auto 0;padding-top:20px;border-top:1px solid var(--border);text-align:center;color:#596980;font-size:11px}
 
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
 @keyframes fade{from{opacity:0}}
@@ -336,34 +326,49 @@ header{padding:0 17px}
 .previous-billing,.account-box{align-items:flex-start;flex-direction:column}
 .small-btn,.google-btn{width:100%}
 }
+
+/* About Us page shared header, sidebar and footer */
+header{height:auto;min-height:74px;position:sticky;top:0;z-index:50;padding:15px 5%;}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{width:185px;height:auto;display:block;object-fit:contain;border-radius:0}
+header nav{margin-left:0;gap:0}
+header nav a{color:#8b9bb4;text-decoration:none;margin:0 12px;font-size:14px;font-weight:400}
+.header-actions{margin-left:0;gap:0}
+.btn-blue{padding:10px 20px;border-radius:8px;font-size:12px}
+.menu-btn{display:block;background:transparent;border:1px solid #1e90ff;color:#1e90ff;width:44px;height:44px;border-radius:10px;font-size:25px}
+.sidebar{left:-330px;right:auto;width:310px;height:100vh;background:#080d18;border-right:1px solid #1e90ff;border-left:0;z-index:100;padding:25px;box-shadow:10px 0 40px rgba(0,0,0,.5)}
+.sidebar.open{left:0;right:auto}
+.sidebar.active{right:-330px;left:auto}
+.sidebar.open.active{left:0;right:auto}
+.side-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:35px;padding-bottom:0;border-bottom:0}
+.side-close{width:38px;height:38px;border-radius:50%;background:#0c1525;border:1px solid #27405f;color:#1e90ff;font-size:23px}
+.side-links{display:grid;gap:7px;padding:0}
+.side-links a{padding:14px;color:#aab8cb;text-decoration:none;border-radius:9px;font-size:12px;font-weight:400}
+.side-links a:hover{background:#0d1a2d;color:#fff}
+.side-actions{display:grid;gap:12px;margin-top:25px;padding-top:0;border-top:0}
+.side-actions a{margin:0;text-align:center;width:100%}
+.overlay{z-index:90;display:none;opacity:1;visibility:visible;transition:none}
+.overlay.show{display:block}
+footer{padding:40px 5% 15px;background:#080e1b;border-top:1px solid #121a2e;color:#8b9bb4}
+.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:35px;max-width:1100px;width:100%;margin:0 auto 18px;align-items:start}
+.footer-brand{max-width:280px}
+.footer-brand .logo img{width:185px;height:auto;margin-bottom:15px}
+.footer-brand p{color:#70829e;font-size:13px;line-height:1.7}
+.footer-column h3{font-size:16px;color:#fff;margin-bottom:14px;white-space:nowrap}
+.footer-column a{display:block;color:#8b9bb4;text-decoration:none;font-size:13px;margin:0 0 9px;transition:.2s;white-space:nowrap}
+.footer-column a:hover{color:#1e90ff}
+.footer-bottom{text-align:center;padding-top:15px;border-top:1px solid #121a2e;color:#5a6d8a;font-size:12px;line-height:1.8;width:100%;margin:0 auto}
+@media(max-width:900px){header nav{display:none}.header-actions{display:none}.menu-btn{display:block}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){header{padding:12px 5%}.logo img{width:165px}.footer-grid{grid-template-columns:1fr 1fr;gap:30px}.footer-brand{grid-column:1/-1;max-width:none}.footer-brand .logo img{width:165px}.footer-column a{white-space:normal}.sidebar{width:85vw;max-width:310px}}
+
 </style>
 </head>
 
 <body>
 
-<header>
-<button class="menu-btn" id="openMenu" aria-label="Open menu">☰</button>
-<a class="logo" href="index.html">
-<img src="images/logo.jpg" alt="Vertex Core">
-</a>
-<nav>
-<a href="index.html">Home</a>
-<a href="pricing.html">Pricing</a>
-<a href="vps.html">VPS</a>
-<a href="support.html">Support</a>
-<a href="blog.html">Blog</a>
-</nav>
-<div class="header-actions">
-<a href="login.html" class="login-link">Login</a>
-<a href="order.html" class="btn-blue">Get Started</a>
-</div>
-</header>
-
 <aside class="sidebar" id="sidebar">
 <div class="side-head">
-<a class="logo" href="index.html">
-<img src="images/logo.jpg" alt="Vertex Core">
-</a>
+<a class="logo" href="index.html"><img src="images/logo.jpg" alt="Vertex Core"></a>
 <button class="side-close" id="closeMenu" aria-label="Close menu">×</button>
 </div>
 <div class="side-links">
@@ -381,6 +386,14 @@ header{padding:0 17px}
 </div>
 </aside>
 <div class="overlay" id="overlay"></div>
+<header>
+<button class="menu-btn" id="openMenu" aria-label="Open menu">☰</button>
+<a class="logo" href="index.html"><img src="images/logo.jpg" alt="Vertex Core"></a>
+<nav>
+<a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="vps.html">VPS</a><a href="support.html">Support</a><a href="blog.html">Blog</a>
+</nav>
+<div class="header-actions"><a href="login.html" class="login-link">Login</a><a href="order.html" class="btn-blue">Get Started</a></div>
+</header>
 
 <div class="alert-container" id="alertContainer"></div>
 
@@ -400,11 +413,6 @@ enter your billing details, and choose your preferred payment method.
 </p>
 
 </section>
-
-<div class="checkout-error-summary" id="checkoutErrorSummary" role="alert" aria-live="assertive">
-<strong>Please correct the following errors before continuing:</strong>
-<ul id="checkoutErrorList"></ul>
-</div>
 
 <div class="checkout-grid">
 
@@ -1145,46 +1153,15 @@ Clear Selection
 <footer>
 <div class="footer-grid">
 <div class="footer-brand">
-<a class="logo" href="index.html">
-<img src="images/logo.jpg" alt="Vertex Core">
-</a>
-<p>
-Enterprise-grade Windows VPS infrastructure built for performance,
-secure access and reliable connectivity.
-</p>
-<p style="margin-top:12px">
-<a href="mailto:vertexcore95@gmail.com" style="color:#8b9bb4;text-decoration:none">
-vertexcore95@gmail.com
-</a>
-</p>
+<a class="logo" href="index.html"><img src="images/logo.jpg" alt="Vertex Core"></a>
+<p>Enterprise-grade Windows VPS infrastructure built for performance, secure access and reliable connectivity.</p>
+<p style="margin-top:12px"><a href="mailto:vertexcore95@gmail.com" style="color:#8b9bb4;text-decoration:none">vertexcore95@gmail.com</a></p>
 </div>
-<div class="footer-column">
-<h3>Company</h3>
-<a href="about.html">About Us</a>
-<a href="features.html">Services / Features</a>
-<a href="locations.html">Locations</a>
-<a href="vps.html">VPS</a>
-<a href="blog.html">Blog</a>
+<div class="footer-column"><h3>Company</h3><a href="about.html">About Us</a><a href="features.html">Services / Features</a><a href="locations.html">Locations</a><a href="vps.html">VPS</a><a href="blog.html">Blog</a></div>
+<div class="footer-column"><h3>Support</h3><a href="support.html">Help &amp; Supports</a><a href="docs.html">Documentation</a><a href="dashboard.html">Customer Dashboard</a></div>
+<div class="footer-column"><h3>Legal</h3><a href="terms.html">Terms of Services</a><a href="privacy.html">Privacy Policy</a><a href="refund.html">Refund Policy</a><a href="faqs.html">FAQs</a><a href="contact.html">Contact Us</a><a href="login.html">Login</a></div>
 </div>
-<div class="footer-column">
-<h3>Support</h3>
-<a href="support.html">Help &amp; Supports</a>
-<a href="docs.html">Documentation</a>
-<a href="dashboard.html">Customer Dashboard</a>
-</div>
-<div class="footer-column">
-<h3>Legal</h3>
-<a href="terms.html">Terms of Services</a>
-<a href="privacy.html">Privacy Policy</a>
-<a href="refund.html">Refund Policy</a>
-<a href="faqs.html">FAQs</a>
-<a href="contact.html">Contact Us</a>
-<a href="login.html">Login</a>
-</div>
-</div>
-<div class="footer-bottom">
-© 2026 Vertex Core - All plans include free backups - 99.95% uptime SLA - Cancel anytime - 24/7 Support
-</div>
+<div class="footer-bottom">© 2026 Vertex Core - All plans include free backups - 99.95% uptime SLA - Cancel anytime - 24/7 Support</div>
 </footer>
 
 
@@ -1218,7 +1195,17 @@ Confirm &amp; Clear
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+
+/* EMAILJS SETUP: replace these 3 placeholders with your EmailJS values.
+   Configure one business-order template and one customer-confirmation template. */
+const EMAILJS_PUBLIC_KEY = "YOUR_EMAILJS_PUBLIC_KEY";
+const EMAILJS_SERVICE_ID = "YOUR_EMAILJS_SERVICE_ID";
+const BUSINESS_TEMPLATE_ID = "YOUR_BUSINESS_ORDER_TEMPLATE_ID";
+const CUSTOMER_TEMPLATE_ID = "YOUR_CUSTOMER_CONFIRMATION_TEMPLATE_ID";
+let emailServiceReady = false;
+try { if (window.emailjs && !EMAILJS_PUBLIC_KEY.startsWith("YOUR_")) { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); emailServiceReady = true; } } catch(e) { console.error(e); }
 
 const pricing={
 
@@ -1279,9 +1266,7 @@ $("overlay").classList.remove("show");
 $("openMenu").onclick=openSidebar;
 $("closeMenu").onclick=closeSidebar;
 $("overlay").onclick=closeSidebar;
-document.querySelectorAll('.side-links a,.side-actions a').forEach(a=>{
-a.addEventListener('click',closeSidebar);
-});
+document.querySelectorAll('.side-links a,.side-actions a').forEach(a=>a.addEventListener('click',closeSidebar));
 
 
 function alertMsg(type,title,msg){
@@ -1842,120 +1827,41 @@ alertMsg(
 };
 
 
-function showCheckoutErrorSummary(messages){
-const box=$("checkoutErrorSummary");
-const list=$("checkoutErrorList");
-list.innerHTML="";
-messages.forEach(message=>{
-const li=document.createElement("li");
-li.textContent=message;
-list.appendChild(li);
-});
-box.classList.toggle("show",messages.length>0);
-if(messages.length){box.scrollIntoView({behavior:"smooth",block:"start"});}
+$("placeOrderBtn").onclick=async()=>{
+if(!$ ("planSelect").value){
+ alertMsg("error","VPS plan required","Please select a VPS plan."); $("planSelect").focus(); return;
 }
-
-$("placeOrderBtn").onclick=()=>{
-
-/* VPS */
-
-if(!$("planSelect").value){
-
-showCheckoutErrorSummary(["Please select a VPS plan."]);
-alertMsg(
-"error",
-"VPS plan required",
-"Please select a VPS plan."
-);
-
-$("planSelect").focus();
-
-return;
-
+if(!$ ("locationSelect").value){
+ alertMsg("error","Location required","Please select your server location."); $("locationSelect").focus(); return;
 }
-
-
-/* LOCATION */
-
-if(!$("locationSelect").value){
-
-showCheckoutErrorSummary(["Please select your server location."]);
-alertMsg(
-"error",
-"Location required",
-"Please select your server location."
-);
-
-$("locationSelect").focus();
-
-return;
-
-}
-
-
-/* BILLING + PAYMENT + TERMS */
-
-/*
-If the customer has saved billing details from a previous order,
-restore any fields they left blank before validating this checkout.
-Do not skip payment, terms, plan, location, or card validation.
-*/
-try{
-const savedBilling=localStorage.getItem("vertexCoreBilling");
-if(savedBilling){
-const savedData=JSON.parse(savedBilling);
-["firstName","lastName","email","phone","address","city","postal"].forEach(id=>{
-const field=$(id);
-if(field && !field.value.trim() && savedData[id]){
-field.value=savedData[id];
-clearValidation(field);
-}
-});
-if(!$("usernameDisplay").value.trim() || $("usernameDisplay").value==="N/A - username N/A"){
-const savedName=`${savedData.firstName||""} ${savedData.lastName||""}`.trim();
-if(savedName) $("usernameDisplay").value=savedName+" - saved account";
-}
-}
-}catch(error){
-/* Invalid saved data is ignored; normal validation will show errors. */
-}
-
 if(!validate()){
-const errors=[];
-["firstName","lastName","email","phone","address","city","postal"].forEach(id=>{
-const field=$(id);
-if(!field.value.trim()){
-const label=field.parentElement.querySelector("label")?.innerText.replace("*","").trim()||id;
-errors.push(label+" is required.");
+ alertMsg("error","Checkout incomplete","Please correct the highlighted fields, select a payment method, and accept the Terms of Service. No email has been sent."); return;
 }
-});
-if($("email").value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("email").value.trim())) errors.push("Please enter a valid email address.");
-if(!document.querySelector('input[name="payment"]:checked')) errors.push("Please select a payment method.");
-if(document.querySelector('input[name="payment"]:checked') && !$("termsCheckbox").checked) errors.push("Please accept the Terms of Service.");
-if(document.querySelector('input[name="payment"]:checked')?.value==="Stripe Debit/Credit Card"){
-["cardName","cardNumber","cardExpiry","cardCvv"].forEach(id=>{if(!$(id).value.trim()) errors.push("Please complete all card details.");});
+if(!emailServiceReady){
+ alertMsg("error","Email service not configured","Your form is valid, but email is not set up yet. Add your EmailJS Public Key, Service ID, and both Template IDs in this file before accepting orders."); return;
 }
-showCheckoutErrorSummary(errors.length?errors:["Please review the highlighted fields and correct the errors."]);
-alertMsg(
-"error",
-"Checkout incomplete",
-"Please correct the errors shown on this page before continuing."
-);
-return;
-}
-
-showCheckoutErrorSummary([]);
 save();
-
 const b=$("placeOrderBtn");
-b.classList.add("loading");
-
-setTimeout(()=>{
-  window.location.href = "invoice.html";
-},1200);
-
+b.classList.add("loading"); b.disabled=true;
+const selectedPayment=document.querySelector('input[name="payment"]:checked')?.value || "Not selected";
+const customerName=($("firstName").value.trim()+" "+$("lastName").value.trim()).trim();
+const orderData={
+ to_email: $("email").value.trim(), customer_name: customerName,
+ customer_email: $("email").value.trim(), customer_phone: $("phone").value.trim(),
+ customer_address: $("address").value.trim(), customer_city: $("city").value.trim(), customer_postal: $("postal").value.trim(),
+ plan_name: pricing[$("planSelect").value]?.name || $("planSelect").value,
+ server_location: $("locationSelect").value, quantity: String(quantity), total_price: $("summaryTotal").textContent,
+ payment_method: selectedPayment, order_date: new Date().toLocaleString(), business_email: "vertexcore95@gmail.com"
 };
-
+try {
+ await emailjs.send(EMAILJS_SERVICE_ID, BUSINESS_TEMPLATE_ID, {...orderData, to_email:"vertexcore95@gmail.com", email_type:"New order details"});
+ await emailjs.send(EMAILJS_SERVICE_ID, CUSTOMER_TEMPLATE_ID, {...orderData, to_email:orderData.customer_email, email_type:"Order received"});
+ alertMsg("success","Order request emailed","Your order details have been emailed to Vertex Core and a confirmation message has been sent to your email address. This confirms receipt of the request, not payment or VPS activation.");
+} catch(error) {
+ console.error("EmailJS send error:",error);
+ alertMsg("error","Email could not be sent","The form is valid, but the email service failed. Please try again later or contact vertexcore95@gmail.com. No order confirmation is claimed.");
+} finally { b.classList.remove("loading"); b.disabled=false; }
+};
 
 function init(){
 
