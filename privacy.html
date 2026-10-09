@@ -6,301 +6,503 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Privacy Policy | Vertex Core</title>
-<meta name="description" content="Learn how Vertex Core collects, uses, protects, and manages your personal information when you use our VPS hosting services.">
-<meta name="robots" content="index, follow">
+<meta name="description" content="Learn how Vertex Core handles personal information, website usage, and privacy when you use our VPS services.">
 
 <style>
-:root {
-    --bg: #060a14;
-    --bg2: #0a1020;
-    --card: #0d1527;
-    --blue: #3b82f6;
-    --cyan: #38bdf8;
-    --text: #f1f5f9;
-    --muted: #9aa9bf;
-    --border: rgba(148,163,184,.16);
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
 }
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 105px;
+    scroll-padding-top: 100px;
 }
 
 body {
-    font-family: Inter, "Segoe UI", Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.75;
+    background: #060a14;
+    color: #fff;
     overflow-x: hidden;
+    line-height: 1.7;
 }
 
 a {
     color: inherit;
-    text-decoration: none;
 }
 
 button {
     font: inherit;
 }
 
-/* NAVBAR */
-.navbar {
+/* =========================
+   HEADER / NAVBAR
+========================= */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 5%;
+    background: rgba(10,15,30,.94);
+    border-bottom: 1px solid #1a233a;
     position: sticky;
     top: 0;
-    z-index: 1000;
-    min-height: 76px;
-    padding: 0 7%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 25px;
-    background: rgba(6,10,20,.88);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(18px);
+    z-index: 50;
+    backdrop-filter: blur(12px);
 }
 
 .logo {
-    font-size: 23px;
-    font-weight: 800;
-    letter-spacing: -.7px;
-    white-space: nowrap;
-}
-
-.logo span {
-    color: var(--cyan);
-}
-
-.nav-links {
     display: flex;
     align-items: center;
-    gap: 27px;
+    text-decoration: none;
+    flex-shrink: 0;
 }
 
-.nav-links a {
+.logo img {
+    width: 185px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+nav a {
+    color: #8b9bb4;
+    text-decoration: none;
+    margin: 0 10px;
     font-size: 13px;
-    color: #c3cede;
-    transition: color .25s ease;
+    transition: color .25s;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-    color: var(--cyan);
+nav a:hover,
+nav a.active {
+    color: #1e90ff;
 }
 
-.nav-cta {
-    padding: 10px 17px;
-    background: linear-gradient(120deg,#2563eb,#0891b2);
-    color: white !important;
-    border-radius: 7px;
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.login-link {
+    color: #8b9bb4;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.login-link:hover {
+    color: #fff;
+}
+
+.btn-blue {
+    background: #1e90ff;
+    color: #fff;
+    padding: 10px 19px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 0 20px rgba(30,144,255,.25);
+    border: none;
+    display: inline-block;
+    transition: .25s;
+}
+
+.btn-blue:hover {
+    background: #0878e8;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    border: 1px solid #1a233a;
+    padding: 10px 19px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #8b9bb4;
+    display: inline-block;
+    transition: .25s;
+}
+
+.btn-outline:hover {
+    border-color: #1e90ff;
+    color: #fff;
 }
 
 .menu-btn {
-    display: none;
-    color: white;
+    display: block;
+    flex-shrink: 0;
     background: transparent;
-    border: 1px solid var(--border);
-    padding: 7px 12px;
-    border-radius: 7px;
+    border: 1px solid #1e90ff;
+    color: #1e90ff;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.menu-btn:hover {
+    background: rgba(30,144,255,.1);
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -330px;
+    width: 310px;
+    max-width: 85vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow-y: auto;
+    background: #080d18;
+    border-right: 1px solid #1e90ff;
+    z-index: 100;
+    padding: 25px;
+    transition: left .35s ease;
+    box-shadow: 10px 0 40px rgba(0,0,0,.5);
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.side-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.side-head .logo img {
+    width: 175px;
+}
+
+.side-close {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #0c1525;
+    border: 1px solid #27405f;
+    color: #1e90ff;
+    font-size: 23px;
     cursor: pointer;
 }
 
-/* HERO */
-.hero {
-    position: relative;
-    overflow: hidden;
-    padding: 100px 20px 86px;
-    text-align: center;
-    background:
-        radial-gradient(ellipse at 50% 0%,rgba(37,99,235,.2),transparent 60%),
-        linear-gradient(180deg,#0a1225 0%,var(--bg) 100%);
-    border-bottom: 1px solid var(--border);
+.side-links {
+    display: grid;
+    gap: 7px;
 }
 
-.hero::before {
+.side-links a {
+    padding: 13px 14px;
+    color: #aab8cb;
+    text-decoration: none;
+    border-radius: 9px;
+    font-size: 13px;
+    transition: .25s;
+}
+
+.side-links a:hover {
+    background: #0d1a2d;
+    color: #fff;
+    transform: translateX(3px);
+}
+
+.side-actions {
+    display: grid;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.side-actions a {
+    margin: 0;
+    text-align: center;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.7);
+    backdrop-filter: blur(3px);
+    z-index: 90;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+/* =========================
+   PRIVACY HERO
+========================= */
+
+.page-hero {
+    min-height: 490px;
+    padding: 85px 5% 75px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-bottom: 1px solid #18243a;
+    background: #080e1b;
+}
+
+.page-hero::before {
     content: "";
     position: absolute;
-    width: 340px;
-    height: 340px;
-    border: 1px solid rgba(56,189,248,.09);
-    border-radius: 50%;
-    top: -210px;
-    left: calc(50% - 170px);
-    box-shadow: 0 0 0 35px rgba(56,189,248,.025),
-                0 0 0 70px rgba(56,189,248,.018);
-    animation: pulse 5s ease-in-out infinite;
+    inset: 0;
+    z-index: -2;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(6,10,20,.48) 0%,
+            rgba(6,10,20,.65) 50%,
+            #060a14 100%
+        ),
+        url("images/Privacy%20Policy%20page.jfif") center 45% / cover no-repeat;
+    transform: scale(1.02);
+    animation: heroZoom 18s ease-in-out infinite alternate;
 }
 
-.eyebrow {
-    display: inline-flex;
-    gap: 9px;
-    align-items: center;
-    padding: 7px 13px;
-    border: 1px solid rgba(56,189,248,.24);
-    background: rgba(56,189,248,.07);
-    color: #7dd3fc;
-    border-radius: 30px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-}
-
-.eyebrow::before {
+.page-hero::after {
     content: "";
-    width: 6px;
-    height: 6px;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0,110,255,.20),
+        transparent 65%
+    );
+    pointer-events: none;
+}
+
+.hero-content {
+    max-width: 900px;
+    animation: heroEnter .8s ease both;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 15px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(64,160,255,.45);
+    border-radius: 30px;
+    background: rgba(5,16,35,.65);
+    color: #8ecbff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+}
+
+.hero-badge::before {
+    content: "";
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 12px var(--cyan);
+    background: #38bdf8;
+    box-shadow: 0 0 12px #38bdf8;
 }
 
-.hero h1 {
-    position: relative;
-    margin: 23px 0 13px;
-    font-size: clamp(36px,6vw,62px);
-    letter-spacing: -2px;
-    line-height: 1.15;
+.page-hero h1 {
+    font-size: clamp(42px,6vw,72px);
+    line-height: 1.13;
+    font-weight: 800;
+    letter-spacing: -1.8px;
+    text-shadow: 0 4px 25px rgba(0,0,0,.35);
 }
 
-.hero h1 span {
-    background: linear-gradient(100deg,#60a5fa,#67e8f9);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+.page-hero h1 span {
+    color: #1e90ff;
+    text-shadow: 0 0 30px rgba(30,144,255,.5);
 }
 
-.hero p {
-    max-width: 650px;
-    margin: 0 auto;
-    color: var(--muted);
-    font-size: 15px;
+.page-hero p {
+    color: #d0d9e8;
+    margin: 22px auto 0;
+    max-width: 700px;
+    font-size: 16px;
+    line-height: 1.8;
 }
 
 .hero-meta {
-    margin-top: 24px;
-    color: #8494ac;
+    margin-top: 25px;
+    color: #a5b6ce;
     font-size: 12px;
+    letter-spacing: .5px;
 }
 
-/* MAIN LAYOUT */
-.container {
-    width: min(1160px,88%);
+@keyframes heroEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroZoom {
+    from { transform: scale(1.02); }
+    to { transform: scale(1.09); }
+}
+
+/* =========================
+   PRIVACY CONTENT
+========================= */
+
+.policy-layout {
+    width: min(1150px,90%);
     margin: 65px auto 90px;
     display: grid;
-    grid-template-columns: 255px minmax(0,1fr);
-    gap: 42px;
+    grid-template-columns: 250px minmax(0,1fr);
+    gap: 38px;
     align-items: start;
 }
 
-.sidebar {
+.policy-sidebar {
     position: sticky;
     top: 100px;
-    padding: 24px 18px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 13px;
+    padding: 22px 17px;
+    background: #0b1221;
+    border: 1px solid #18243a;
+    border-radius: 14px;
 }
 
-.sidebar h3 {
-    margin: 0 0 15px 8px;
-    color: #e2e8f0;
+.policy-sidebar h3 {
     font-size: 12px;
-    letter-spacing: 1.4px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
+    margin: 0 0 14px 8px;
 }
 
-.sidebar a {
+.policy-sidebar a {
     display: block;
     padding: 9px 10px;
     border-left: 2px solid transparent;
     border-radius: 0 6px 6px 0;
-    color: #9baac0;
+    color: #8b9bb4;
+    text-decoration: none;
     font-size: 12px;
-    transition: .25s ease;
+    transition: .25s;
 }
 
-.sidebar a:hover {
-    color: #7dd3fc;
-    background: rgba(56,189,248,.06);
-    border-left-color: var(--cyan);
-    transform: translateX(3px);
+.policy-sidebar a:hover,
+.policy-sidebar a.active {
+    color: #59b5ff;
+    background: rgba(30,144,255,.07);
+    border-left-color: #1e90ff;
 }
 
 .policy-content {
     min-width: 0;
 }
 
-.intro-card {
-    padding: 24px 25px;
-    margin-bottom: 28px;
-    background: linear-gradient(120deg,rgba(37,99,235,.12),rgba(8,145,178,.05));
-    border: 1px solid rgba(59,130,246,.22);
-    border-radius: 12px;
-    color: #c5d3e6;
+.policy-intro {
+    padding: 23px 24px;
+    margin-bottom: 20px;
+    background: linear-gradient(
+        120deg,
+        rgba(30,144,255,.12),
+        rgba(8,16,32,.6)
+    );
+    border: 1px solid rgba(30,144,255,.3);
+    border-radius: 13px;
+}
+
+.policy-intro p {
+    color: #b4c4da;
     font-size: 14px;
 }
 
-.intro-card strong {
-    color: #7dd3fc;
+.policy-intro strong {
+    color: #55b7ff;
 }
 
 .policy-section {
-    padding: 29px 0;
-    border-bottom: 1px solid var(--border);
-    scroll-margin-top: 100px;
+    padding: 28px 0;
+    border-bottom: 1px solid #172238;
+    scroll-margin-top: 95px;
 }
 
 .policy-section h2 {
     display: flex;
     align-items: center;
     gap: 13px;
-    margin-bottom: 14px;
+    margin-bottom: 15px;
     font-size: 21px;
-    letter-spacing: -.4px;
+    line-height: 1.4;
 }
 
-.number {
+.section-number {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
     display: inline-grid;
     place-items: center;
-    flex-shrink: 0;
-    width: 34px;
-    height: 34px;
-    color: #7dd3fc;
-    font-size: 12px;
-    background: rgba(56,189,248,.09);
-    border: 1px solid rgba(56,189,248,.2);
     border-radius: 9px;
+    color: #60baff;
+    background: rgba(30,144,255,.10);
+    border: 1px solid rgba(30,144,255,.25);
+    font-size: 12px;
 }
 
 .policy-section p {
     margin: 10px 0;
-    color: var(--muted);
+    color: #8b9bb4;
     font-size: 14px;
+    line-height: 1.9;
 }
 
 .policy-section ul {
     margin: 13px 0 13px 22px;
-    color: var(--muted);
+    color: #8b9bb4;
     font-size: 14px;
+    line-height: 1.9;
 }
 
 .policy-section li {
-    margin: 8px 0;
+    margin: 7px 0;
     padding-left: 4px;
 }
 
 .policy-section li::marker {
-    color: var(--cyan);
+    color: #1e90ff;
+}
+
+.policy-section strong {
+    color: #dce7f5;
 }
 
 .policy-section a {
-    color: #7dd3fc;
+    color: #58b5ff;
     overflow-wrap: anywhere;
 }
 
@@ -308,72 +510,24 @@ button {
     text-decoration: underline;
 }
 
-.notice {
-    margin-top: 18px;
-    padding: 15px 17px;
-    background: rgba(245,158,11,.055);
-    border: 1px solid rgba(245,158,11,.2);
-    border-radius: 8px;
-    color: #cbd5e1;
+.policy-note {
+    padding: 14px 16px;
+    margin-top: 16px;
+    border: 1px solid rgba(30,144,255,.24);
+    background: rgba(30,144,255,.06);
+    border-radius: 9px;
+    color: #aabbd1;
     font-size: 13px;
 }
 
-/* FOOTER */
-.footer {
-    padding: 45px 7% 23px;
-    background: #080d19;
-    border-top: 1px solid var(--border);
-}
+/* =========================
+   SCROLL ANIMATION
+========================= */
 
-.footer-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 30px;
-    padding-bottom: 30px;
-}
-
-.footer-brand p {
-    margin-top: 12px;
-    max-width: 330px;
-    color: var(--muted);
-    font-size: 13px;
-}
-
-.footer-links h4 {
-    margin-bottom: 13px;
-    font-size: 13px;
-}
-
-.footer-links a {
-    display: block;
-    margin: 8px 0;
-    color: var(--muted);
-    font-size: 12px;
-    transition: color .2s;
-}
-
-.footer-links a:hover {
-    color: var(--cyan);
-}
-
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
-    color: #78869b;
-    font-size: 11px;
-}
-
-/* SCROLL ANIMATION */
 .reveal {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity .65s ease,transform .65s ease;
+    transform: translateY(22px);
+    transition: opacity .65s ease, transform .65s ease;
 }
 
 .reveal.visible {
@@ -381,85 +535,226 @@ button {
     transform: translateY(0);
 }
 
-@keyframes pulse {
-    0%,100% { transform: scale(1); opacity: .7; }
-    50% { transform: scale(1.08); opacity: 1; }
+/* =========================
+   WHATSAPP BUTTON
+========================= */
+
+.whatsapp {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 70;
+    background: #18c968;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 17px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 8px 30px rgba(24,201,104,.25);
+    transition: .25s;
 }
 
-@media(max-width:850px) {
-    .navbar {
-        padding: 0 5%;
-    }
+.whatsapp:hover {
+    transform: translateY(-3px);
+}
 
-    .menu-btn {
-        display: block;
-    }
+/* =========================
+   FOOTER - YOUR DESIGN
+========================= */
 
-    .nav-links {
+footer {
+    padding: 40px 5% 15px;
+    background: #080e1b;
+    border-top: 1px solid #121a2e;
+    color: #8b9bb4;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    gap: 35px;
+    max-width: 1100px;
+    margin: 0 auto 25px;
+}
+
+.footer-brand {
+    max-width: 280px;
+}
+
+.footer-brand .logo img {
+    width: 185px;
+    height: auto;
+    display: block;
+    margin-bottom: 18px;
+}
+
+.footer-brand p {
+    color: #70829e;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 18px;
+}
+
+.footer-column a {
+    display: block;
+    color: #8b9bb4;
+    text-decoration: none;
+    font-size: 13px;
+    margin: 0 0 13px;
+    transition: .2s;
+}
+
+.footer-column a:hover {
+    color: #1e90ff;
+    transform: translateX(2px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 18px;
+    border-top: 1px solid #121a2e;
+    color: #5a6d8a;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px) {
+    header nav {
         display: none;
-        position: absolute;
-        top: 76px;
-        left: 0;
-        right: 0;
-        padding: 20px 6%;
-        background: #080e1c;
-        border-bottom: 1px solid var(--border);
-        flex-direction: column;
-        align-items: stretch;
-        gap: 15px;
     }
 
-    .nav-links.open {
-        display: flex;
+    .header-actions {
+        margin-left: auto;
     }
 
-    .nav-links a {
-        padding: 5px 0;
-    }
-
-    .container {
-        width: 90%;
+    .policy-layout {
         grid-template-columns: 1fr;
         gap: 25px;
-        margin-top: 35px;
+        margin-top: 40px;
     }
 
-    .sidebar {
+    .policy-sidebar {
         position: static;
     }
 
-    .sidebar nav {
+    .policy-sidebar nav {
         display: grid;
         grid-template-columns: repeat(2,minmax(0,1fr));
-        gap: 3px 10px;
-    }
-
-    .hero {
-        padding: 75px 20px 65px;
+        gap: 3px 12px;
     }
 }
 
-@media(max-width:480px) {
-    .hero h1 {
+@media(max-width:700px) {
+    header {
+        padding: 12px 4%;
+        gap: 12px;
+    }
+
+    header .logo img {
+        width: 145px;
+    }
+
+    .header-actions .login-link {
+        display: none;
+    }
+
+    .header-actions .btn-blue {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .menu-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+    }
+
+    .page-hero {
+        min-height: 430px;
+        padding: 65px 6%;
+    }
+
+    .page-hero h1 {
+        font-size: clamp(37px,9vw,53px);
         letter-spacing: -1px;
     }
 
-    .policy-section h2 {
-        font-size: 18px;
+    .page-hero p {
+        font-size: 14px;
     }
 
-    .sidebar nav {
+    .policy-layout {
+        width: 90%;
+        margin: 32px auto 60px;
+    }
+
+    .policy-sidebar nav {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .policy-section h2 {
+        font-size: 19px;
+    }
+
+    .policy-section p,
+    .policy-section ul {
+        font-size: 13px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px 20px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+        max-width: none;
+    }
+
+    .footer-brand .logo img {
+        width: 165px;
+    }
+
+    .whatsapp {
+        right: 13px;
+        bottom: 13px;
+        font-size: 12px;
+    }
+}
+
+@media(max-width:380px) {
+    .header-actions .btn-blue {
+        padding: 8px;
+        font-size: 11px;
+    }
+
+    header .logo img {
+        width: 120px;
+    }
+
+    .policy-sidebar nav {
         grid-template-columns: 1fr;
     }
 
-    .footer {
-        padding-left: 6%;
-        padding-right: 6%;
+    .footer-grid {
+        gap: 25px 12px;
     }
 }
 
 @media(prefers-reduced-motion:reduce) {
-    *,*::before,*::after {
+    *,
+    *::before,
+    *::after {
         scroll-behavior: auto !important;
         animation: none !important;
         transition: none !important;
@@ -475,55 +770,123 @@ button {
 
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar">
-    <a href="index.html" class="logo">Vertex<span>Core</span></a>
+<!-- SIDEBAR OVERLAY -->
+<div class="overlay" id="overlay"></div>
 
-    <button class="menu-btn" id="menuBtn"
-        aria-label="Toggle navigation"
-        aria-expanded="false"
-        aria-controls="navLinks">☰</button>
+<!-- =========================
+     SIDEBAR
+========================= -->
 
-    <nav class="nav-links" id="navLinks">
+<aside class="sidebar" id="sidebar" aria-label="Main menu">
+
+    <div class="side-head">
+        <a class="logo" href="index.html">
+            <img src="images/logo.jpg" alt="Vertex Core">
+        </a>
+
+        <button class="side-close" id="closeMenu"
+                aria-label="Close menu">×</button>
+    </div>
+
+    <div class="side-links">
+        <a href="index.html">HOME</a>
+        <a href="pricing.html">PRICING</a>
+        <a href="locations.html">LOCATIONS</a>
+        <a href="vps.html">VPS</a>
+        <a href="support.html">SUPPORT</a>
+        <a href="about.html">ABOUT US</a>
+        <a href="contact.html">CONTACT US</a>
+        <a href="blog.html">BLOG</a>
+    </div>
+
+    <div class="side-actions">
+        <a href="order.html" class="btn-blue">Order Now</a>
+        <a href="contact.html" class="btn-outline">Contact Us</a>
+    </div>
+
+</aside>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <button class="menu-btn" id="openMenu"
+            aria-label="Open menu"
+            aria-controls="sidebar"
+            aria-expanded="false">☰</button>
+
+    <a class="logo" href="index.html">
+        <img src="images/logo.jpg" alt="Vertex Core">
+    </a>
+
+    <nav aria-label="Main navigation">
         <a href="index.html">Home</a>
-        <a href="features.html">Features</a>
         <a href="pricing.html">Pricing</a>
-        <a href="locations.html">Locations</a>
-        <a href="docs.html">Documentation</a>
+        <a href="vps.html">VPS</a>
         <a href="support.html">Support</a>
-        <a href="pricing.html" class="nav-cta">Get Started ↗</a>
+        <a href="blog.html">Blog</a>
     </nav>
+
+    <div class="header-actions">
+        <a href="login.html" class="login-link">Login</a>
+        <a href="order.html" class="btn-blue">Get Started</a>
+    </div>
+
 </header>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="eyebrow">Privacy &amp; Security</div>
+<!-- =========================
+     PRIVACY HERO
+========================= -->
 
-    <h1>Your Privacy.<br><span>Our Responsibility.</span></h1>
+<main>
 
-    <p>
-        Understand how Vertex Core handles information when you
-        browse our website, contact our team, or use our VPS services.
-    </p>
+<section class="page-hero">
 
-    <div class="hero-meta">Privacy Policy · Please read carefully</div>
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            Privacy &amp; Security
+        </div>
+
+        <h1>
+            Your Privacy.<br>
+            <span>Our Responsibility.</span>
+        </h1>
+
+        <p>
+            Understand how Vertex Core handles information when you
+            browse our website, contact our team, or use our VPS services.
+        </p>
+
+        <div class="hero-meta">
+            Privacy Policy &nbsp;·&nbsp; Please read carefully
+        </div>
+
+    </div>
+
 </section>
 
-<!-- CONTENT -->
-<main class="container">
+<!-- =========================
+     PRIVACY POLICY CONTENT
+========================= -->
 
-    <aside class="sidebar">
-        <h3>On this page</h3>
-        <nav>
+<div class="policy-layout">
+
+    <aside class="policy-sidebar">
+        <h3>On This Page</h3>
+
+        <nav aria-label="Privacy policy sections">
             <a href="#overview">Overview</a>
-            <a href="#information">Information We Collect</a>
+            <a href="#collection">Information We Collect</a>
             <a href="#usage">How We Use Information</a>
             <a href="#cookies">Cookies &amp; Analytics</a>
             <a href="#sharing">Information Sharing</a>
             <a href="#security">Data Security</a>
             <a href="#retention">Data Retention</a>
             <a href="#rights">Your Privacy Rights</a>
-            <a href="#third-party">Third-Party Services</a>
+            <a href="#third-party">Third-Party Links</a>
             <a href="#children">Children's Privacy</a>
             <a href="#changes">Policy Updates</a>
             <a href="#contact">Contact Us</a>
@@ -532,294 +895,387 @@ button {
 
     <div class="policy-content">
 
-        <div class="intro-card reveal">
-            <strong>Important:</strong> This page is a general privacy
-            policy template. Before publishing, make sure it accurately
-            describes Vertex Core's actual services, data collection,
-            payment arrangements, analytics, and applicable legal obligations.
+        <div class="policy-intro reveal">
+            <p>
+                <strong>Your information matters.</strong>
+                This policy explains how personal information may be
+                collected, used, and protected when you interact with
+                Vertex Core. It should be reviewed against our actual
+                website features and business practices before publication.
+            </p>
         </div>
 
         <section class="policy-section reveal" id="overview">
-            <h2><span class="number">01</span> Overview</h2>
+            <h2><span class="section-number">01</span> Overview</h2>
+
             <p>
                 This Privacy Policy explains how Vertex Core ("we,"
                 "our," or "us") may collect, use, store, and disclose
                 information when you visit our website or interact with
-                our products and services.
+                our services.
             </p>
+
             <p>
-                By using our website, you acknowledge this policy.
-                Where consent is legally required, we will request it
-                separately. If you do not agree with this policy,
-                please discontinue use of the relevant services.
+                Where applicable law requires consent for particular
+                processing activities, we will request that consent
+                separately. Please review this policy to understand
+                the practices relevant to your use of our website.
             </p>
         </section>
 
-        <section class="policy-section reveal" id="information">
-            <h2><span class="number">02</span> Information We Collect</h2>
-            <p>Depending on how you interact with us, information may include:</p>
+        <section class="policy-section reveal" id="collection">
+            <h2><span class="section-number">02</span> Information We Collect</h2>
+
+            <p>Depending on the features you use, information may include:</p>
+
             <ul>
-                <li><strong>Contact information:</strong> name, email address, and details you submit through contact or support forms.</li>
-                <li><strong>Account information:</strong> account identifiers and authentication-related information, where accounts are provided.</li>
-                <li><strong>Order information:</strong> VPS plan, order details, billing records, and transaction status where applicable.</li>
-                <li><strong>Technical information:</strong> IP address, browser type, device information, timestamps, and website diagnostic logs.</li>
-                <li><strong>Support communications:</strong> messages, troubleshooting details, and attachments you choose to send us.</li>
-                <li><strong>Usage information:</strong> pages visited and interactions with the website, if analytics or similar tools are enabled.</li>
+                <li><strong>Contact details:</strong> Your name, email address, and information submitted through contact or support forms.</li>
+                <li><strong>Order information:</strong> Selected plans, order details, and relevant billing records, where applicable.</li>
+                <li><strong>Technical information:</strong> IP address, browser type, device information, timestamps, and diagnostic logs.</li>
+                <li><strong>Support communications:</strong> Messages and troubleshooting information you choose to provide.</li>
+                <li><strong>Account information:</strong> Account identifiers and related details if account functionality is provided.</li>
+                <li><strong>Usage information:</strong> Website visits and interactions if analytics tools are enabled.</li>
             </ul>
+
             <p>
-                Please do not send passwords, payment card details, or other
-                highly sensitive information through ordinary contact forms.
-                Information collected depends on the features actually enabled.
+                The information collected depends on the services and
+                features actually enabled. Please avoid submitting
+                passwords or payment card details through ordinary
+                contact forms.
             </p>
         </section>
 
         <section class="policy-section reveal" id="usage">
-            <h2><span class="number">03</span> How We Use Information</h2>
-            <p>We may use relevant information to:</p>
+            <h2><span class="section-number">03</span> How We Use Information</h2>
+
+            <p>Information may be used for purposes such as:</p>
+
             <ul>
-                <li>Respond to questions and provide customer support.</li>
-                <li>Process and manage service orders and customer requests.</li>
-                <li>Maintain, operate, and improve our website and services.</li>
-                <li>Detect suspicious activity, prevent abuse, and protect system security.</li>
-                <li>Maintain business records and meet applicable legal obligations.</li>
-                <li>Send service-related updates or other communications where permitted.</li>
+                <li>Responding to inquiries and providing customer support.</li>
+                <li>Managing service requests and orders.</li>
+                <li>Operating, maintaining, and improving the website.</li>
+                <li>Detecting suspicious activity and protecting service security.</li>
+                <li>Maintaining business records and meeting legal obligations.</li>
+                <li>Sending relevant service communications where permitted.</li>
             </ul>
+
             <p>
-                We will not describe information as being used for a purpose
-                that does not reflect our actual practices. Where required,
-                we will obtain consent before using information for optional
-                purposes such as certain marketing activities.
+                We aim to use information for legitimate, disclosed
+                purposes and to follow applicable privacy requirements.
             </p>
         </section>
 
         <section class="policy-section reveal" id="cookies">
-            <h2><span class="number">04</span> Cookies &amp; Analytics</h2>
+            <h2><span class="section-number">04</span> Cookies &amp; Analytics</h2>
+
             <p>
-                Our website may use cookies or similar technologies to
-                support essential functionality, remember preferences,
-                understand website performance, or measure usage.
+                Our website may use cookies or similar technologies
+                to support essential functionality, remember preferences,
+                or understand website performance.
             </p>
+
             <p>
-                Essential technologies may be needed for features to work.
-                Non-essential analytics or advertising technologies, if
-                enabled, will be handled according to applicable consent
-                requirements and our actual configuration.
+                If non-essential analytics or advertising technologies
+                are used, we will handle them according to applicable
+                consent requirements. You can also manage cookies through
+                your browser settings.
             </p>
+
             <p>
-                You can manage cookies through your browser settings.
-                Blocking certain cookies may affect website functionality.
-                If we do not use analytics or advertising cookies, this
-                section should be updated accordingly.
+                Disabling certain cookies may affect some website features.
+                This section should be adjusted to match the tools actually
+                installed on the website.
             </p>
         </section>
 
         <section class="policy-section reveal" id="sharing">
-            <h2><span class="number">05</span> Information Sharing</h2>
+            <h2><span class="section-number">05</span> Information Sharing</h2>
+
             <p>
-                We do not treat personal information as something to sell.
-                We may share relevant information only where appropriate,
-                such as:
+                We may share relevant information where reasonably
+                necessary for providing services, operating the website,
+                or meeting legal obligations.
             </p>
+
             <ul>
-                <li><strong>Service providers:</strong> hosting infrastructure, email delivery, customer support, security, or payment providers we actually use.</li>
-                <li><strong>Legal requirements:</strong> where disclosure is required by applicable law or valid legal process.</li>
-                <li><strong>Security and protection:</strong> where reasonably necessary to investigate abuse, protect rights, or safeguard our services and users.</li>
-                <li><strong>Business changes:</strong> in connection with a merger, acquisition, or transfer of business, subject to applicable law.</li>
+                <li><strong>Service providers:</strong> Providers supporting hosting, email, security, customer support, or payment processing, if used.</li>
+                <li><strong>Legal obligations:</strong> Where disclosure is required by applicable law or valid legal process.</li>
+                <li><strong>Security:</strong> Where necessary to investigate abuse or protect users and services.</li>
+                <li><strong>Business transfers:</strong> In connection with a business merger, acquisition, or transfer, subject to applicable law.</li>
             </ul>
+
             <p>
-                The information shared will depend on the situation and the
-                service involved. We do not claim to use any particular
-                provider unless that provider is actually part of our setup.
+                We do not sell personal information as a business practice.
+                Any sharing will depend on the actual service and applicable
+                legal requirements.
             </p>
         </section>
 
         <section class="policy-section reveal" id="security">
-            <h2><span class="number">06</span> Data Security</h2>
+            <h2><span class="section-number">06</span> Data Security</h2>
+
             <p>
-                We take reasonable steps appropriate to our operations to
-                protect information against unauthorized access, alteration,
-                disclosure, or loss.
+                We aim to use reasonable safeguards appropriate to our
+                operations to protect information against unauthorized
+                access, loss, misuse, or disclosure.
             </p>
+
             <p>
-                No website, internet transmission, or electronic storage
-                method can be guaranteed completely secure. Please use
-                strong, unique passwords where accounts are available and
-                notify us if you suspect unauthorized use of your account.
+                No website or electronic transmission can be guaranteed
+                completely secure. If you believe your information has
+                been compromised, please contact us through our support
+                channel.
             </p>
         </section>
 
         <section class="policy-section reveal" id="retention">
-            <h2><span class="number">07</span> Data Retention</h2>
+            <h2><span class="section-number">07</span> Data Retention</h2>
+
             <p>
-                We retain personal information only for as long as reasonably
-                necessary for the purposes described in this policy, including
-                providing services, resolving disputes, maintaining records,
-                enforcing agreements, and meeting legal requirements.
+                Information may be retained for as long as reasonably
+                necessary to provide services, respond to requests,
+                maintain business records, resolve disputes, and meet
+                applicable legal requirements.
             </p>
+
             <p>
-                Retention periods may vary depending on the type of
-                information and the reason it was collected. Information
-                that is no longer required should be securely deleted
-                or anonymized where appropriate and technically feasible.
+                Retention periods depend on the type of information
+                and the purpose for which it was collected. Information
+                that is no longer required should be deleted or
+                anonymized where appropriate and feasible.
             </p>
         </section>
 
         <section class="policy-section reveal" id="rights">
-            <h2><span class="number">08</span> Your Privacy Rights</h2>
+            <h2><span class="section-number">08</span> Your Privacy Rights</h2>
+
             <p>
-                Depending on your location and applicable law, you may have
-                rights to request access to, correction of, or deletion of
-                certain personal information, or to object to or restrict
-                particular processing activities.
+                Depending on your location and applicable law, you may
+                have the right to request access to, correction of, or
+                deletion of certain personal information.
             </p>
+
             <p>
-                You may also have rights concerning consent withdrawal,
-                data portability, or complaints to a relevant privacy
-                authority where provided by law.
+                You may also have rights to object to certain processing,
+                withdraw consent, request a copy of your information,
+                or submit a complaint to a relevant privacy authority.
             </p>
+
             <p>
-                To submit a privacy request, contact us using the details
-                in the Contact Us section. We may need to verify your
-                identity before responding. Some requests may be subject
-                to lawful exceptions.
+                Contact us to submit a request. We may need to verify
+                your identity before responding, and some requests may
+                be subject to lawful exceptions.
             </p>
         </section>
 
         <section class="policy-section reveal" id="third-party">
-            <h2><span class="number">09</span> Third-Party Services &amp; Links</h2>
+            <h2><span class="section-number">09</span> Third-Party Links</h2>
+
             <p>
-                Our website may link to third-party websites or use
-                external services. Those parties may have their own privacy
-                policies and data handling practices.
+                Our website may contain links to external websites or
+                services. Those websites operate independently and may
+                have their own privacy policies.
             </p>
+
             <p>
-                We are not responsible for the privacy practices of
-                independent third-party websites. Please review their
-                policies before providing information to them.
+                We encourage you to review the relevant privacy policies
+                before providing personal information to third parties.
             </p>
         </section>
 
         <section class="policy-section reveal" id="children">
-            <h2><span class="number">10</span> Children's Privacy</h2>
+            <h2><span class="section-number">10</span> Children's Privacy</h2>
+
             <p>
-                Our website and services are not intended to collect
-                personal information from children in violation of
-                applicable law. Where parental consent or additional
-                protections are legally required, those requirements
-                must be followed.
+                Our website is not intended to collect children's
+                personal information in violation of applicable law.
+                Where parental consent or additional protections are
+                required, those requirements must be followed.
             </p>
+
             <p>
-                If you believe a child has provided personal information
-                inappropriately, please contact us so we can review the
-                matter and take appropriate action.
+                If you believe personal information has been submitted
+                inappropriately by a child, please contact us so the
+                matter can be reviewed.
             </p>
         </section>
 
         <section class="policy-section reveal" id="changes">
-            <h2><span class="number">11</span> Changes to This Policy</h2>
+            <h2><span class="section-number">11</span> Policy Updates</h2>
+
             <p>
-                We may update this Privacy Policy as our website, services,
-                or legal requirements change. The updated version will be
-                published on this page with a revised effective date.
+                We may update this policy as our website, services,
+                or legal requirements change. Updated wording will be
+                published on this page.
             </p>
+
             <p>
-                Where required by law, we will provide notice of material
-                changes or obtain consent before applying new practices.
-                Please review this page periodically.
+                Where required by law, we will provide notice of
+                significant changes or obtain consent before applying
+                new data practices.
             </p>
         </section>
 
         <section class="policy-section reveal" id="contact">
-            <h2><span class="number">12</span> Contact Us</h2>
+            <h2><span class="section-number">12</span> Contact Us</h2>
+
             <p>
-                If you have a privacy question or want to make a request
-                concerning your personal information, contact Vertex Core
-                through your official support channel.
+                For privacy questions or requests relating to your
+                personal information, contact Vertex Core through
+                our official support channel.
             </p>
+
             <p>
-                Website:
-                <a href="https://ayra890.github.io/Vertex-Core/">
-                    Vertex Core
+                Email:
+                <a href="mailto:vertexcore95@gmail.com">
+                    vertexcore95@gmail.com
                 </a>
             </p>
+
             <p>
                 Support:
                 <a href="support.html">Visit our Support page</a>
             </p>
-            <div class="notice">
-                Before publishing, replace these contact routes with your
-                verified business privacy email or contact form. Do not
-                publish an email address that is not monitored.
+
+            <div class="policy-note">
+                Please ensure the contact details above are correct
+                and monitored before publishing this page. This template
+                should be reviewed against your actual data practices
+                and applicable privacy laws.
             </div>
         </section>
 
     </div>
+</div>
+
 </main>
 
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-top">
+<!-- =========================
+     WHATSAPP
+========================= -->
+
+<a class="whatsapp"
+   href="https://wa.me/"
+   target="_blank"
+   rel="noopener noreferrer">
+    💬 WhatsApp Channel
+</a>
+
+<!-- =========================
+     FOOTER - YOUR DESIGN
+========================= -->
+
+<footer>
+
+    <div class="footer-grid">
+
         <div class="footer-brand">
-            <a href="index.html" class="logo">Vertex<span>Core</span></a>
+
+            <a class="logo" href="index.html">
+                <img src="images/logo.jpg" alt="Vertex Core">
+            </a>
+
             <p>
-                Reliable VPS infrastructure built for performance,
-                flexibility, and modern workloads.
+                Enterprise-grade Windows VPS infrastructure built for
+                performance, secure access and reliable connectivity.
             </p>
+
+            <p style="margin-top:12px">
+                <a href="mailto:vertexcore95@gmail.com"
+                   style="color:#8b9bb4;text-decoration:none">
+                    vertexcore95@gmail.com
+                </a>
+            </p>
+
         </div>
 
-        <div class="footer-links">
-            <h4>Platform</h4>
-            <a href="features.html">Features</a>
-            <a href="pricing.html">Pricing</a>
+        <div class="footer-column">
+            <h3>Company</h3>
+            <a href="about.html">About Us</a>
+            <a href="features.html">Services / Features</a>
             <a href="locations.html">Locations</a>
-            <a href="order.html">Order a VPS</a>
+            <a href="vps.html">VPS</a>
+            <a href="blog.html">Blog</a>
         </div>
 
-        <div class="footer-links">
-            <h4>Resources</h4>
+        <div class="footer-column">
+            <h3>Support</h3>
+            <a href="support.html">Help &amp; Support</a>
             <a href="docs.html">Documentation</a>
+            <a href="dashboard.html">Customer Dashboard</a>
             <a href="faqs.html">FAQs</a>
-            <a href="support.html">Support</a>
+            <a href="contact.html">Contact Us</a>
         </div>
 
-        <div class="footer-links">
-            <h4>Legal</h4>
+        <div class="footer-column">
+            <h3>Legal</h3>
+            <a href="terms.html">Terms of Services</a>
             <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
+            <a href="refund.html">Refund Policy</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="login.html">Login</a>
         </div>
+
     </div>
 
     <div class="footer-bottom">
-        <span>© <span id="year"></span> Vertex Core. All rights reserved.</span>
-        <span>Privacy-first. Performance-focused.</span>
+        © <span id="year"></span> Vertex Core - All plans include free backups
+        - 99.95% uptime SLA - Cancel anytime - 24/7 Support
     </div>
+
 </footer>
 
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script>
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+const openButton = document.getElementById("openMenu");
+const closeButton = document.getElementById("closeMenu");
 
-menuBtn.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-    menuBtn.setAttribute("aria-expanded", String(isOpen));
-});
+function openSide() {
+    sidebar.classList.add("open");
+    overlay.classList.add("show");
+    document.body.classList.add("menu-open");
+    openButton.setAttribute("aria-expanded", "true");
+    closeButton.focus();
+}
 
-navLinks.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuBtn.setAttribute("aria-expanded", "false");
+function closeSide() {
+    sidebar.classList.remove("open");
+    overlay.classList.remove("show");
+    document.body.classList.remove("menu-open");
+    openButton.setAttribute("aria-expanded", "false");
+}
+
+openButton.addEventListener("click", openSide);
+closeButton.addEventListener("click", closeSide);
+overlay.addEventListener("click", closeSide);
+
+document.querySelectorAll(".side-links a, .side-actions a")
+    .forEach(link => {
+        link.addEventListener("click", closeSide);
     });
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        closeSide();
+    }
 });
 
+/* Current year */
 document.getElementById("year").textContent =
     new Date().getFullYear();
 
-/* Reveal sections as they enter the viewport */
-const sections = document.querySelectorAll(".reveal");
+/* Reveal animation */
+const revealItems = document.querySelectorAll(".reveal");
+const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+).matches;
 
-if ("IntersectionObserver" in window &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-
+if ("IntersectionObserver" in window && !reduceMotion) {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -829,9 +1285,34 @@ if ("IntersectionObserver" in window &&
         });
     }, { threshold: 0.08 });
 
-    sections.forEach(section => observer.observe(section));
+    revealItems.forEach(item => observer.observe(item));
 } else {
-    sections.forEach(section => section.classList.add("visible"));
+    revealItems.forEach(item => item.classList.add("visible"));
+}
+
+/* Highlight current policy section in the contents menu */
+const policySections = document.querySelectorAll(".policy-section");
+const policyLinks = document.querySelectorAll(".policy-sidebar a");
+
+if ("IntersectionObserver" in window) {
+    const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                policyLinks.forEach(link => {
+                    const isActive =
+                        link.getAttribute("href") === "#" + entry.target.id;
+
+                    link.classList.toggle("active", isActive);
+                });
+            }
+        });
+    }, {
+        rootMargin: "-15% 0px -70% 0px"
+    });
+
+    policySections.forEach(section => {
+        sectionObserver.observe(section);
+    });
 }
 </script>
 
