@@ -1888,39 +1888,70 @@ alertMsg(
 
 
 $("placeOrderBtn").onclick=async()=>{
-if(!$ ("planSelect").value){
+if(!$("planSelect").value){
  alertMsg("error","VPS plan required","Please select a VPS plan."); $("planSelect").focus(); return;
 }
-if(!$ ("locationSelect").value){
+if(!$("locationSelect").value){
  alertMsg("error","Location required","Please select your server location."); $("locationSelect").focus(); return;
 }
 if(!validate()){
- alertMsg("error","Checkout incomplete","Please correct the highlighted fields, select a payment method, and accept the Terms of Service. No email has been sent."); return;
-}
-if(!emailServiceReady){
- alertMsg("error","Email service not configured","Your form is valid, but email is not set up yet. Add your EmailJS Public Key, Service ID, and both Template IDs in this file before accepting orders."); return;
+ alertMsg("error","Checkout incomplete","Please correct the highlighted fields, select a payment method, and accept the Terms of Service."); return;
 }
 save();
 const b=$("placeOrderBtn");
 b.classList.add("loading"); b.disabled=true;
 const selectedPayment=document.querySelector('input[name="payment"]:checked')?.value || "Not selected";
 const customerName=($("firstName").value.trim()+" "+$("lastName").value.trim()).trim();
-const orderData={
- to_email: $("email").value.trim(), customer_name: customerName,
- customer_email: $("email").value.trim(), customer_phone: $("phone").value.trim(),
- customer_address: $("address").value.trim(), customer_city: $("city").value.trim(), customer_postal: $("postal").value.trim(),
- plan_name: pricing[$("planSelect").value]?.name || $("planSelect").value,
- server_location: $("locationSelect").value, quantity: String(quantity), total_price: $("summaryTotal").textContent,
- payment_method: selectedPayment, order_date: new Date().toLocaleString(), business_email: "vertexcore95@gmail.com"
+const now=new Date();
+const dateOnly=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
+const invoiceData={
+ invoice_id:"VC-"+now.getTime().toString(36).toUpperCase()+"-"+Math.random().toString(36).slice(2,6).toUpperCase(),
+ invoice_date:dateOnly,
+ due_date:dateOnly,
+ status:"unpaid",
+ email_status:emailServiceReady?"pending":"not_configured",
+ customer_name:customerName,
+ customer_email:$("email").value.trim(),
+ customer_phone:$("phone").value.trim(),
+ customer_address:$("address").value.trim(),
+ customer_city:$("city").value.trim(),
+ customer_postal:$("postal").value.trim(),
+ plan_name:pricing[$("planSelect").value]?.name || $("planSelect").value,
+ server_location:$("locationSelect").value,
+ quantity:String(quantity),
+ total_price:$("summaryTotal").textContent,
+ payment_method:selectedPayment,
+ billing_cycle:"monthly"
 };
+localStorage.setItem("vertexCoreLatestInvoice",JSON.stringify(invoiceData));
+const orderData={
+ to_email:$("email").value.trim(), customer_name:customerName,
+ customer_email:$("email").value.trim(), customer_phone:$("phone").value.trim(),
+ customer_address:$("address").value.trim(), customer_city:$("city").value.trim(), customer_postal:$("postal").value.trim(),
+ plan_name:invoiceData.plan_name, server_location:invoiceData.server_location,
+ quantity:String(quantity), total_price:invoiceData.total_price,
+ payment_method:selectedPayment, order_date:now.toLocaleString(), business_email:"vertexcore95@gmail.com",
+ invoice_id:invoiceData.invoice_id
+};
+if(!emailServiceReady){
+ b.classList.remove("loading"); b.disabled=false;
+ alertMsg("error","Email service not configured","Your invoice will open now, but email notifications will not be sent until EmailJS is configured.");
+ location.href="invoice.html";
+ return;
+}
 try {
- await emailjs.send(EMAILJS_SERVICE_ID, BUSINESS_TEMPLATE_ID, {...orderData, to_email:"vertexcore95@gmail.com", email_type:"New order details"});
- await emailjs.send(EMAILJS_SERVICE_ID, CUSTOMER_TEMPLATE_ID, {...orderData, to_email:orderData.customer_email, email_type:"Order received"});
- alertMsg("success","Order request emailed","Your order details have been emailed to Vertex Core and a confirmation message has been sent to your email address. This confirms receipt of the request, not payment or VPS activation.");
+ await emailjs.send(EMAILJS_SERVICE_ID,BUSINESS_TEMPLATE_ID,{...orderData,to_email:"vertexcore95@gmail.com",email_type:"New order details"});
+ await emailjs.send(EMAILJS_SERVICE_ID,CUSTOMER_TEMPLATE_ID,{...orderData,to_email:orderData.customer_email,email_type:"Order received"});
+ invoiceData.email_status="sent";
+ localStorage.setItem("vertexCoreLatestInvoice",JSON.stringify(invoiceData));
+ alertMsg("success","Order request emailed","Your order request was emailed. The invoice will open next; payment is still unverified.");
 } catch(error) {
  console.error("EmailJS send error:",error);
- alertMsg("error","Email could not be sent","The form is valid, but the email service failed. Please try again later or contact vertexcore95@gmail.com. No order confirmation is claimed.");
-} finally { b.classList.remove("loading"); b.disabled=false; }
+ invoiceData.email_status="failed";
+ localStorage.setItem("vertexCoreLatestInvoice",JSON.stringify(invoiceData));
+ alertMsg("error","Email could not be sent","Your invoice will open, but email delivery failed. Please contact vertexcore95@gmail.com.");
+}
+setTimeout(()=>{location.href="invoice.html";},450);
 };
 
 function init(){
