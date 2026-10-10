@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice | Vertex Core</title>
+<meta name="description" content="View your Vertex Core VPS invoice and payment instructions.">
+<style>
+:root{--bg:#060a14;--panel:#0d1525;--panel2:#111b2e;--line:#1e2b40;--blue:#1e90ff;--text:#f4f7fc;--muted:#8b9bb4;--green:#19c37d;--red:#ff5964}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+a{color:inherit;text-decoration:none}
+header{height:82px;display:flex;align-items:center;gap:22px;padding:0 max(24px,calc((100% - 1320px)/2));background:rgba(10,15,30,.97);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.menu-btn{width:46px;height:46px;border:1px solid var(--blue);border-radius:12px;background:#0b1424;color:var(--blue);font-size:26px;cursor:pointer;flex-shrink:0}
+.logo{display:flex;align-items:center;flex-shrink:0}.logo img{display:block;width:185px;height:auto;max-height:58px;object-fit:contain}
+nav{display:flex;align-items:center;gap:30px;margin-left:auto;color:var(--muted);font-size:15px}nav a:hover,.login-link:hover{color:#fff}
+.header-actions{display:flex;align-items:center;gap:24px;margin-left:30px;white-space:nowrap}.login-link{color:var(--muted)}
+.btn-blue{display:inline-flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#249cff,#1674d2);color:white;font-weight:750;padding:13px 24px;border-radius:10px;box-shadow:0 8px 22px #168cff2c}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:310px;max-width:88vw;background:#0b1220;border-right:1px solid var(--line);z-index:50;padding:22px;transform:translateX(-105%);transition:transform .3s ease;overflow-y:auto}.sidebar.open{transform:translateX(0)}
+.side-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid var(--line)}.side-head .logo img{width:170px}.side-close{font-size:30px;color:#fff;background:none;border:0;cursor:pointer}
+.side-links{display:grid;gap:7px;padding:22px 0}.side-links a{padding:12px 14px;border-radius:9px;color:#bdc9db;font-size:13px;font-weight:700;letter-spacing:.5px}.side-links a:hover{background:#14233a;color:#fff}.side-actions{display:grid;gap:12px}.btn-outline{display:flex;justify-content:center;padding:12px;border:1px solid #30435f;border-radius:10px;color:#d9e4f4;font-weight:700}
+.overlay{position:fixed;inset:0;background:#0009;z-index:40;opacity:0;visibility:hidden;transition:.25s}.overlay.show{opacity:1;visibility:visible}
+.hero{max-width:1240px;margin:0 auto;padding:48px 24px 20px}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid #1e90ff44;background:#0b1b31;color:#69b8ff;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase}.hero h1{font-size:clamp(32px,4vw,46px);line-height:1.12;letter-spacing:-1.3px;margin:16px 0 10px}.hero h1 span{color:var(--blue)}.hero p{color:var(--muted);max-width:760px}
+.wrap{max-width:1240px;margin:0 auto;padding:16px 24px 70px}.invoice-top{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:20px}.invoice-number{font-size:14px;color:var(--muted)}.invoice-number strong{color:#fff;font-size:17px}.status{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:9px;font-size:13px;font-weight:850;letter-spacing:.5px;text-transform:uppercase}.status.unpaid{color:#ff7a83;background:#ff596415;border:1px solid #ff596455}.status.paid{color:#50e2a4;background:#19c37d17;border:1px solid #19c37d66}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:22px;align-items:start}.panel{background:linear-gradient(145deg,#111a2d,#09111f);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 16px 45px #0002;margin-bottom:18px}.panel h2{font-size:17px;margin-bottom:18px;letter-spacing:.1px}.invoice-head{display:flex;justify-content:space-between;gap:22px;padding-bottom:22px;border-bottom:1px solid var(--line)}.brand-block .logo img{width:165px}.brand-block p{font-size:13px;color:var(--muted);margin-top:10px}.date-block{text-align:right;font-size:13px;color:var(--muted)}.date-block strong{display:block;color:#fff;font-size:14px;margin:3px 0 12px}.parties{display:grid;grid-template-columns:1fr 1fr;gap:25px;padding:23px 0;border-bottom:1px solid var(--line)}.label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#7f93ae;font-weight:800;margin-bottom:9px}.party strong{display:block;font-size:15px;margin-bottom:5px}.party p{font-size:13px;color:#a7b5c8;overflow-wrap:anywhere}.items{width:100%;border-collapse:collapse;font-size:13px}.items th{text-align:left;padding:12px 8px;color:#8b9bb4;border-bottom:1px solid var(--line);font-size:11px;text-transform:uppercase;letter-spacing:.7px}.items td{padding:15px 8px;border-bottom:1px solid #1e293b;vertical-align:top}.items th:last-child,.items td:last-child{text-align:right;white-space:nowrap}.item-title{font-weight:750;color:#f4f7fc}.item-meta{font-size:12px;color:var(--muted);margin-top:4px}.totals{width:min(100%,330px);margin:16px 0 0 auto}.total-row{display:flex;justify-content:space-between;gap:15px;padding:7px 0;color:#a7b5c8;font-size:13px}.total-row strong{color:#f4f7fc}.total-row.grand{border-top:1px solid var(--line);padding-top:15px;margin-top:7px;font-size:16px;font-weight:800;color:#fff}.total-row.grand strong{font-size:21px;color:#fff}.ledger{width:100%;border-collapse:collapse;font-size:13px}.ledger th,.ledger td{padding:12px 8px;border-bottom:1px solid var(--line);text-align:left}.ledger th{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}.empty{text-align:center!important;color:#8292aa;padding:23px 8px!important}.balance{display:flex;justify-content:space-between;align-items:center;padding-top:15px;font-size:14px}.balance strong{font-size:20px}
+.side-card{background:linear-gradient(150deg,#111c30,#0a1120);border:1px solid #23344d;border-radius:16px;padding:23px;margin-bottom:18px;box-shadow:0 16px 45px #0002}.side-card .small-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#8b9bb4;font-weight:800}.due-amount{font-size:32px;letter-spacing:-.6px;font-weight:850;margin:5px 0 16px}.due-amount small{font-size:12px;color:var(--muted);font-weight:600}.payment-method{padding:12px;border-radius:10px;background:#0a1322;border:1px solid var(--line);font-size:13px;font-weight:750;margin:8px 0 15px}.account-details{font-size:13px;color:#b2c0d3;display:grid;gap:7px;overflow-wrap:anywhere}.account-details strong{color:#f4f7fc}.pending{border-radius:10px;background:#ffb02012;border:1px solid #ffb02042;color:#eecb83;font-size:12px;padding:12px;margin-top:17px}.paid-message{border-radius:10px;background:#19c37d12;border:1px solid #19c37d55;color:#50e2a4;font-size:13px;padding:13px;margin-top:17px}.action-btn{display:flex;width:100%;align-items:center;justify-content:center;gap:9px;border:0;border-radius:10px;background:linear-gradient(135deg,#249cff,#1674d2);padding:13px 15px;color:white;font-size:14px;font-weight:800;cursor:pointer;transition:transform .2s,box-shadow .2s}.action-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px #168cff30}.action-note{color:var(--muted);font-size:12px;margin-top:12px}.notice{padding:13px 15px;border:1px solid #1e90ff42;background:#0b1b31;border-radius:11px;color:#a8c9ed;font-size:12px;margin-bottom:18px}
+footer{border-top:1px solid var(--line);background:#080e19;padding:45px 24px 20px}.footer-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}.footer-brand p{font-size:13px;color:var(--muted);margin-top:13px;max-width:280px}.footer-column h3{font-size:14px;margin-bottom:14px}.footer-column a{display:block;color:var(--muted);font-size:13px;margin:10px 0}.footer-column a:hover{color:#fff}.footer-bottom{max-width:1100px;margin:30px auto 0;border-top:1px solid var(--line);padding-top:18px;text-align:center;color:#7888a1;font-size:12px}
+@media(max-width:1000px){header{gap:15px;padding:0 20px}nav{gap:17px}.header-actions{gap:14px;margin-left:8px}.layout{grid-template-columns:minmax(0,1fr) 310px}.logo img{width:165px}}
+@media(max-width:780px){header{height:74px;padding:0 15px;gap:14px}header nav{display:none}.header-actions{margin-left:auto}.login-link{display:none}.logo img{width:160px}.header-actions .btn-blue{padding:11px 15px;font-size:13px}.hero{padding:34px 18px 16px}.wrap{padding:10px 18px 45px}.layout{grid-template-columns:1fr}.side-column{display:grid;grid-template-columns:1fr 1fr;gap:14px}.side-card{margin:0}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.logo img{width:135px}.header-actions .btn-blue{padding:10px 12px}.menu-btn{width:42px;height:42px}.hero h1{font-size:32px}.panel{padding:17px}.invoice-head{flex-direction:column}.date-block{text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:0 15px}.date-block .label{grid-column:1/-1}.parties{grid-template-columns:1fr;gap:20px}.invoice-top{align-items:flex-start;flex-direction:column}.items{font-size:12px}.items th,.items td{padding:11px 5px}.side-column{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr;gap:22px}.footer-brand{grid-column:1/-1}}
+@media print{body{background:#fff;color:#111}header,.sidebar,.overlay,footer,.hero,.actions-panel,.no-print{display:none!important}.wrap{max-width:none;padding:0}.layout{display:block}.panel,.side-card{background:#fff;color:#111;border:1px solid #ddd;box-shadow:none;break-inside:avoid}.panel h2,.party strong,.item-title,.date-block strong,.items td,.total-row strong,.balance strong,.side-card strong{color:#111!important}.party p,.date-block,.item-meta,.total-row,.side-card .small-label,.account-details,.action-note{color:#444!important}.pending{color:#775600;background:#fff8e5;border-color:#e5d08c}.paid-message{color:#075d3b;background:#edfff5;border-color:#8ed7b6}.items th,.ledger th{color:#555}.invoice-head,.parties,.items td,.ledger td{border-color:#ddd}.side-column{margin-top:16px}.action-btn{display:none}}
+</style>
+</head>
+<body>
+<header>
+<button class="menu-btn" id="openMenu" aria-label="Open menu">☰</button>
+<a class="logo" href="index.html"><img src="images/logo.jpg" alt="Vertex Core"></a>
+<nav><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="vps.html">VPS</a><a href="support.html">Support</a><a href="blog.html">Blog</a></nav>
+<div class="header-actions"><a href="login.html" class="login-link">Login</a><a href="order.html" class="btn-blue">Get Started</a></div>
+</header>
+<aside class="sidebar" id="sidebar">
+<div class="side-head"><a class="logo" href="index.html"><img src="images/logo.jpg" alt="Vertex Core"></a><button class="side-close" id="closeMenu" aria-label="Close menu">×</button></div>
+<div class="side-links"><a href="index.html">HOME</a><a href="pricing.html">PRICING</a><a href="locations.html">LOCATIONS</a><a href="vps.html">VPS</a><a href="support.html">SUPPORT</a><a href="about.html">ABOUT US</a><a href="contact.html">CONTACT US</a></div>
+<div class="side-actions"><a href="order.html" class="btn-blue">Order Now</a><a href="contact.html" class="btn-outline">Contact Us</a></div>
+</aside><div class="overlay" id="overlay"></div>
+<section class="hero">
+<div class="eyebrow">▣ &nbsp; Secure billing portal</div>
+<h1>Invoice <span id="heroInvoiceNo">#VC-—</span></h1>
+<p>Review your VPS order, invoice balance and payment instructions. Payment status is updated only after your payment has been verified.</p>
+</section>
+<main class="wrap">
+<div class="invoice-top">
+<div class="invoice-number">Invoice # <strong id="invoiceNo">VC-—</strong><div style="color:var(--muted);font-size:12px;margin-top:4px">Thank you for choosing Vertex Core.</div></div>
+<div id="statusBadge" class="status unpaid">● Unpaid</div>
+</div>
+<div class="notice" id="emailNotice">Your invoice is ready. Email delivery status will be shown here if email notifications are configured.</div>
+<div class="layout">
+<div class="main-column">
+<section class="panel">
+<div class="invoice-head">
+<div class="brand-block"><a class="logo" href="index.html"><img src="images/logo.jpg" alt="Vertex Core"></a><p>VPS Hosting Services<br>Support: vertexcore95@gmail.com</p></div>
+<div class="date-block"><div class="label">Invoice Date</div><strong id="invoiceDate">—</strong><div class="label">Due Date</div><strong id="dueDate">—</strong><div class="label">Billing Currency</div><strong>USD — US Dollar</strong></div>
+</div>
+<div class="parties">
+<div class="party"><div class="label">Pay To</div><strong>Vertex Core</strong><p>VPS Hosting Services</p><p>Support: vertexcore95@gmail.com</p></div>
+<div class="party"><div class="label">Invoiced To</div><strong id="customerName">Customer name</strong><p id="customerEmail">—</p><p id="customerPhone">—</p><p id="customerAddress">—</p></div>
+</div>
+<h2 style="margin-top:22px">Invoice Items</h2>
+<div style="overflow-x:auto"><table class="items"><thead><tr><th>Description</th><th>Amount</th></tr></thead><tbody><tr><td><div class="item-title" id="itemName">VPS Hosting Plan × 1</div><div class="item-meta">Server Location: <span id="serverLocation">Not specified</span></div><div class="item-meta">Billing cycle: <span id="billingCycle">monthly</span></div></td><td id="itemAmount">$0.00 USD</td></tr></tbody></table></div>
+<div class="totals"><div class="total-row"><span>Sub Total</span><strong id="subtotal">$0.00 USD</strong></div><div class="total-row"><span>Credit</span><strong>$0.00 USD</strong></div><div class="total-row grand"><span>Total</span><strong id="grandTotal">$0.00 USD</strong></div></div>
+</section>
+<section class="panel">
+<h2>Ledger</h2>
+<div style="overflow-x:auto"><table class="ledger"><thead><tr><th>Date</th><th>Type</th><th>Reference</th><th>Amount</th></tr></thead><tbody id="ledgerBody"><tr><td colspan="4" class="empty">No related transactions found.</td></tr></tbody></table></div>
+<div class="balance"><span>Balance</span><strong id="balance">$0.00 USD</strong></div>
+</section>
+</div>
+<aside class="side-column">
+<section class="side-card">
+<div class="small-label">Total Due</div><div class="due-amount" id="totalDue">$0.00 <small>USD</small></div>
+<div class="small-label">Payment Method</div><div class="payment-method" id="paymentMethod">Bank Transfer</div>
+<div id="bankInstructions" class="account-details"><strong>Bank Transfer</strong><div>Account title: <strong>Huzaifa Enterprises</strong></div><div>IBAN NO: <strong>PK42AIIN0000105724901017</strong></div><div>Account NO: <strong>0105724901017</strong></div><div>Bank Name: <strong>AlBaraka Bank Pakistan Limited</strong></div></div>
+<div id="walletInstructions" class="account-details" style="display:none"><strong>Mobile Wallet Transfer</strong><div>Account number: <strong>03402759190</strong></div><div>Account holder: <strong>Huzaifa Khan</strong></div></div>
+<div id="stripeInstructions" class="account-details" style="display:none"><strong>Stripe Debit/Credit Card</strong><div>Use the secure Stripe payment link provided by Vertex Core. Do not send card details by email.</div></div>
+<div id="unpaidMessage" class="pending">Payment is pending. This invoice will remain Unpaid until a payment is verified.</div>
+<div id="paidMessage" class="paid-message" style="display:none">This invoice is paid. The payment has been verified.</div>
+</section>
+<section class="side-card actions-panel">
+<h2>Actions</h2>
+<button class="action-btn" id="printInvoice">⬇ &nbsp; Download / Print Invoice</button>
+<p class="action-note">Choose “Save as PDF” in the print dialog to download a PDF copy of this invoice.</p>
+</section>
+<section class="side-card">
+<h2>Need help?</h2><p style="font-size:13px;color:var(--muted)">If you have completed a payment, contact support and include your invoice number and payment reference.</p><p style="margin-top:12px"><a href="mailto:vertexcore95@gmail.com" style="color:#63b6ff;font-weight:750">vertexcore95@gmail.com</a></p>
+</section>
+</aside>
+</div>
+</main>
+<footer>
+<div class="footer-grid">
+<div class="footer-brand"><a class="logo" href="index.html"><img src="images/logo.jpg" alt="Vertex Core"></a><p>Enterprise-grade Windows VPS infrastructure built for performance, secure access and reliable connectivity.</p><p style="margin-top:12px"><a href="mailto:vertexcore95@gmail.com" style="color:#8b9bb4">vertexcore95@gmail.com</a></p></div>
+<div class="footer-column"><h3>Company</h3><a href="about.html">About Us</a><a href="features.html">Services / Features</a><a href="locations.html">Locations</a><a href="vps.html">VPS</a><a href="blog.html">Blog</a></div>
+<div class="footer-column"><h3>Support</h3><a href="support.html">Help &amp; Supports</a><a href="docs.html">Documentation</a><a href="dashboard.html">Customer Dashboard</a></div>
+<div class="footer-column"><h3>Legal</h3><a href="terms.html">Terms of Services</a><a href="privacy.html">Privacy Policy</a><a href="refund.html">Refund Policy</a><a href="faqs.html">FAQs</a><a href="contact.html">Contact Us</a><a href="login.html">Login</a></div>
+</div><div class="footer-bottom">© 2026 Vertex Core - All plans include free backups - 99.95% uptime SLA - Cancel anytime - 24/7 Support</div>
+</footer>
+<script>
+const $=id=>document.getElementById(id);
+const sidebar=$("sidebar"),overlay=$("overlay");
+function openSide(){sidebar.classList.add("open");overlay.classList.add("show")}
+function closeSide(){sidebar.classList.remove("open");overlay.classList.remove("show")}
+$("openMenu").addEventListener("click",openSide);$("closeMenu").addEventListener("click",closeSide);overlay.addEventListener("click",closeSide);
+document.querySelectorAll(".side-links a,.side-actions a").forEach(a=>a.addEventListener("click",closeSide));
+$("printInvoice").addEventListener("click",()=>window.print());
+function formatDate(value){const d=new Date(value);if(Number.isNaN(d.getTime()))return new Date().toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"});return d.toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"})}
+function moneyNumber(value){const n=Number(String(value||"").replace(/[^0-9.-]/g,""));return Number.isFinite(n)?n:0}
+function usd(n){return n.toLocaleString("en-US",{style:"currency",currency:"USD"})+" USD"}
+function initInvoice(){
+ let data=null;try{data=JSON.parse(localStorage.getItem("vertexCoreLatestInvoice")||"null")}catch(e){}
+ if(!data){
+  $("emailNotice").textContent="No order data was found in this browser. Please return to checkout and place an order to generate an invoice.";
+  $("emailNotice").style.borderColor="#ffb02055";
+  $("emailNotice").style.color="#eecb83";
+  $("paymentMethod").textContent="No order selected";
+  return;
+ }
+ const amount=moneyNumber(data.total_price);
+ const status=String(data.status||"unpaid").toLowerCase();
+ const isPaid=status==="paid";
+ const invoiceNo=data.invoice_id||"VC-"+Date.now().toString(36).toUpperCase();
+ $("invoiceNo").textContent=invoiceNo;$("heroInvoiceNo").textContent="#"+invoiceNo;
+ $("invoiceDate").textContent=formatDate(data.invoice_date);$("dueDate").textContent=formatDate(data.due_date||data.invoice_date);
+ $("customerName").textContent=data.customer_name||"—";$("customerEmail").textContent=data.customer_email||"—";$("customerPhone").textContent=data.customer_phone||"—";
+ $("customerAddress").textContent=[data.customer_address,data.customer_city,data.customer_postal].filter(Boolean).join(", ")||"—";
+ $("itemName").textContent=(data.plan_name||"VPS Hosting Plan")+" × "+(data.quantity||"1");
+ $("serverLocation").textContent=data.server_location||"Not specified";$("billingCycle").textContent=(data.billing_cycle||"monthly").toLowerCase();
+ $("itemAmount").textContent=usd(amount);$("subtotal").textContent=usd(amount);$("grandTotal").textContent=usd(amount);
+ $("totalDue").innerHTML=usd(isPaid?0:amount).replace(" USD","")+" <small>USD</small>";$("balance").textContent=usd(isPaid?0:amount);
+ $("paymentMethod").textContent=data.payment_method||"Bank Transfer";
+ const wallet=["JazzCash","Easypaisa","NayaPay","SadaPay"].includes(data.payment_method);
+ $("bankInstructions").style.display=wallet?"none":(data.payment_method==="Stripe Debit/Credit Card"?"none":"grid");
+ $("walletInstructions").style.display=wallet?"grid":"none";
+ $("stripeInstructions").style.display=data.payment_method==="Stripe Debit/Credit Card"?"grid":"none";
+ $("statusBadge").className="status "+(isPaid?"paid":"unpaid");$("statusBadge").textContent=isPaid?"✓ Paid":"● Unpaid";
+ $("unpaidMessage").style.display=isPaid?"none":"block";$("paidMessage").style.display=isPaid?"block":"none";
+ if(data.email_status==="sent")$("emailNotice").textContent="Order request emails were sent. This confirms receipt of the request only; it does not mean payment has been verified.";
+ else if(data.email_status==="failed")$("emailNotice").textContent="Invoice created, but email delivery failed. Please contact vertexcore95@gmail.com and provide invoice number "+invoiceNo+".";
+ else $("emailNotice").textContent="Invoice created. Email notifications are not configured yet, so no email has been sent. This invoice remains Unpaid until payment is verified.";
+}
+initInvoice();
+</script>
+</body>
+</html>
